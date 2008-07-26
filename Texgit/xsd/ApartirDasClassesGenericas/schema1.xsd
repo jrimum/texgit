@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="unqualified" version="1.0" targetNamespace="texgit"
+	xmlns:tns="texgit" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:txg="http://gilmatryx.googlepages.com/texgit">
+
+	<xs:import schemaLocation="schema2.xsd" />
+
+	<xs:element name="r" type="tns:r" />
+
+	<xs:complexType name="adapter4Filler">
+		<xs:complexContent>
+			<xs:extension base="xmlAdapter">
+				<xs:sequence />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="field">
+		<xs:sequence>
+			<xs:element name="formatter" type="format" minOccurs="0" />
+			<xs:element name="value" type="xs:anyType" minOccurs="0" />
+		</xs:sequence>
+		<xs:attribute name="blankAccepted" type="xs:boolean"
+			use="required" />
+		<xs:attribute name="name" type="xs:string" />
+	</xs:complexType>
+
+	<xs:complexType name="filler">
+		<xs:sequence>
+			<xs:element name="padding" type="xs:anyType" minOccurs="0" />
+		</xs:sequence>
+		<xs:attribute name="sideToFill" type="tns:side" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="fixedField">
+		<xs:complexContent>
+			<xs:extension base="tns:field">
+				<xs:sequence>
+					<xs:element name="filler" type="tns:filler" />
+				</xs:sequence>
+				<xs:attribute name="fixedLength" type="xs:int"
+					use="required" />
+				<xs:attribute name="ordem" type="xs:int" use="required" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="r">
+		<xs:sequence>
+			<xs:element name="fields" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="fixedField"
+							type="tns:fixedField" maxOccurs="unbounded" minOccurs="0" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="defaultFiller">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="WHITE_SPACE_RIGHT" />
+			<xs:enumeration value="WHITE_SPACE_LEFT" />
+			<xs:enumeration value="ZERO_RIGHT" />
+			<xs:enumeration value="ZERO_LEFT" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="side">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RIGHT" />
+			<xs:enumeration value="LEFT" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
+
