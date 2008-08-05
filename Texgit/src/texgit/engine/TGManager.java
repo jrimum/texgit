@@ -20,8 +20,8 @@ public class TGManager {
 			
 			MetaFlatFile ffMeta = tgMeta.getFlatFile();
 			
+			ffMeta.getGroupOfRecords().getRecords();
 			
-	
 		}catch (Exception e) {
 			throw new TexgitException(e);
 		}
