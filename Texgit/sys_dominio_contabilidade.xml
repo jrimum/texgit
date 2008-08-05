@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<txg:Texgit xmlns:txg="http://gilmatryx.googlepages.com/Texgit"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://gilmatryx.googlepages.com/Texgit TexgitSchema.xsd" version="1.0-academic2">
+
+	<FlatFile>
+		<layout>
+			<name>
+				Layout de Importação/Exportação de dados do Sistema de
+				Contabilidade Domínio
+			</name>
+			<version>Versão para lançamentos em lotes</version>
+			<description>
+				Através deste layout, você poderá gerar arquivos para
+				serem importados no Módulo Contabilidade do Programa
+				Domínio Contábil.
+			</description>
+		</layout>
+		<GroupOfRecords>
+			<Record name="Header">
+				<GroupOfFields>
+					<IdType name="IDReg" type="INTEGER" value="01" length="2" position="1" />
+					<Field name="CodigoDaEmpresa" type="INTEGER" length="7" padding="ZERO_LEFT" />
+					<!-- 
+						Cadastro de Pessoa na Receita Federal 
+					-->
+					<Field name="CPRF" length="14" padding="ZERO_LEFT" />
+					<Field name="DataInicial" type="DATE" format="DATE_DDMMYY" length="10" />
+					<Field name="DataFinal" type="DATE" format="DATE_DDMMYY" length="10" />
+					<!-- 
+						"N"
+					-->
+					<Field name="Costante0" type="CHARACTER" value="N" length="1" />
+					<!-- 
+						01=Contabilidade, 
+						02=Entradas,
+						03=Saídas,
+						04=Serviços,
+						05=Contabilidade-Lançamentos em lote
+					-->
+					<Field name="TipoDeNota" type="INTEGER" length="2" padding="ZERO_LEFT" />
+					<Field name="Constante1" value="0" length="5" padding="ZERO_LEFT" />
+					<!-- 
+						1=Contabilidade,
+						2=Caixa,
+						0=Outro 
+					-->
+					<Field name="Sistema" type="INTEGER" length="2" padding="ZERO_LEFT" />
+					<Field name="Constante2" type="INTEGER" value="16" length="2" padding="ZERO_LEFT" />
+				</GroupOfFields>
+			</Record>
+			<Record name="Detalhe-Header-Lancamento" repeatable="true">
+				<GroupOfFields>
+					<IdType name="IDReg" type="INTEGER" value="02"
+						length="2" position="1" />
+					<!-- 
+						D=Um debito para vários créditos
+						C=Um credito para vários débitos
+						X=Um debito para um credito
+						V=Vários débitos para vários créditos
+					-->
+					<Field name="TipoDeLancamento" type="CHARACTER" length="1" />
+					<Field name="DataDoLancamento" type="DATE" format="DATE_DDMMYY" length="10" />
+					<Field name="Usuario" length="30" />
+					<Field name="Constante" length="100" />
+					<SequencialNumber name="sequencia" type="INTEGER" length="7" position="2" padding="ZERO_LEFT" />
+				</GroupOfFields>
+				<GroupOfInnerRecords>
+					<Record name="Detalhe-Body-Lancamento" repeatable="true">
+						<GroupOfFields>
+							<IdType name="IDReg" type="INTEGER" value="03" length="2" position="1" />
+
+							<Field name="ContaDebito" type="INTEGER" length="7" padding="ZERO_LEFT" />
+							<Field name="ContaCredito" type="INTEGER" length="7" padding="ZERO_LEFT" />
+							<Field name="Valor" type="BIGDECIMAL" length="15" format="DECIMAL_DD" />
+							<Field name="CodigoDoHistorico" type="INTEGER" length="7" padding="ZERO_LEFT" />
+							<Field name="ConteudoDoHistorico" length="512" />
+							<!-- 
+								Código da Filial ou Matriz
+							-->
+							<Field name="CodigoDaLoja" type="INTEGER" length="7" padding="ZERO_LEFT" />
+							<Field name="Constante" length="100" />
+							<SequencialNumber name="sequencia" type="INTEGER" length="7" position="2" padding="ZERO_LEFT" />
+						</GroupOfFields>
+					</Record>
+				</GroupOfInnerRecords>
+			</Record>
+			<Record name="Trailler">
+				<GroupOfFields>
+					<IdType name="IDReg" type="INTEGER" value="99" length="2" position="1" />
+					<Field name="Constante" value="9" length="98">
+						<Filler sideToFill="LEFT" padding="9" />
+					</Field>
+				</GroupOfFields>
+			</Record>
+		</GroupOfRecords>
+	</FlatFile>
+	
+</txg:Texgit>

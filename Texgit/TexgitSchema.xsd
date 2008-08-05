@@ -30,10 +30,10 @@
 				</jxb:class>
 			</xs:appinfo>
 		</xs:annotation>
-		<xs:sequence>
+		<xs:all>
 			<xs:element name="FlatFile" type="txg:MetaFlatFile"
 				minOccurs="1" maxOccurs="1" />
-		</xs:sequence>
+		</xs:all>
 		<xs:attribute name="version" type="txg:TexgitVersion"
 			use="optional" default="1.0-academic">
 			<xs:annotation>
@@ -81,12 +81,14 @@
 				</jxb:class>
 			</xs:appinfo>
 		</xs:annotation>
-		<xs:sequence>
+		<xs:all>
 			<xs:element name="name" type="txg:MetaDescription"
 				minOccurs="0" maxOccurs="1" />
 			<xs:element name="version" type="txg:MetaDescription"
 				minOccurs="0" maxOccurs="1" />
-		</xs:sequence>
+			<xs:element name="description" type="txg:MetaDescription"
+				minOccurs="0" maxOccurs="1" />
+		</xs:all>
 	</xs:complexType>
 
 	<xs:complexType name="MetaGroupRecords">
@@ -158,14 +160,6 @@
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="Field" type="txg:MetaField" minOccurs="1"
-				maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:appinfo>
-						<jxb:property name="fields" />
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:element>
 			<xs:element name="IdType" type="txg:MetaOrderedField"
 				minOccurs="1" maxOccurs="1">
 				<xs:annotation>
@@ -182,8 +176,16 @@
 					</xs:appinfo>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="Field" type="txg:MetaField" minOccurs="1"
+				maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="fields" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="SequencialNumber"
-				type="txg:MetaOrderedField" minOccurs="1" maxOccurs="1">
+				type="txg:MetaOrderedField" minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:appinfo>
 						<jxb:class>
@@ -199,6 +201,41 @@
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="MetaField">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class>
+					<jxb:javadoc>
+						<![CDATA[
+					<p>
+					Field é a unidade básica de informação de um registro, um field está para 
+					um registro assim como uma coluna de banco de dados está para uma tabela.
+					</p>
+					]]>
+					</jxb:javadoc>
+				</jxb:class>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:all>
+		<xs:element name="Filler" type="txg:MetaFiller"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="Formatter" type="txg:MetaFormatter"
+				minOccurs="0" maxOccurs="1" />
+		</xs:all>
+		<xs:attribute name="name" type="txg:MetaName" use="required" />
+		<xs:attribute name="value" type="txg:MetaFormat" use="optional"
+			default=" " />
+		<xs:attribute name="length" type="txg:MetaLength"
+			use="required" />
+		<xs:attribute name="blankAccepted" type="xs:boolean"
+			use="optional" default="false" />
+		<xs:attribute name="type" type="txg:enumTypes" default="STRING" />
+		<xs:attribute name="format" type="txg:enumFormats"
+			use="optional" />
+		<xs:attribute name="padding" type="txg:enumPaddings"
+			use="optional" default="WHITE_SPACE_RIGHT" />
 	</xs:complexType>
 
 	<xs:complexType name="MetaOrderedField">
@@ -221,41 +258,6 @@
 					use="required" />
 			</xs:extension>
 		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name="MetaField">
-		<xs:annotation>
-			<xs:appinfo>
-				<jxb:class>
-					<jxb:javadoc>
-						<![CDATA[
-					<p>
-					Field é a unidade básica de informação de um registro, um field está para 
-					um registro assim como uma coluna de banco de dados está para uma tabela.
-					</p>
-					]]>
-					</jxb:javadoc>
-				</jxb:class>
-			</xs:appinfo>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="Filler" type="txg:MetaFiller"
-				minOccurs="0" maxOccurs="1" />
-			<xs:element name="Formatter" type="txg:MetaFormatter"
-				minOccurs="0" maxOccurs="1" />
-		</xs:sequence>
-		<xs:attribute name="name" type="txg:MetaName" use="required" />
-		<xs:attribute name="value" type="txg:MetaFormat" use="optional"
-			default=" " />
-		<xs:attribute name="length" type="txg:MetaLength"
-			use="required" />
-		<xs:attribute name="blankAccepted" type="xs:boolean"
-			use="optional" default="false" />
-		<xs:attribute name="type" type="txg:enumTypes" default="STRING" />
-		<xs:attribute name="format" type="txg:enumFormats"
-			use="optional" />
-		<xs:attribute name="padding" type="txg:enumPaddings"
-			use="optional" default="WHITE_SPACE_RIGHT" />
 	</xs:complexType>
 
 	<xs:complexType name="MetaFiller">

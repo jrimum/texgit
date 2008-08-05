@@ -3,6 +3,7 @@ package texgit.type.component;
 import static br.com.nordestefomento.jrimum.ACurbitaObject.isNotNull;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -25,28 +26,16 @@ public class Record extends BlockOfFields{
 	
 	private Set<String> declaredInnerRecords;
 	
+	private List<String> InnerOrder;
+	
 	public Record() {
 		super();
 	}
 	
 	@Override
 	public Record clone() throws CloneNotSupportedException {
-		//TODO 
+		//TODO Outros atributos
 		return (Record) super.clone();
-	}
-
-
-
-	@Override
-	public void read(String lineRecord) {
-		
-		//if(record.isThis())
-		super.read(lineRecord);
-		//else
-			//if(isInnerRecord(getId(record)))//EhUmInner
-				//someOne.createNewRecord().read(record);
-			//else
-				//throw new IllegalException();
 	}
 	
 	public FixedField<String> readID(String lineRecord) {
@@ -95,20 +84,6 @@ public class Record extends BlockOfFields{
 	}
 
 
-	@Override
-	public String write() {
-		
-		StringBuilder sb = new StringBuilder(super.write());
-		
-		if(innerRecords != null && !innerRecords.isEmpty())
-			for(Record innRec : innerRecords)
-				sb.append(innRec.write()+"\r\n");
-		
-		return sb.toString();
-	}
-
-
-
 	public boolean isInnerRecord(String idRecord){
 		
 		boolean is = false;
@@ -120,6 +95,34 @@ public class Record extends BlockOfFields{
 		}
 		
 		return is;
+	}
+	
+	public List<String> writeInnerRecords(){
+		
+		return writeInnerRecords(this);
+	}
+	
+	private List<String> writeInnerRecords(Record record){
+
+		ArrayList<String> out = new ArrayList<String>(record.getInnerRecords().size());
+		
+		for(String id : record.getInnerOrder()){
+			
+			if(record.isRepitable(id))
+				List<Record> innRecs = record.getInnerRecords(id);
+			else
+				Record innRec = record.getInnerRecord(id);
+			
+			
+			
+			if(innRec.isHeadOfGroup())
+				out.addAll(writeInnerRecords(record));
+			else
+				out.add(innRec.write());
+				
+		}
+		
+		return out;
 	}
 
 	public String getName() {
@@ -142,8 +145,8 @@ public class Record extends BlockOfFields{
 		return idType;
 	}
 
-	public void setIdType(FixedField<String> idRecord) {
-		this.idType = idRecord;
+	public void setIdType(FixedField<String> idType) {
+		this.idType = idType;
 	}
 
 	public FixedField<Long> getSequencialNumber() {
@@ -158,23 +161,32 @@ public class Record extends BlockOfFields{
 		return headOfGroup;
 	}
 
-	public void setHeadOfGroup(boolean headOfSetRecords) {
-		this.headOfGroup = headOfSetRecords;
+	public void setHeadOfGroup(boolean headOfGroup) {
+		this.headOfGroup = headOfGroup;
 	}
 
 	public List<Record> getInnerRecords() {
 		return innerRecords;
 	}
 
-	public void setInnerRecords(List<Record> subRecords) {
-		this.innerRecords = subRecords;
+	public void setInnerRecords(List<Record> innerRecords) {
+		this.innerRecords = innerRecords;
 	}
 
-	public Set<String> getRelated() {
+	public Set<String> getDeclaredInnerRecords() {
 		return declaredInnerRecords;
 	}
 
-	public void setRelated(Set<String> related) {
-		this.declaredInnerRecords = related;
+	public void setDeclaredInnerRecords(Set<String> declaredInnerRecords) {
+		this.declaredInnerRecords = declaredInnerRecords;
 	}
+
+	public List<String> getInnerOrder() {
+		return InnerOrder;
+	}
+
+	public void setInnerOrder(List<String> innerOrder) {
+		InnerOrder = innerOrder;
+	}
+
 }

@@ -1,11 +1,16 @@
 package texgit;
 
-import texgit.type.IField;
+import java.util.Collection;
+
 
 
 public interface IRecord {
 
-	public IField createField(String name);
+	public <G> void setValue(String fieldName, G value);
+	
+	public <G> G getValue(String fieldName);
 	
 	public IRecord createInnerRecord(String idType);
+	
+	public Collection<IRecord> getInnerRecords();
 }

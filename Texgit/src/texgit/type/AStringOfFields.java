@@ -45,8 +45,10 @@ public abstract class AStringOfFields<G extends IField<?>> implements ITextStrea
 	@Override
 	protected AStringOfFields<G> clone() throws CloneNotSupportedException {
 		
+		//Clona apenas com uma referência a fields.
 		AStringOfFields<G> sof = (AStringOfFields<G>) super.clone();
 		
+		//Clonagem real
 		sof.fields = new ArrayList<G>();
 		
 		for(G gf : fields)

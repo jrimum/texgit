@@ -4,7 +4,7 @@ import javax.xml.bind.ValidationEvent;
 import javax.xml.bind.ValidationEventHandler;
 import javax.xml.bind.ValidationEventLocator;
 
-public class SchemaValidator implements ValidationEventHandler {
+public class TGSchemaValidator implements ValidationEventHandler {
 
 	@Override
 	public boolean handleEvent(ValidationEvent event) {
@@ -13,12 +13,12 @@ public class SchemaValidator implements ValidationEventHandler {
 		
 		if (event.getSeverity() == ValidationEvent.WARNING) {
 			
-			System.out.println(getMensagem("ATENÇÃO LAYOUT INCONSISTENTE!\n", event));
+			System.err.println(getMensagem("ATENÇÃO LAYOUT INCONSISTENTE!\n", event));
 			
 			handled = true;
 			
 		}else//ERROR
-			System.out.println(getMensagem("ERRO NO LAYOUT!\n", event));
+			System.err.println(getMensagem("ERRO NO LAYOUT!\n", event));
 					
 		return handled;
 	}

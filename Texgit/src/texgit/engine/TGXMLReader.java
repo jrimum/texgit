@@ -15,16 +15,17 @@ import javax.xml.validation.SchemaFactory;
 
 import org.xml.sax.SAXException;
 
+import texgit.TexgitException;
 import texgit.language.MetaTexgit;
 
-public class XMLReader {
+public class TGXMLReader {
 
 	
-	public static MetaTexgit parse(File flatFileXML) {
+	public static MetaTexgit parse(File xmlDef)throws TexgitException {
 
 		MetaTexgit txg = null;
 
-		if (isNotNull(flatFileXML)) {
+		if (isNotNull(xmlDef)) {
 
 			try {
 
@@ -41,22 +42,22 @@ public class XMLReader {
 
 				aUnmarshaller.setSchema(schema);
 
-				aUnmarshaller.setEventHandler(new SchemaValidator());
+				aUnmarshaller.setEventHandler(new TGSchemaValidator());
 
 				txg = (MetaTexgit) aUnmarshaller
-						.unmarshal(new FileInputStream(flatFileXML));
+						.unmarshal(new FileInputStream(xmlDef));
 				
 			} catch (SAXException e) {
 
-				e.printStackTrace();
+				throw new TGLanguageException(e);
 				
 			} catch (JAXBException e) {
 
-				e.printStackTrace();
+				throw new TGLanguageException(e);
 				
 			} catch (FileNotFoundException e) {
 
-				e.printStackTrace();
+				throw new TGLanguageException(e);
 				
 			}
 		}
@@ -64,7 +65,4 @@ public class XMLReader {
 		return txg;
 	}
 	
-	public static void main(String[] args) {
-		parse(new File("teste.xml"));
-	}
 }

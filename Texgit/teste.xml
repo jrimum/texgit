@@ -11,6 +11,9 @@
 		<GroupOfRecords>
 			<Record name="X-RECORD" repeatable="true">
 				<GroupOfFields>
+				
+					<IdType name="header" type="INTEGER" value="01"
+						length="2" position="1" />
 						
 					<Field name="nome" length="30" />
 					<Field padding="ZERO_LEFT" name="cpf" length="14" />
@@ -22,9 +25,6 @@
 						length="9" />
 					<Field type="BIGDECIMAL" padding="ZERO_LEFT"
 						name="valor" length="13" format="DECIMAL_DDDD" />
-						
-					<IdType name="header" type="INTEGER" value="01"
-						length="2" position="1" />
 					
 					<SequencialNumber name="sequencia" type="LONG"
 						length="6" position="6" />
@@ -35,14 +35,15 @@
 					<Record name="X" >
 						<GroupOfFields>
 						
+							<IdType name="aninhado" type="INTEGER" value="01" length="2" position="1" />
+						
 							<Field name="nome" length="30" />
 							<Field padding="ZERO_LEFT" name="cpf"
 								length="14" />
-								
-							<IdType name="aninhado" type="INTEGER"
-								value="01" length="2" position="1" />
+						
 							<SequencialNumber name="sequencia" type="LONG"
 							length="3" position="3" />
+							
 						</GroupOfFields>
 					</Record>
 				</GroupOfInnerRecords>
