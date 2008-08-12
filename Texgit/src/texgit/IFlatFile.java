@@ -2,32 +2,32 @@ package texgit;
 
 import java.util.Collection;
 
-public interface IFlatFile extends ITextFileStream{
+public interface IFlatFile<G extends IRecord> extends ITextFileStream {
 
-	//Registros individuais
-	
-	public IRecord createRecord(String idType);
-	
-	public void addRecord(IRecord record);
-	
-	public IRecord getRecord(String idName);
-	
-	public IRecord removeRecord(String idName);
-	
-	//Grupos de Registros (Registros que se repetem)
-	
-	public void addRecords(String idName, Collection<IRecord> records);
-	
-	public void setRecords(Collection<IRecord> records);
-	
-	public Collection<IRecord> getSameRecords(String idName);
+	// Registros individuais
 
-	//Todos os Registros
-	
-	public void addAllRecords(Collection<IRecord> records);
-	
-	public void setAllRecords(Collection<IRecord> records);
-	
-	public Collection<IRecord> getAllRecords();
-	
+	public G createRecord(String idType);
+
+	public void addRecord(G record);
+
+	public G getRecord(String idName);
+
+	public G removeRecord(String idName);
+
+	// Grupos de Registros (Registros que se repetem)
+
+	public void addRecords(String idName, Collection<G> records);
+
+	public void setRecords(Collection<G> records);
+
+	public Collection<G> getSameRecords(String idName);
+
+	// Todos os Registros
+
+	public void addAllRecords(Collection<G> records);
+
+	public void setAllRecords(Collection<G> records);
+
+	public Collection<G> getAllRecords();
+
 }

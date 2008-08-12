@@ -5,52 +5,50 @@
 // Generated on: 2008.08.03 at 12:27:56 AM GMT-03:00 
 //
 
-
 package texgit.language;
 
 import javax.xml.bind.annotation.XmlEnum;
 
-
 /**
  * 
- * 						
- * 					<p>
- * 						Preenchimentos suportados por padrão pelo
- * 						componente.
- * 					</p>
- * 					
- * 					
  * 
- * <p>Java class for enumPaddings.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
+ * Preenchimentos suportados por padrï¿½o pelo componente.
+ * </p>
+ * 
+ * 
+ * 
+ * <p>
+ * Java class for enumPaddings.
+ * 
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
+ * <p>
+ * 
  * <pre>
- * &lt;simpleType name="enumPaddings">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="ZERO_RIGHT"/>
- *     &lt;enumeration value="ZERO_LEFT"/>
- *     &lt;enumeration value="WHITE_SPACE_RIGHT"/>
- *     &lt;enumeration value="WHITE_SPACE_LEFT"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
+ * &lt;simpleType name=&quot;enumPaddings&quot;&gt;
+ *   &lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}string&quot;&gt;
+ *     &lt;enumeration value=&quot;ZERO_RIGHT&quot;/&gt;
+ *     &lt;enumeration value=&quot;ZERO_LEFT&quot;/&gt;
+ *     &lt;enumeration value=&quot;WHITE_SPACE_RIGHT&quot;/&gt;
+ *     &lt;enumeration value=&quot;WHITE_SPACE_LEFT&quot;/&gt;
+ *   &lt;/restriction&gt;
+ * &lt;/simpleType&gt;
  * </pre>
  * 
  */
 @XmlEnum
 public enum EnumPaddings {
 
-    ZERO_RIGHT,
-    ZERO_LEFT,
-    WHITE_SPACE_RIGHT,
-    WHITE_SPACE_LEFT;
+	ZERO_RIGHT, ZERO_LEFT, WHITE_SPACE_RIGHT, WHITE_SPACE_LEFT;
 
-    public String value() {
-        return name();
-    }
+	public String value() {
+		return name();
+	}
 
-    public static EnumPaddings fromValue(String v) {
-        return valueOf(v);
-    }
+	public static EnumPaddings fromValue(String v) {
+		return valueOf(v);
+	}
 
 }

@@ -5,60 +5,54 @@
 // Generated on: 2008.08.03 at 12:27:56 AM GMT-03:00 
 //
 
-
 package texgit.language;
 
 import javax.xml.bind.annotation.XmlEnum;
 
-
 /**
  * 
- * 						
- * 					<p>
- * 						Formatos pré definidos suportados pelo
- * 						componente.
- * 					</p>
- * 					
- * 					
  * 
- * <p>Java class for enumFormats.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
+ * Formatos prï¿½ definidos suportados pelo componente.
+ * </p>
+ * 
+ * 
+ * 
+ * <p>
+ * Java class for enumFormats.
+ * 
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
+ * <p>
+ * 
  * <pre>
- * &lt;simpleType name="enumFormats">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="DATE_DDMMYY"/>
- *     &lt;enumeration value="DATE_DDMMYYYY"/>
- *     &lt;enumeration value="DATE_YYMMDD"/>
- *     &lt;enumeration value="DATE_YYYYMMDD"/>
- *     &lt;enumeration value="DECIMAL_D"/>
- *     &lt;enumeration value="DECIMAL_DD"/>
- *     &lt;enumeration value="DECIMAL_DDD"/>
- *     &lt;enumeration value="DECIMAL_DDDD"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
+ * &lt;simpleType name=&quot;enumFormats&quot;&gt;
+ *   &lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}string&quot;&gt;
+ *     &lt;enumeration value=&quot;DATE_DDMMYY&quot;/&gt;
+ *     &lt;enumeration value=&quot;DATE_DDMMYYYY&quot;/&gt;
+ *     &lt;enumeration value=&quot;DATE_YYMMDD&quot;/&gt;
+ *     &lt;enumeration value=&quot;DATE_YYYYMMDD&quot;/&gt;
+ *     &lt;enumeration value=&quot;DECIMAL_D&quot;/&gt;
+ *     &lt;enumeration value=&quot;DECIMAL_DD&quot;/&gt;
+ *     &lt;enumeration value=&quot;DECIMAL_DDD&quot;/&gt;
+ *     &lt;enumeration value=&quot;DECIMAL_DDDD&quot;/&gt;
+ *   &lt;/restriction&gt;
+ * &lt;/simpleType&gt;
  * </pre>
  * 
  */
 @XmlEnum
 public enum EnumFormats {
 
-    DATE_DDMMYY,
-    DATE_DDMMYYYY,
-    DATE_YYMMDD,
-    DATE_YYYYMMDD,
-    DECIMAL_D,
-    DECIMAL_DD,
-    DECIMAL_DDD,
-    DECIMAL_DDDD;
+	DATE_DDMMYY, DATE_DDMMYYYY, DATE_YYMMDD, DATE_YYYYMMDD, DECIMAL_D, DECIMAL_DD, DECIMAL_DDD, DECIMAL_DDDD;
 
-    public String value() {
-        return name();
-    }
+	public String value() {
+		return name();
+	}
 
-    public static EnumFormats fromValue(String v) {
-        return valueOf(v);
-    }
+	public static EnumFormats fromValue(String v) {
+		return valueOf(v);
+	}
 
 }

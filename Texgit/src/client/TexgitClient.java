@@ -22,7 +22,7 @@ public class TexgitClient {
 	
 	private static void testWrite() {
 	
-		IFlatFile ff = Texgit.createFlatFile(new File("sys_dominio_contabilidade.xml"));
+		IFlatFile<IRecord> ff = Texgit.createFlatFile(new File("sys_dominio_contabilidade.xml"));
 		
 		IRecord header = ff.createRecord("Header");
 		header.setValue("CodigoDaEmpresa", 23);
@@ -56,7 +56,7 @@ public class TexgitClient {
 
 	private static void testRead(){
 		
-		IFlatFile ff = Texgit.createFlatFile(new File("sys_dominio_contabilidade.xml"));
+		IFlatFile<IRecord> ff = Texgit.createFlatFile(new File("sys_dominio_contabilidade.xml"));
 		
 		ff.read(FileUtil.read("TO-DO"));
 		

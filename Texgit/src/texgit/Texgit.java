@@ -10,9 +10,9 @@ import texgit.engine.TGManager;
 
 public final class Texgit {
 
-	public static final IFlatFile createFlatFile(File xmlDef)throws TexgitException{
+	public static final IFlatFile<IRecord> createFlatFile(File xmlDef)throws TexgitException{
 		
-		IFlatFile iFlatFile = null;
+		IFlatFile<IRecord> iFlatFile = null;
 		
 		if (isNotNull(xmlDef))
 			iFlatFile = TGManager.buildFlatFile(xmlDef);
@@ -20,9 +20,9 @@ public final class Texgit {
 		return iFlatFile;
 	}
 	
-	public static final IFlatFile createFlatFile(String xmlDef)throws TexgitException{
+	public static final IFlatFile<IRecord> createFlatFile(String xmlDef)throws TexgitException{
 		
-		IFlatFile iFlatFile = null;
+		IFlatFile<IRecord> iFlatFile = null;
 		
 		try{
 		

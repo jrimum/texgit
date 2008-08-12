@@ -1,28 +1,19 @@
 package texgit.type.component;
 
-import java.awt.Color;
+import static br.com.nordestefomento.jrimum.ACurbitaObject.isNotNull;
+import static org.apache.commons.lang.StringUtils.isNotBlank;
+
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import texgit.IFlatFile;
-import texgit.ITextFileStream;
-
-import com.lowagie.text.Cell;
-import com.lowagie.text.Chunk;
-import com.lowagie.text.Font;
-import com.lowagie.text.FontFactory;
-import com.lowagie.text.Paragraph;
-import com.lowagie.text.Phrase;
-
-import br.com.nordestefomento.jrimum.utilix.IReadWriteStream;
-
-import static br.com.nordestefomento.jrimum.ACurbitaObject.*;
-import static org.apache.commons.lang.StringUtils.*;
+import texgit.IRecord;
 
 @SuppressWarnings("serial")
-public class FlatFile implements IFlatFile{
+public class FlatFile implements IFlatFile<IRecord>{
 
 	private List<Record> records;
 	
@@ -30,24 +21,11 @@ public class FlatFile implements IFlatFile{
 	
 	private List<String> writtenOrder;
 	
-	private Factory4Records factory;
+	private IFactory4Record<Record> iFactory4Record;
 
-	@SuppressWarnings("unused")
-	private FlatFile() {
-	}
-	
-	/**
-	 * @param repitables
-	 * @param writtenOrder
-	 * @param factory
-	 */
-	public FlatFile(Set<String> repitables, List<String> writtenOrder,
-			Factory4Records factory) {
-		super();
-		this.repitables = repitables;
-		this.writtenOrder = writtenOrder;
-		this.factory = factory;
-		this.records = new ArrayList<Record>();
+	public FlatFile(IFactory4Record<Record> iFac4Rec) {
+		
+		this.iFactory4Record = iFac4Rec;
 	}
 
 	public Record getRecord(String idType){
@@ -91,9 +69,9 @@ public class FlatFile implements IFlatFile{
 		return (isNotNull(repitables) && !repitables.isEmpty() && repitables.contains(idType));
 	}
 	
-	public Record createRecord(String idType){
+	public IRecord createRecord(String idType){
 		
-		return factory.create(idType);
+		return iFactory4Record.create(idType);
 	}
 	
 	public void addRecord(Record record){
@@ -159,6 +137,54 @@ public class FlatFile implements IFlatFile{
 		}
 		
 		return out;
+	}
+
+	@Override
+	public void addAllRecords(Collection<IRecord> records) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addRecord(IRecord record) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addRecords(String idName, Collection<IRecord> records) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Collection<IRecord> getAllRecords() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Collection<IRecord> getSameRecords(String idName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IRecord removeRecord(String idName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setAllRecords(Collection<IRecord> records) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setRecords(Collection<IRecord> records) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

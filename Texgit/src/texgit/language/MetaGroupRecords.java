@@ -5,7 +5,6 @@
 // Generated on: 2008.08.03 at 12:27:56 AM GMT-03:00 
 //
 
-
 package texgit.language;
 
 import java.util.ArrayList;
@@ -15,55 +14,53 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
  * 
- * 						
- * 					<p>
- * 						Conjunto de records de um flatfile ou relacionados a um outro record.
- * 					</p>
- * 					
- * 					
+ * 
+ * <p>
+ * Conjunto de records de um flatfile ou relacionados a um outro record.
+ * </p>
+ * 
+ * 
  * 
  * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "MetaGroupRecords", propOrder = {
-    "records"
-})
+@XmlType(name = "MetaGroupRecords", propOrder = { "records" })
 public class MetaGroupRecords {
 
-    @XmlElement(name = "Record", required = true)
-    protected List<MetaRecord> records;
+	@XmlElement(name = "Record", required = true)
+	protected List<MetaRecord> records;
 
-    /**
-     * Gets the value of the records property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the records property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getRecords().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link MetaRecord }
-     * 
-     * 
-     */
-    public List<MetaRecord> getRecords() {
-        if (records == null) {
-            records = new ArrayList<MetaRecord>();
-        }
-        return this.records;
-    }
+	/**
+	 * Gets the value of the records property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the records property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getRecords().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list
+	 * {@link MetaRecord }
+	 * 
+	 * 
+	 */
+	public List<MetaRecord> getRecords() {
+		if (records == null) {
+			records = new ArrayList<MetaRecord>();
+		}
+		return this.records;
+	}
 
 }

@@ -5,48 +5,49 @@
 // Generated on: 2008.08.03 at 12:27:56 AM GMT-03:00 
 //
 
-
 package texgit.language;
 
 import javax.xml.bind.annotation.XmlEnum;
 
-
 /**
  * 
- * 						
- * 					<p>
- * 						Tipo de formatadores suportados. Usados junto a
- * 						definição de novos formatadores.
- * 					</p>
- * 					
- * 					
  * 
- * <p>Java class for enumFormatsTypes.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
+ * Tipo de formatadores suportados. Usados junto a definiï¿½ï¿½o de novos
+ * formatadores.
+ * </p>
+ * 
+ * 
+ * 
+ * <p>
+ * Java class for enumFormatsTypes.
+ * 
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
+ * <p>
+ * 
  * <pre>
- * &lt;simpleType name="enumFormatsTypes">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="DATE"/>
- *     &lt;enumeration value="DECIMAL"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
+ * &lt;simpleType name=&quot;enumFormatsTypes&quot;&gt;
+ *   &lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}string&quot;&gt;
+ *     &lt;enumeration value=&quot;DATE&quot;/&gt;
+ *     &lt;enumeration value=&quot;DECIMAL&quot;/&gt;
+ *   &lt;/restriction&gt;
+ * &lt;/simpleType&gt;
  * </pre>
  * 
  */
 @XmlEnum
 public enum EnumFormatsTypes {
 
-    DATE,
-    DECIMAL;
+	DATE, DECIMAL;
 
-    public String value() {
-        return name();
-    }
+	public String value() {
+		return name();
+	}
 
-    public static EnumFormatsTypes fromValue(String v) {
-        return valueOf(v);
-    }
+	public static EnumFormatsTypes fromValue(String v) {
+		return valueOf(v);
+	}
 
 }

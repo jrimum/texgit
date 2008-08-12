@@ -5,7 +5,6 @@
 // Generated on: 2008.08.03 at 12:27:56 AM GMT-03:00 
 //
 
-
 package texgit.language;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -15,81 +14,74 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
  * 
- * 						
- * 					<p>
- * 						Elemento root.
- * 					</p>
- * 					
- * 					
+ * 
+ * <p>
+ * Elemento root.
+ * </p>
+ * 
+ * 
  * 
  * 
  * 
  */
-@XmlRootElement(name="Texgit")
+@XmlRootElement(name = "Texgit")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "MetaTexgit", propOrder = {
 
 })
 public class MetaTexgit {
 
-    @XmlElement(name = "FlatFile", required = true)
-    protected MetaFlatFile flatFile;
-    @XmlAttribute
-    protected String version;
+	@XmlElement(name = "FlatFile", required = true)
+	protected MetaFlatFile flatFile;
+	@XmlAttribute
+	protected String version;
 
-    /**
-     * Gets the value of the flatFile property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link MetaFlatFile }
-     *     
-     */
-    public MetaFlatFile getFlatFile() {
-        return flatFile;
-    }
+	/**
+	 * Gets the value of the flatFile property.
+	 * 
+	 * @return possible object is {@link MetaFlatFile }
+	 * 
+	 */
+	public MetaFlatFile getFlatFile() {
+		return flatFile;
+	}
 
-    /**
-     * Sets the value of the flatFile property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MetaFlatFile }
-     *     
-     */
-    public void setFlatFile(MetaFlatFile value) {
-        this.flatFile = value;
-    }
+	/**
+	 * Sets the value of the flatFile property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link MetaFlatFile }
+	 * 
+	 */
+	public void setFlatFile(MetaFlatFile value) {
+		this.flatFile = value;
+	}
 
-    /**
-     * Gets the value of the version property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getVersion() {
-        if (version == null) {
-            return "1.0-academic";
-        } else {
-            return version;
-        }
-    }
+	/**
+	 * Gets the value of the version property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getVersion() {
+		if (version == null) {
+			return "1.0-academic";
+		} else {
+			return version;
+		}
+	}
 
-    /**
-     * Sets the value of the version property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setVersion(String value) {
-        this.version = value;
-    }
+	/**
+	 * Sets the value of the version property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setVersion(String value) {
+		this.version = value;
+	}
 
 }

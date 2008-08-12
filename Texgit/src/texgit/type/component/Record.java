@@ -4,13 +4,17 @@ import static br.com.nordestefomento.jrimum.ACurbitaObject.isNotNull;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import br.com.nordestefomento.jrimum.JRimumException;
+
+import texgit.IRecord;
 import texgit.type.IFixedField;
 
 @SuppressWarnings("serial")
-public class Record extends BlockOfFields{
+public class Record extends BlockOfFields implements IRecord{
 
 	private String name;
 	
@@ -22,16 +26,22 @@ public class Record extends BlockOfFields{
 	
 	private boolean headOfGroup;
 	
-	private List<Record> innerRecords;
+	private List<IRecord> innerRecords;
 	
-	private Set<String> declaredInnerRecords;
-	
-	private List<String> InnerOrder;
+	private List<String> declaredInnerRecords;
 	
 	public Record() {
 		super();
 	}
 	
+	/**
+	 * @param length
+	 * @param size
+	 */
+	public Record(Integer length, Integer size) {
+		super(length, size);
+	}
+
 	@Override
 	public Record clone() throws CloneNotSupportedException {
 		//TODO Outros atributos
@@ -106,23 +116,47 @@ public class Record extends BlockOfFields{
 
 		ArrayList<String> out = new ArrayList<String>(record.getInnerRecords().size());
 		
-		for(String id : record.getInnerOrder()){
-			
-			if(record.isRepitable(id))
-				List<Record> innRecs = record.getInnerRecords(id);
-			else
-				Record innRec = record.getInnerRecord(id);
-			
-			
-			
-			if(innRec.isHeadOfGroup())
-				out.addAll(writeInnerRecords(record));
-			else
-				out.add(innRec.write());
-				
-		}
+//		for(String id : record.getInnerOrder()){
+//			
+//			if(record.isRepitable(id))
+//				List<Record> innRecs = record.getInnerRecords(id);
+//			else
+//				Record innRec = record.getInnerRecord(id);
+//			
+//			
+//			
+//			if(innRec.isHeadOfGroup())
+//				out.addAll(writeInnerRecords(record));
+//			else
+//				out.add(innRec.write());
+//				
+//		}
 		
 		return out;
+	}
+
+	@Override
+	public IRecord createInnerRecord(String idType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public List<IRecord> getInnerRecords() {
+		
+		return this.innerRecords;
+	}
+
+	@Override
+	public <G> G getValue(String fieldName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <G> void setValue(String fieldName, G value) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public String getName() {
@@ -165,28 +199,12 @@ public class Record extends BlockOfFields{
 		this.headOfGroup = headOfGroup;
 	}
 
-	public List<Record> getInnerRecords() {
-		return innerRecords;
-	}
-
-	public void setInnerRecords(List<Record> innerRecords) {
-		this.innerRecords = innerRecords;
-	}
-
-	public Set<String> getDeclaredInnerRecords() {
+	public List<String> getDeclaredInnerRecords() {
 		return declaredInnerRecords;
 	}
 
-	public void setDeclaredInnerRecords(Set<String> declaredInnerRecords) {
+	public void setDeclaredInnerRecords(List<String> declaredInnerRecords) {
 		this.declaredInnerRecords = declaredInnerRecords;
 	}
-
-	public List<String> getInnerOrder() {
-		return InnerOrder;
-	}
-
-	public void setInnerOrder(List<String> innerOrder) {
-		InnerOrder = innerOrder;
-	}
-
+	
 }

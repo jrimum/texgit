@@ -1,32 +1,35 @@
 package texgit.engine;
 
-import static org.apache.commons.lang.StringUtils.isNotBlank;
-
 import java.io.File;
+import java.util.List;
 
 import texgit.IFlatFile;
-import texgit.Texgit;
+import texgit.IRecord;
 import texgit.TexgitException;
-import texgit.language.MetaFlatFile;
+import texgit.language.MetaRecord;
 import texgit.language.MetaTexgit;
+import texgit.type.component.FlatFile;
 
 public class TGManager {
 
-	public static IFlatFile buildFlatFile(File xmlDef){
-		
-		try{
-			
+	public static IFlatFile<IRecord> buildFlatFile(File xmlDef) {
+
+		IFlatFile<IRecord> iFlatFile = null;
+
+		try {
+
 			MetaTexgit tgMeta = TGXMLReader.parse(xmlDef);
-			
-			MetaFlatFile ffMeta = tgMeta.getFlatFile();
-			
-			ffMeta.getGroupOfRecords().getRecords();
-			
-		}catch (Exception e) {
+
+			List<MetaRecord> records = tgMeta.getFlatFile().getGroupOfRecords()
+					.getRecords();
+
+			iFlatFile = new FlatFile(new Factory4Record(records));
+
+		} catch (Exception e) {
 			throw new TexgitException(e);
 		}
-		
-		return null;
+
+		return iFlatFile;
 	}
 
 }

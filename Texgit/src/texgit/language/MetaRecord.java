@@ -5,7 +5,6 @@
 // Generated on: 2008.08.03 at 12:27:56 AM GMT-03:00 
 //
 
-
 package texgit.language;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -14,160 +13,142 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
  * 
- * 						
- * 					<p>
- * 						Uma espécie de container de fields numa forma mais simples, usualmente é conhecido como
- * 						Registro ou Bloco.
- * 					</p>
- * 					
- * 					
+ * 
+ * <p>
+ * Uma espï¿½cie de container de fields numa forma mais simples, usualmente ï¿½
+ * conhecido como Registro ou Bloco.
+ * </p>
+ * 
+ * 
  * 
  * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "MetaRecord", propOrder = {
-    "groupOfFields",
-    "groupOfInnerRecords"
-})
+@XmlType(name = "MetaRecord", propOrder = { "groupOfFields",
+		"groupOfInnerRecords" })
 public class MetaRecord {
 
-    @XmlElement(name = "GroupOfFields", required = true)
-    protected MetaGroupFields groupOfFields;
-    @XmlElement(name = "GroupOfInnerRecords")
-    protected MetaGroupRecords groupOfInnerRecords;
-    @XmlAttribute
-    protected String description;
-    @XmlAttribute
-    protected String name;
-    @XmlAttribute
-    protected Boolean repeatable;
+	@XmlElement(name = "GroupOfFields", required = true)
+	protected MetaGroupFields groupOfFields;
+	@XmlElement(name = "GroupOfInnerRecords")
+	protected MetaGroupRecords groupOfInnerRecords;
+	@XmlAttribute
+	protected String description;
+	@XmlAttribute
+	protected String name;
+	@XmlAttribute
+	protected Boolean repeatable;
 
-    /**
-     * Gets the value of the groupOfFields property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link MetaGroupFields }
-     *     
-     */
-    public MetaGroupFields getGroupOfFields() {
-        return groupOfFields;
-    }
+	/**
+	 * Gets the value of the groupOfFields property.
+	 * 
+	 * @return possible object is {@link MetaGroupFields }
+	 * 
+	 */
+	public MetaGroupFields getGroupOfFields() {
+		return groupOfFields;
+	}
 
-    /**
-     * Sets the value of the groupOfFields property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MetaGroupFields }
-     *     
-     */
-    public void setGroupOfFields(MetaGroupFields value) {
-        this.groupOfFields = value;
-    }
+	/**
+	 * Sets the value of the groupOfFields property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link MetaGroupFields }
+	 * 
+	 */
+	public void setGroupOfFields(MetaGroupFields value) {
+		this.groupOfFields = value;
+	}
 
-    /**
-     * Gets the value of the groupOfInnerRecords property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link MetaGroupRecords }
-     *     
-     */
-    public MetaGroupRecords getGroupOfInnerRecords() {
-        return groupOfInnerRecords;
-    }
+	/**
+	 * Gets the value of the groupOfInnerRecords property.
+	 * 
+	 * @return possible object is {@link MetaGroupRecords }
+	 * 
+	 */
+	public MetaGroupRecords getGroupOfInnerRecords() {
+		return groupOfInnerRecords;
+	}
 
-    /**
-     * Sets the value of the groupOfInnerRecords property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MetaGroupRecords }
-     *     
-     */
-    public void setGroupOfInnerRecords(MetaGroupRecords value) {
-        this.groupOfInnerRecords = value;
-    }
+	/**
+	 * Sets the value of the groupOfInnerRecords property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link MetaGroupRecords }
+	 * 
+	 */
+	public void setGroupOfInnerRecords(MetaGroupRecords value) {
+		this.groupOfInnerRecords = value;
+	}
 
-    /**
-     * Gets the value of the description property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDescription() {
-        return description;
-    }
+	/**
+	 * Gets the value of the description property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getDescription() {
+		return description;
+	}
 
-    /**
-     * Sets the value of the description property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDescription(String value) {
-        this.description = value;
-    }
+	/**
+	 * Sets the value of the description property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setDescription(String value) {
+		this.description = value;
+	}
 
-    /**
-     * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getName() {
-        return name;
-    }
+	/**
+	 * Gets the value of the name property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setName(String value) {
-        this.name = value;
-    }
+	/**
+	 * Sets the value of the name property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setName(String value) {
+		this.name = value;
+	}
 
-    /**
-     * Gets the value of the repeatable property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public boolean isRepeatable() {
-        if (repeatable == null) {
-            return false;
-        } else {
-            return repeatable;
-        }
-    }
+	/**
+	 * Gets the value of the repeatable property.
+	 * 
+	 * @return possible object is {@link Boolean }
+	 * 
+	 */
+	public boolean isRepeatable() {
+		if (repeatable == null) {
+			return false;
+		} else {
+			return repeatable;
+		}
+	}
 
-    /**
-     * Sets the value of the repeatable property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setRepeatable(Boolean value) {
-        this.repeatable = value;
-    }
+	/**
+	 * Sets the value of the repeatable property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Boolean }
+	 * 
+	 */
+	public void setRepeatable(Boolean value) {
+		this.repeatable = value;
+	}
 
 }

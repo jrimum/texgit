@@ -18,10 +18,9 @@ import org.xml.sax.SAXException;
 import texgit.TexgitException;
 import texgit.language.MetaTexgit;
 
-public class TGXMLReader {
+class TGXMLReader {
 
-	
-	public static MetaTexgit parse(File xmlDef)throws TexgitException {
+	public static MetaTexgit parse(File xmlDef) throws TexgitException {
 
 		MetaTexgit txg = null;
 
@@ -44,25 +43,25 @@ public class TGXMLReader {
 
 				aUnmarshaller.setEventHandler(new TGSchemaValidator());
 
-				txg = (MetaTexgit) aUnmarshaller
-						.unmarshal(new FileInputStream(xmlDef));
-				
+				txg = (MetaTexgit) aUnmarshaller.unmarshal(new FileInputStream(
+						xmlDef));
+
 			} catch (SAXException e) {
 
 				throw new TGLanguageException(e);
-				
+
 			} catch (JAXBException e) {
 
 				throw new TGLanguageException(e);
-				
+
 			} catch (FileNotFoundException e) {
 
 				throw new TGLanguageException(e);
-				
+
 			}
 		}
 
 		return txg;
 	}
-	
+
 }

@@ -5,7 +5,6 @@
 // Generated on: 2008.08.03 at 12:27:56 AM GMT-03:00 
 //
 
-
 package texgit.language;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,77 +12,67 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
  * 
- * 						
- * 					<p>
- * 						Flat File é um tipo de arquivo texto com informações estruturadas 
- * 						com base em formatações e estruturas pré definidas. veja mais em (link).
- * 					</p>
- * 					
- * 					
+ * 
+ * <p>
+ * Flat File ï¿½ um tipo de arquivo texto com informaï¿½ï¿½es estruturadas com base em
+ * formataï¿½ï¿½es e estruturas prï¿½ definidas. veja mais em (link).
+ * </p>
+ * 
+ * 
  * 
  * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "MetaFlatFile", propOrder = {
-    "layout",
-    "groupOfRecords"
-})
+@XmlType(name = "MetaFlatFile", propOrder = { "layout", "groupOfRecords" })
 public class MetaFlatFile {
 
-    protected MetaLayout layout;
-    @XmlElement(name = "GroupOfRecords", required = true)
-    protected MetaGroupRecords groupOfRecords;
+	protected MetaLayout layout;
+	@XmlElement(name = "GroupOfRecords", required = true)
+	protected MetaGroupRecords groupOfRecords;
 
-    /**
-     * Gets the value of the layout property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link MetaLayout }
-     *     
-     */
-    public MetaLayout getLayout() {
-        return layout;
-    }
+	/**
+	 * Gets the value of the layout property.
+	 * 
+	 * @return possible object is {@link MetaLayout }
+	 * 
+	 */
+	public MetaLayout getLayout() {
+		return layout;
+	}
 
-    /**
-     * Sets the value of the layout property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MetaLayout }
-     *     
-     */
-    public void setLayout(MetaLayout value) {
-        this.layout = value;
-    }
+	/**
+	 * Sets the value of the layout property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link MetaLayout }
+	 * 
+	 */
+	public void setLayout(MetaLayout value) {
+		this.layout = value;
+	}
 
-    /**
-     * Gets the value of the groupOfRecords property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link MetaGroupRecords }
-     *     
-     */
-    public MetaGroupRecords getGroupOfRecords() {
-        return groupOfRecords;
-    }
+	/**
+	 * Gets the value of the groupOfRecords property.
+	 * 
+	 * @return possible object is {@link MetaGroupRecords }
+	 * 
+	 */
+	public MetaGroupRecords getGroupOfRecords() {
+		return groupOfRecords;
+	}
 
-    /**
-     * Sets the value of the groupOfRecords property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MetaGroupRecords }
-     *     
-     */
-    public void setGroupOfRecords(MetaGroupRecords value) {
-        this.groupOfRecords = value;
-    }
+	/**
+	 * Sets the value of the groupOfRecords property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link MetaGroupRecords }
+	 * 
+	 */
+	public void setGroupOfRecords(MetaGroupRecords value) {
+		this.groupOfRecords = value;
+	}
 
 }

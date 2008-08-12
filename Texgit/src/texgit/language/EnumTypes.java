@@ -5,61 +5,55 @@
 // Generated on: 2008.08.03 at 12:27:56 AM GMT-03:00 
 //
 
-
 package texgit.language;
 
 import javax.xml.bind.annotation.XmlEnum;
 
-
 /**
  * 
- * 						
- * 					<p>
- * 						Tipos usados para obtenção dos campos de texto
- * 						para java. No caso representa os tipos java
- * 						possíveis para um campo.
- * 					</p>
- * 					
- * 					
  * 
- * <p>Java class for enumTypes.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
+ * Tipos usados para obtenï¿½ï¿½o dos campos de texto para java. No caso representa
+ * os tipos java possï¿½veis para um campo.
+ * </p>
+ * 
+ * 
+ * 
+ * <p>
+ * Java class for enumTypes.
+ * 
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
+ * <p>
+ * 
  * <pre>
- * &lt;simpleType name="enumTypes">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="CHARACTER"/>
- *     &lt;enumeration value="STRING"/>
- *     &lt;enumeration value="INTEGER"/>
- *     &lt;enumeration value="LONG"/>
- *     &lt;enumeration value="FLOAT"/>
- *     &lt;enumeration value="DOUBLE"/>
- *     &lt;enumeration value="BIGDECIMAL"/>
- *     &lt;enumeration value="DATE"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
+ * &lt;simpleType name=&quot;enumTypes&quot;&gt;
+ *   &lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}string&quot;&gt;
+ *     &lt;enumeration value=&quot;CHARACTER&quot;/&gt;
+ *     &lt;enumeration value=&quot;STRING&quot;/&gt;
+ *     &lt;enumeration value=&quot;INTEGER&quot;/&gt;
+ *     &lt;enumeration value=&quot;LONG&quot;/&gt;
+ *     &lt;enumeration value=&quot;FLOAT&quot;/&gt;
+ *     &lt;enumeration value=&quot;DOUBLE&quot;/&gt;
+ *     &lt;enumeration value=&quot;BIGDECIMAL&quot;/&gt;
+ *     &lt;enumeration value=&quot;DATE&quot;/&gt;
+ *   &lt;/restriction&gt;
+ * &lt;/simpleType&gt;
  * </pre>
  * 
  */
 @XmlEnum
 public enum EnumTypes {
 
-    CHARACTER,
-    STRING,
-    INTEGER,
-    LONG,
-    FLOAT,
-    DOUBLE,
-    BIGDECIMAL,
-    DATE;
+	CHARACTER, STRING, INTEGER, LONG, FLOAT, DOUBLE, BIGDECIMAL, DATE;
 
-    public String value() {
-        return name();
-    }
+	public String value() {
+		return name();
+	}
 
-    public static EnumTypes fromValue(String v) {
-        return valueOf(v);
-    }
+	public static EnumTypes fromValue(String v) {
+		return valueOf(v);
+	}
 
 }

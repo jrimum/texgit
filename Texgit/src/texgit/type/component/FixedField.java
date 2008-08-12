@@ -33,6 +33,14 @@ public class FixedField<G> extends Field<G> implements IFixedField<G>{
 	 */
 	private Integer instantLength;
 
+	
+	/**
+	 * 
+	 */
+	public FixedField() {
+		super();
+	}
+	
 	/**
 	 * @param ordem
 	 * @param length
@@ -65,8 +73,7 @@ public class FixedField<G> extends Field<G> implements IFixedField<G>{
 		setFixedLength(length);
 		setFiller(filler);
 	}
-	
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public FixedField<G> clone() throws CloneNotSupportedException {
