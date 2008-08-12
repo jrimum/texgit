@@ -3,6 +3,7 @@ package texgit.engine;
 import static br.com.nordestefomento.jrimum.ACurbitaObject.isNotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import texgit.language.MetaField;
@@ -17,17 +18,34 @@ class Builder4Record {
 		int strLength = getStringLength(metaRecord.getGroupOfFields().getFields());
 		int fldSize = metaRecord.getGroupOfFields().getFields().size();
 		
+		MetaOrderedField id = metaRecord.getGroupOfFields().getIdType();
+		MetaOrderedField sequencialNumber = metaRecord.getGroupOfFields().getSequencialNumber(); 
+		
+		if(isNotNull(id)){
+			fldSize += 1;
+			strLength += id.getLength();
+		}
+		
+		if(isNotNull(sequencialNumber)){
+			fldSize += 1;
+			strLength += sequencialNumber.getLength();
+		}
+		
+		System.out.println(metaRecord.getName());
+		
+		System.out.println(fldSize);
+		System.out.println(strLength);
+		
 		Record record = new Record(strLength,fldSize);
 		
 		record.setName(metaRecord.getName());
 		record.setDescription(metaRecord.getDescription());
 
-		// fields
-		MetaOrderedField id = metaRecord.getGroupOfFields().getIdType();
-		MetaOrderedField sequencialNumber = metaRecord.getGroupOfFields().getSequencialNumber(); 
+		if(isNotNull(id))
+			record.set(id.getPosition(), Builder4FixedField.build(id));
 		
-		record.set(id.getPosition(), Builder4FixedField.build(id));
-		record.set(sequencialNumber.getPosition(), Builder4FixedField.build(sequencialNumber));
+		if(isNotNull(sequencialNumber))
+			record.set(sequencialNumber.getPosition(),Builder4FixedField.build(sequencialNumber));
 		
 		List<MetaField> fields = metaRecord.getGroupOfFields().getFields();
 		
@@ -35,7 +53,7 @@ class Builder4Record {
 			record.set(fields.indexOf(mField), Builder4FixedField.build(mField));
 
 		// innerRecords
-		if (isNotNull(metaRecord.getGroupOfInnerRecords().getRecords())){
+		if (isNotNull(metaRecord.getGroupOfInnerRecords())){
 			
 			record.setHeadOfGroup(true);
 			record.setDeclaredInnerRecords(new ArrayList<String>(metaRecord.getGroupOfInnerRecords().getRecords().size()));
@@ -43,7 +61,7 @@ class Builder4Record {
 			List<MetaRecord> metaInnerRecords = metaRecord.getGroupOfInnerRecords().getRecords();
 			
 			for(MetaRecord mRecord : metaInnerRecords)
-				record.getDeclaredInnerRecords().set(metaInnerRecords.indexOf(mRecord),mRecord.getName());
+				record.getDeclaredInnerRecords().add(mRecord.getName());
 			
 		}else
 			record.setHeadOfGroup(false);
@@ -59,4 +77,5 @@ class Builder4Record {
 		
 		return length;
 	}
+
 }

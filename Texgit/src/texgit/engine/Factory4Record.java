@@ -20,13 +20,16 @@ public class Factory4Record implements IFactory4Record<Record> {
 		if (isNotNull(metaRecords)) {
 			if (!metaRecords.isEmpty()) {
 
-				name_record = new HashMap<String, MetaRecord>(metaRecords.size());
+				name_record = new HashMap<String, MetaRecord>(metaRecords
+						.size());
 
 				for (MetaRecord mRecord : metaRecords) {
 
 					name_record.put(mRecord.getName(), mRecord);
-					loadInnerRecords(name_record, mRecord
-							.getGroupOfInnerRecords().getRecords());
+
+					if (isNotNull(mRecord.getGroupOfInnerRecords()))
+						loadInnerRecords(name_record, mRecord
+								.getGroupOfInnerRecords().getRecords());
 				}
 			}
 		}
@@ -41,8 +44,10 @@ public class Factory4Record implements IFactory4Record<Record> {
 				for (MetaRecord iMetaRecord : innerMetaRecords) {
 
 					name_record.put(iMetaRecord.getName(), iMetaRecord);
-					loadInnerRecords(name_record, iMetaRecord
-							.getGroupOfInnerRecords().getRecords());
+
+					if (isNotNull(iMetaRecord.getGroupOfInnerRecords()))
+						loadInnerRecords(name_record, iMetaRecord
+								.getGroupOfInnerRecords().getRecords());
 				}
 			}
 		}

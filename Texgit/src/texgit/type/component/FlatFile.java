@@ -26,6 +26,7 @@ public class FlatFile implements IFlatFile<IRecord>{
 	public FlatFile(IFactory4Record<Record> iFac4Rec) {
 		
 		this.iFactory4Record = iFac4Rec;
+		this.records = new ArrayList<Record>();
 	}
 
 	public Record getRecord(String idType){
@@ -148,7 +149,7 @@ public class FlatFile implements IFlatFile<IRecord>{
 	@Override
 	public void addRecord(IRecord record) {
 		// TODO Auto-generated method stub
-		
+		this.records.add((Record) record);
 	}
 
 	@Override

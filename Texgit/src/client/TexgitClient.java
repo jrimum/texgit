@@ -17,7 +17,7 @@ public class TexgitClient {
 
 		testWrite();
 
-		testRead();
+		//testRead();
 	}
 	
 	private static void testWrite() {
@@ -37,13 +37,15 @@ public class TexgitClient {
 		headerLancamento.setValue("DataDoLancamento", new Date());
 		headerLancamento.setValue("Usuario", "Gilmar P.S.L.");
 		
-		IRecord bodyLancamento = headerLancamento.createInnerRecord("Detalhe-Body-Lancamento");
+		IRecord bodyLancamento = ff.createRecord("Detalhe-Body-Lancamento");
 		bodyLancamento.setValue("ContaDebito", 131);
 		bodyLancamento.setValue("ContaCredito", 68);
 		bodyLancamento.setValue("Valor", new BigDecimal(41.50));
 		bodyLancamento.setValue("CodigoDoHistorico", 11);
 		bodyLancamento.setValue("ConteudoDoHistorico", "Lançamento de teste: UM DÉBITO PARA UM CRÉDITO.");
 		bodyLancamento.setValue("CodigoDaLoja", 14);
+		
+		headerLancamento.addInnerRecord(bodyLancamento);
 		
 		IRecord trailler = ff.createRecord("Trailler");
 			

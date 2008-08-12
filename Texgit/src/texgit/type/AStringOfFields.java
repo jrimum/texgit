@@ -33,12 +33,14 @@ public abstract class AStringOfFields<G extends IField<?>> implements ITextStrea
 	public AStringOfFields(Integer size) {
 
 		if(isNotNull(size, "size"))
-			if(size > 0)
+			if(size > 0){
 				fields = new ArrayList<G>(size);
+				for(int i = 1; i <= size; i++ )
+					fields.add(null);
+			}
 			else{
 				throw new IllegalArgumentException("A quantidade de campos [ " + size + " ] deve ser um número natural > 0!");
 			}
-	
 	}
 
 	@SuppressWarnings("unchecked")

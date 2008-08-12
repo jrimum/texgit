@@ -1,6 +1,7 @@
 package texgit.type.component;
 
 import static br.com.nordestefomento.jrimum.ACurbitaObject.isNotNull;
+import static br.com.nordestefomento.jrimum.ACurbitaObject.isNull;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.Set;
 import br.com.nordestefomento.jrimum.JRimumException;
 
 import texgit.IRecord;
+import texgit.engine.Factory4Record;
 import texgit.type.IFixedField;
 
 @SuppressWarnings("serial")
@@ -136,11 +138,16 @@ public class Record extends BlockOfFields implements IRecord{
 	}
 
 	@Override
-	public IRecord createInnerRecord(String idType) {
-		// TODO Auto-generated method stub
-		return null;
+	public void addInnerRecord(IRecord record) {
+		
+		if(isNotNull(record)){
+			if(isNull(this.innerRecords))
+				this.innerRecords = new ArrayList<IRecord>();
+			
+			this.innerRecords.add(record);
+		}
 	}
-	
+
 	@Override
 	public List<IRecord> getInnerRecords() {
 		

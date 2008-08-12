@@ -3,6 +3,7 @@ package texgit.engine;
 import static br.com.nordestefomento.jrimum.ACurbitaObject.isNotNull;
 import static org.apache.commons.lang.StringUtils.EMPTY;
 import static org.apache.commons.lang.StringUtils.countMatches;
+import static org.apache.commons.lang.StringUtils.isNotBlank;
 
 import java.math.BigDecimal;
 import java.text.DateFormat;
@@ -47,10 +48,21 @@ class Builder4FixedField {
 		Format formatter = getFormater(metaField);
 
 		switch (metaField.getType()) {
-
+		
+		case CHARACTER:
+			FixedField<Character> fCHR = new FixedField<Character>();
+			if (isNotBlank(metaField.getValue()))
+				if(metaField.getValue().length() == 1)
+					fCHR.setValue(metaField.getValue().charAt(0));
+				else
+					throw new IllegalArgumentException("Tipo character deve ter apenas 1!");
+			else
+				fCHR.setValue(' ');
+			fField = fCHR;
+			break;
 		case STRING:
 			FixedField<String> fSTR = new FixedField<String>();
-			if (isNotNull(metaField.getValue()))
+			if (isNotBlank(metaField.getValue()))
 				fSTR.setValue(metaField.getValue());
 			else
 				fSTR.setValue(EMPTY);
@@ -58,7 +70,7 @@ class Builder4FixedField {
 			break;
 		case INTEGER:
 			FixedField<Integer> fINT = new FixedField<Integer>();
-			if (isNotNull(metaField.getValue()))
+			if (isNotBlank(metaField.getValue()))
 				fINT.setValue(Integer.parseInt(metaField.getValue()));
 			else
 				fINT.setValue(new Integer(0));
@@ -66,7 +78,7 @@ class Builder4FixedField {
 			break;
 		case LONG:
 			FixedField<Long> fLNG = new FixedField<Long>();
-			if (isNotNull(metaField.getValue()))
+			if (isNotBlank(metaField.getValue()))
 				fLNG.setValue(Long.parseLong(metaField.getValue()));
 			else
 				fLNG.setValue(new Long(0));
@@ -74,7 +86,7 @@ class Builder4FixedField {
 			break;
 		case FLOAT:
 			FixedField<Float> fFLT = new FixedField<Float>();
-			if (isNotNull(metaField.getValue()))
+			if (isNotBlank(metaField.getValue()))
 				fFLT.setValue(Float.parseFloat(metaField.getValue()));
 			else
 				fFLT.setValue(new Float(0));
@@ -82,7 +94,7 @@ class Builder4FixedField {
 			break;
 		case DOUBLE:
 			FixedField<Double> fDBE = new FixedField<Double>();
-			if (isNotNull(metaField.getValue()))
+			if (isNotBlank(metaField.getValue()))
 				fDBE.setValue(Double.parseDouble(metaField.getValue()));
 			else
 				fDBE.setValue(new Double(0));
@@ -90,7 +102,7 @@ class Builder4FixedField {
 			break;
 		case BIGDECIMAL:
 			FixedField<BigDecimal> fBDL = new FixedField<BigDecimal>();
-			if (isNotNull(metaField.getValue()))
+			if (isNotBlank(metaField.getValue()))
 				fBDL.setValue(new BigDecimal(DecimalFormat.class
 						.cast(formatter).parse(metaField.getValue())
 						.doubleValue()));
@@ -100,7 +112,7 @@ class Builder4FixedField {
 			break;
 		case DATE:
 			FixedField<Date> fDTE = new FixedField<Date>();
-			if (isNotNull(metaField.getValue()))
+			if (isNotBlank(metaField.getValue()))
 				fDTE.setValue(DateFormat.class.cast(formatter).parse(
 						metaField.getValue()));
 			else
@@ -108,12 +120,14 @@ class Builder4FixedField {
 			fField = fDTE;
 			break;
 		}
-
+		
 		fField.setName(metaField.getName());
 		fField.setFixedLength(metaField.getLength());
 		fField.setFiller(getFiller(metaField));
-		fField.setFormatter(formatter);
 		fField.setBlankAccepted(metaField.isBlankAccepted());
+		
+		if(isNotNull(formatter))
+			fField.setFormatter(formatter);
 
 		return fField;
 	}
@@ -148,13 +162,15 @@ class Builder4FixedField {
 					metaField.getFormatter().getType());
 
 		} else {
+			if(isNotNull(metaField.getFormat())){
+			
+				EnumFormats format = metaField.getFormat(); 
+				
+				EnumFormatsTypes type = EnumFormatsTypes.valueOf(format.name()
+						.split("_")[0]);
 
-			EnumFormats format = metaField.getFormat();
-
-			EnumFormatsTypes type = EnumFormatsTypes.valueOf(format.name()
-					.split("_")[0]);
-
-			formatter = buildFormat(buildFormat(format, type), type);
+				formatter = buildFormat(buildFormat(format, type), type);
+			}
 		}
 
 		return formatter;

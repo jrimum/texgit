@@ -10,7 +10,7 @@ public interface IRecord{
 	
 	public <G> G getValue(String fieldName);
 	
-	public IRecord createInnerRecord(String idType);
+	public void addInnerRecord(IRecord record);
 	
 	public List<IRecord> getInnerRecords();
 }
