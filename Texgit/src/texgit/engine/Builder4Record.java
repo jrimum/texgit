@@ -1,18 +1,21 @@
 package texgit.engine;
 
 import static br.com.nordestefomento.jrimum.ACurbitaObject.isNotNull;
+import static br.com.nordestefomento.jrimum.ACurbitaObject.isNull;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 import texgit.language.MetaField;
 import texgit.language.MetaOrderedField;
 import texgit.language.MetaRecord;
+import texgit.type.component.FixedField;
 import texgit.type.component.Record;
 
 class Builder4Record {
 
+	@SuppressWarnings("unchecked")
 	static Record build(MetaRecord metaRecord) {
 
 		int strLength = getStringLength(metaRecord.getGroupOfFields().getFields());
@@ -30,38 +33,57 @@ class Builder4Record {
 			fldSize += 1;
 			strLength += sequencialNumber.getLength();
 		}
-		
-		System.out.println(metaRecord.getName());
-		
-		System.out.println(fldSize);
-		System.out.println(strLength);
-		
+				
 		Record record = new Record(strLength,fldSize);
 		
 		record.setName(metaRecord.getName());
 		record.setDescription(metaRecord.getDescription());
-
-		if(isNotNull(id))
-			record.set(id.getPosition(), Builder4FixedField.build(id));
 		
-		if(isNotNull(sequencialNumber))
-			record.set(sequencialNumber.getPosition(),Builder4FixedField.build(sequencialNumber));
+		/*
+		 * getPossition eh de 1 a X
+		 * e nao de 0 a X.
+		 */ 
+		if(isNotNull(id)){
+			record.setIdType((FixedField<String>) Builder4FixedField.build(id));
+			record.set(id.getPosition()-1, record.getIdType());
+		}
+		
+		if(isNotNull(sequencialNumber)){
+			record.setSequencialNumber((FixedField<Long>) Builder4FixedField.build(sequencialNumber));
+			record.set(sequencialNumber.getPosition()-1,record.getSequencialNumber());
+		}
 		
 		List<MetaField> fields = metaRecord.getGroupOfFields().getFields();
 		
-		for(MetaField mField : fields)
-			record.set(fields.indexOf(mField), Builder4FixedField.build(mField));
+		/*
+		 * As somas sao para caso id ou sequencia jah
+		 * estejam na devida posicao.
+		 */ 
+		for(MetaField mField : fields){
+			
+			if(isNull(record.get(fields.indexOf(mField))))
+				record.set(fields.indexOf(mField), Builder4FixedField.build(mField));
+			else
+				if(isNull(record.get(fields.indexOf(mField)+1)))
+					record.set(fields.indexOf(mField) + 1, Builder4FixedField.build(mField));
+				else
+					record.set(fields.indexOf(mField) + 2, Builder4FixedField.build(mField));
+		}
 
 		// innerRecords
 		if (isNotNull(metaRecord.getGroupOfInnerRecords())){
 			
 			record.setHeadOfGroup(true);
 			record.setDeclaredInnerRecords(new ArrayList<String>(metaRecord.getGroupOfInnerRecords().getRecords().size()));
+			record.setRepitablesRecords(new HashSet<String>());
 			
 			List<MetaRecord> metaInnerRecords = metaRecord.getGroupOfInnerRecords().getRecords();
 			
-			for(MetaRecord mRecord : metaInnerRecords)
+			for(MetaRecord mRecord : metaInnerRecords){
 				record.getDeclaredInnerRecords().add(mRecord.getName());
+				if(mRecord.isRepeatable())
+					record.getRepitablesRecords().add(mRecord.getName());
+			}
 			
 		}else
 			record.setHeadOfGroup(false);

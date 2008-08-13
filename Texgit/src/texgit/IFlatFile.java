@@ -18,9 +18,9 @@ public interface IFlatFile<G extends IRecord> extends ITextFileStream {
 
 	public void addRecords(String idName, Collection<G> records);
 
-	public void setRecords(Collection<G> records);
+	public void setRecords(String idName, Collection<G> records);
 
-	public Collection<G> getSameRecords(String idName);
+	public Collection<G> getRecords(String idName);
 
 	// Todos os Registros
 

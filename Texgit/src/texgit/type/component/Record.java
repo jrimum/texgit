@@ -5,14 +5,12 @@ import static br.com.nordestefomento.jrimum.ACurbitaObject.isNull;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import br.com.nordestefomento.jrimum.JRimumException;
-
 import texgit.IRecord;
-import texgit.engine.Factory4Record;
+import texgit.type.IField;
 import texgit.type.IFixedField;
 
 @SuppressWarnings("serial")
@@ -29,6 +27,8 @@ public class Record extends BlockOfFields implements IRecord{
 	private boolean headOfGroup;
 	
 	private List<IRecord> innerRecords;
+	
+	private Set<String> repitablesRecords;
 	
 	private List<String> declaredInnerRecords;
 	
@@ -70,19 +70,35 @@ public class Record extends BlockOfFields implements IRecord{
 		return ffID;
 	}
 	
-	public IFixedField<?> getField(String fieldName){
-		
+	public IFixedField<?> getField(String fieldName) {
+
 		IFixedField<?> field = null;
-		
-		for(FixedField<?> ff : this.getFields())
-			if(ff.getName().equals(fieldName)){
-				field = ff;
-				break;
-			}
-		
+
+		if (isNotBlank(fieldName))
+			if (!getFields().isEmpty())
+				for (FixedField<?> ff : this.getFields())
+					if (ff.getName().equals(fieldName)) {
+						field = ff;
+						break;
+					}
+
 		return field;
 	}
 
+	public boolean isMyField(String idName){
+		boolean is = false;
+		
+		if (isNotBlank(idName)) {
+			if(!getFields().isEmpty())
+				for(IField<?> f : getFields())
+					if(idName.equals(f.getName())){
+						is = true;
+						break;
+					}
+		}
+		return is;
+	}
+	
 	private int getIdPosition(){
 		int pos = 0;
 		
@@ -94,19 +110,10 @@ public class Record extends BlockOfFields implements IRecord{
 		
 		return pos;
 	}
-
-
-	public boolean isInnerRecord(String idRecord){
+	
+	public void readInnerRecords(Iterator<String> lines) {
+		// TODO Auto-generated method stub
 		
-		boolean is = false;
-		
-		if(isNotBlank(idRecord)){
-			if(isNotNull(declaredInnerRecords)){
-				is = declaredInnerRecords.contains(idRecord.trim());
-			}
-		}
-		
-		return is;
 	}
 	
 	public List<String> writeInnerRecords(){
@@ -118,33 +125,98 @@ public class Record extends BlockOfFields implements IRecord{
 
 		ArrayList<String> out = new ArrayList<String>(record.getInnerRecords().size());
 		
-//		for(String id : record.getInnerOrder()){
-//			
-//			if(record.isRepitable(id))
-//				List<Record> innRecs = record.getInnerRecords(id);
-//			else
-//				Record innRec = record.getInnerRecord(id);
-//			
-//			
-//			
-//			if(innRec.isHeadOfGroup())
-//				out.addAll(writeInnerRecords(record));
-//			else
-//				out.add(innRec.write());
-//				
-//		}
+		for(String id : getDeclaredInnerRecords()){//ordem
+			
+			if(isRepitable(id)){
+					
+				for(Record rec : getRecords(id)){
+					
+					out.add(rec.write()+"\r\n");
+					
+					if(rec.isHeadOfGroup())
+						out.addAll(rec.writeInnerRecords());
+				}
+				
+			}else{
+				
+				Record rec = getRecord(id);
+
+				out.add(rec.write()+"\r\n");
+				
+				if(rec.isHeadOfGroup())
+					out.addAll(rec.writeInnerRecords());
+			}
+		}
 		
 		return out;
 	}
+	
+	public Record getRecord(String idName){
+		
+		Record record = null;
+		
+		if (isNotBlank(idName)) {
+			if (!isRepitable(idName)){	
+				if (!getInnerRecords().isEmpty()) {
+					for (IRecord iRec : getInnerRecords()) {
+						Record rec = (Record) iRec;
+						if (idName.equals(rec.getName()))
+							record = rec;
+					}
+				}
+			}
+		}
 
+		return record;
+	}
+
+	public List<Record> getRecords(String idName) {
+
+		List<Record> secRecords = new ArrayList<Record>();
+
+		if (isNotBlank(idName)) {
+			if (isRepitable(idName)) {
+				if (!getInnerRecords().isEmpty()) {
+					for (IRecord iRec : getInnerRecords()) {
+						Record rec = (Record) iRec;
+						if (idName.equals(rec.getName()))
+							secRecords.add(rec);
+					}
+				}
+			}
+		}
+
+		return secRecords;
+	}
+	
+	public boolean isRepitable(String idName){
+		
+		return (isNotNull(repitablesRecords) && !repitablesRecords.isEmpty() && repitablesRecords.contains(idName));
+	}
+	
+	public boolean isMyRecord(String idName){
+		boolean is = false;
+		
+		if (isNotBlank(idName)) {
+			if(!getDeclaredInnerRecords().isEmpty())
+				if(getDeclaredInnerRecords().contains(idName))
+					is = true;
+		}
+		return is;
+	}
+	
 	@Override
 	public void addInnerRecord(IRecord record) {
 		
 		if(isNotNull(record)){
 			if(isNull(this.innerRecords))
 				this.innerRecords = new ArrayList<IRecord>();
-			
+		
+		if(isMyRecord(Record.class.cast(record).getName()))
 			this.innerRecords.add(record);
+		else
+			throw new IllegalArgumentException("Record fora de scopo!");
+		
 		}
 	}
 
@@ -154,16 +226,28 @@ public class Record extends BlockOfFields implements IRecord{
 		return this.innerRecords;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <G> G getValue(String fieldName) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		G value = null;
+		
+		IField f = getField(fieldName);
+		
+		if(isNotNull(f))
+			value = (G) f.getValue();
+		
+		return value;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <G> void setValue(String fieldName, G value) {
-		// TODO Auto-generated method stub
 		
+		IField<G> f = (IField<G>) getField(fieldName);
+		
+		if(isNotNull(f))
+			f.setValue(value);
 	}
 
 	public String getName() {
@@ -214,4 +298,12 @@ public class Record extends BlockOfFields implements IRecord{
 		this.declaredInnerRecords = declaredInnerRecords;
 	}
 	
+	public Set<String> getRepitablesRecords() {
+		return repitablesRecords;
+	}
+
+	public void setRepitablesRecords(Set<String> repitablesRecords) {
+		this.repitablesRecords = repitablesRecords;
+	}
+
 }

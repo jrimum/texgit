@@ -15,9 +15,9 @@ public class TexgitClient {
 
 	public static void main(String[] args) {
 
-		testWrite();
+		//testWrite();
 
-		//testRead();
+		testRead();
 	}
 	
 	private static void testWrite() {
@@ -42,15 +42,67 @@ public class TexgitClient {
 		bodyLancamento.setValue("ContaCredito", 68);
 		bodyLancamento.setValue("Valor", new BigDecimal(41.50));
 		bodyLancamento.setValue("CodigoDoHistorico", 11);
-		bodyLancamento.setValue("ConteudoDoHistorico", "Lançamento de teste: UM DÉBITO PARA UM CRÉDITO.");
+		bodyLancamento.setValue("ConteudoDoHistorico", "Lancamento de teste: UM DEBITO PARA UM CREDITO.");
 		bodyLancamento.setValue("CodigoDaLoja", 14);
 		
 		headerLancamento.addInnerRecord(bodyLancamento);
+		
+		IRecord headerLancamento2 = ff.createRecord("Detalhe-Header-Lancamento");
+		headerLancamento2.setValue("TipoDeLancamento", 'V');
+		headerLancamento2.setValue("DataDoLancamento", new Date());
+		headerLancamento2.setValue("Usuario", "Gilmar P.S.L.");
+		
+		IRecord bodyLancamento2 = ff.createRecord("Detalhe-Body-Lancamento");
+		bodyLancamento2.setValue("ContaDebito", 131);
+		bodyLancamento2.setValue("ContaCredito", 68);
+		bodyLancamento2.setValue("Valor", new BigDecimal(41.50));
+		bodyLancamento2.setValue("CodigoDoHistorico", 11);
+		bodyLancamento2.setValue("ConteudoDoHistorico", "Lancamento de teste 1: VARIOS CREDITOS PARA VARIOS DEBITOS.");
+		bodyLancamento2.setValue("CodigoDaLoja", 14);
+		
+		IRecord bodyLancamento3 = ff.createRecord("Detalhe-Body-Lancamento");
+		bodyLancamento3.setValue("ContaDebito", 131);
+		bodyLancamento3.setValue("ContaCredito", 68);
+		bodyLancamento3.setValue("Valor", new BigDecimal(41.50));
+		bodyLancamento3.setValue("CodigoDoHistorico", 11);
+		bodyLancamento3.setValue("ConteudoDoHistorico", "Lancamento de teste 2: VARIOS CREDITOS PARA VARIOS DEBITOS.");
+		bodyLancamento3.setValue("CodigoDaLoja", 14);
+		
+		IRecord bodyLancamento4 = ff.createRecord("Detalhe-Body-Lancamento");
+		bodyLancamento4.setValue("ContaDebito", 131);
+		bodyLancamento4.setValue("ContaCredito", 68);
+		bodyLancamento4.setValue("Valor", new BigDecimal(41.50));
+		bodyLancamento4.setValue("CodigoDoHistorico", 11);
+		bodyLancamento4.setValue("ConteudoDoHistorico", "Lancamento de teste 3: VARIOS CREDITOS PARA VARIOS DEBITOS.");
+		bodyLancamento4.setValue("CodigoDaLoja", 14);
+		
+		IRecord bodyLancamento5 = ff.createRecord("Detalhe-Body-Lancamento");
+		bodyLancamento5.setValue("ContaDebito", 131);
+		bodyLancamento5.setValue("ContaCredito", 68);
+		bodyLancamento5.setValue("Valor", new BigDecimal(41.50));
+		bodyLancamento5.setValue("CodigoDoHistorico", 11);
+		bodyLancamento5.setValue("ConteudoDoHistorico", "Lancamento de teste 4: VARIOS CREDITOS PARA VARIOS DEBITOS.");
+		bodyLancamento5.setValue("CodigoDaLoja", 14);
+		
+		IRecord bodyLancamento6 = ff.createRecord("Detalhe-Body-Lancamento");
+		bodyLancamento6.setValue("ContaDebito", 131);
+		bodyLancamento6.setValue("ContaCredito", 68);
+		bodyLancamento6.setValue("Valor", new BigDecimal(41.50));
+		bodyLancamento6.setValue("CodigoDoHistorico", 11);
+		bodyLancamento6.setValue("ConteudoDoHistorico", "Lancamento de teste 5: VARIOS CREDITOS PARA VARIOS DEBITOS.");
+		bodyLancamento6.setValue("CodigoDaLoja", 14);
+		
+		headerLancamento2.addInnerRecord(bodyLancamento2);
+		headerLancamento2.addInnerRecord(bodyLancamento3);
+		headerLancamento2.addInnerRecord(bodyLancamento4);
+		headerLancamento2.addInnerRecord(bodyLancamento5);
+		headerLancamento2.addInnerRecord(bodyLancamento6);
 		
 		IRecord trailler = ff.createRecord("Trailler");
 			
 		ff.addRecord(header);
 		ff.addRecord(headerLancamento);
+		ff.addRecord(headerLancamento2);
 		ff.addRecord(trailler);
 		
 		FileUtil.createFile("Teste.txt", ff.write());
@@ -60,13 +112,13 @@ public class TexgitClient {
 		
 		IFlatFile<IRecord> ff = Texgit.createFlatFile(new File("sys_dominio_contabilidade.xml"));
 		
-		ff.read(FileUtil.read("TO-DO"));
+		ff.read(FileUtil.read("Teste.txt"));
 		
 		IRecord header = ff.getRecord("Header");
 		
 		System.out.println("Empresa: "+header.getValue("CodigoDaEmpresa"));
 		
-		Collection<IRecord> lancamentos = ff.getSameRecords("Detalhe-Header-Lancamento");
+		Collection<IRecord> lancamentos = ff.getRecords("Detalhe-Header-Lancamento");
 		
 		for(IRecord lancamento : lancamentos){
 			
@@ -81,12 +133,12 @@ public class TexgitClient {
 			
 			for(IRecord detalhe : detalhesLancados){
 				
-				System.out.println("Debito: "+detalhe.getValue("ContaDebito"));
-				System.out.println("Credito: "+detalhe.getValue("ContaCredito"));
-				System.out.println("Valor: "+detalhe.getValue("Valor"));
-				System.out.println("Cod Hist: "+detalhe.getValue("CodigoDoHistorico"));
-				System.out.println("Historico: "+detalhe.getValue("ConteudoDoHistorico"));
-				System.out.println("Loja: "+detalhe.getValue("CodigoDaLoja"));
+				System.out.println("---Debito: "+detalhe.getValue("ContaDebito"));
+				System.out.println("---Credito: "+detalhe.getValue("ContaCredito"));
+				System.out.println("---Valor: "+detalhe.getValue("Valor"));
+				System.out.println("---Cod Hist: "+detalhe.getValue("CodigoDoHistorico"));
+				System.out.println("---Historico: "+detalhe.getValue("ConteudoDoHistorico"));
+				System.out.println("---Loja: "+detalhe.getValue("CodigoDaLoja"));
 			}
 			System.out.println("_______________________________________________");
 		}

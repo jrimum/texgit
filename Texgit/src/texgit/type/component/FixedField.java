@@ -122,7 +122,7 @@ public class FixedField<G> extends Field<G> implements IFixedField<G>{
 	@Override
 	public boolean isFixedAsDefined() throws IllegalStateException {
 		
-		if(instantLength == getFixedLength())
+		if(instantLength.equals(getFixedLength()))
 			return true;
 		else
 			throw new IllegalStateException("Tamanho da string [ " + instantLength 

@@ -1,12 +1,10 @@
 package texgit.engine;
 
 import java.io.File;
-import java.util.List;
 
 import texgit.IFlatFile;
 import texgit.IRecord;
 import texgit.TexgitException;
-import texgit.language.MetaRecord;
 import texgit.language.MetaTexgit;
 import texgit.type.component.FlatFile;
 
@@ -20,10 +18,9 @@ public class TGManager {
 
 			MetaTexgit tgMeta = TGXMLReader.parse(xmlDef);
 
-			List<MetaRecord> records = tgMeta.getFlatFile().getGroupOfRecords()
-					.getRecords();
-
-			iFlatFile = new FlatFile(new Factory4Record(records));
+			FlatFile ff = Builder4FlatFile.build(tgMeta.getFlatFile());
+			
+			iFlatFile = ff;
 
 		} catch (Exception e) {
 			throw new TexgitException(e);

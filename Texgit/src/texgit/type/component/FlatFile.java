@@ -1,11 +1,12 @@
 package texgit.type.component;
 
 import static br.com.nordestefomento.jrimum.ACurbitaObject.isNotNull;
+import static br.com.nordestefomento.jrimum.ACurbitaObject.isNull;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -17,9 +18,9 @@ public class FlatFile implements IFlatFile<IRecord>{
 
 	private List<Record> records;
 	
-	private Set<String> repitables;
+	private Set<String> repitablesRecords;
 	
-	private List<String> writtenOrder;
+	private List<String> recordsOrder;
 	
 	private IFactory4Record<Record> iFactory4Record;
 
@@ -29,65 +30,49 @@ public class FlatFile implements IFlatFile<IRecord>{
 		this.records = new ArrayList<Record>();
 	}
 
-	public Record getRecord(String idType){
+	public Record getRecord(String idName){
 		
-		Record typeRecord = null;
-
-		if (isNotBlank(idType)) {
-			if (!isRepitable(idType)){	
+		Record record = null;
+		
+		if (isNotBlank(idName)) {
+			if (!isRepitable(idName)){	
 				if (!records.isEmpty()) {
 					for (Record rec : records) {
-						if (idType.equals(rec.getIdType().getValue()))
-							typeRecord = rec;
+						if (idName.equals(rec.getName()))
+							record = rec;
 					}
 				}
 			}
 		}
 
-		return typeRecord;
+		return record;
 	}
 	
-	public Set<Record> getRecords(String idType) {
-
-		Set<Record> typeRecords = new HashSet<Record>();
-
-		if (isNotBlank(idType)) {
-			if (isRepitable(idType)) {
-				if (!records.isEmpty()) {
-					for (Record rec : records) {
-						if (idType.equals(rec.getIdType().getValue()))
-							typeRecords.add(rec);
-					}
-				}
-			}
-		}
-
-		return typeRecords;
-	}
-	
-	public boolean isRepitable(String idType){
+	public boolean isRepitable(String idName){
 		
-		return (isNotNull(repitables) && !repitables.isEmpty() && repitables.contains(idType));
+		return (isNotNull(repitablesRecords) && !repitablesRecords.isEmpty() && repitablesRecords.contains(idName));
 	}
 	
-	public IRecord createRecord(String idType){
+	public IRecord createRecord(String idName){
 		
-		return iFactory4Record.create(idType);
+		return iFactory4Record.create(idName);
 	}
 	
 	public void addRecord(Record record){
 		
 		if(isNotNull(record))
-			if(isMine(record.getIdType().getValue()))
+			if(isMyRecord(record.getName()))
 				records.add(record);
+			else
+				throw new IllegalArgumentException("Record fora de scopo!");
 	}
 	
-	public boolean isMine(String idType){
+	public boolean isMyRecord(String idName){
 		boolean is = false;
 		
-		if (isNotBlank(idType)) {
-			if(!writtenOrder.isEmpty())
-				if(writtenOrder.contains(idType))
+		if (isNotBlank(idName)) {
+			if(!recordsOrder.isEmpty())
+				if(recordsOrder.contains(idName))
 					is = true;
 		}
 		return is;
@@ -98,15 +83,63 @@ public class FlatFile implements IFlatFile<IRecord>{
 		
 		if(isNotNull(str)){
 			if(!str.isEmpty()){
-				for(String s : str){
-					if(isNotBlank(s)){
+		
+				boolean read = true;
+				
+				String line = null;
+				Iterator<String> lines = str.iterator();
+				
+				FixedField<String> typeRecord = null;
+				Record record = null;
+				
+				for(String id : recordsOrder){
+					
+					record = iFactory4Record.create(id);
+					
+					if(isRepitable(id)){
 						
-						//for()
+						while(read){
+							
+							if(isNull(record))
+								record = iFactory4Record.create(id);
+							
+							line = lines.next();
+							typeRecord = record.readID(line);
+							read = record.getIdType().getValue().equals(typeRecord.getValue()) && lines.hasNext(); 
+
+							if(read){
+								
+								record.read(line);
+								addRecord(record);
+								
+								if(record.isHeadOfGroup())
+									record.readInnerRecords(lines);
+								
+								record = null;
+							}
+						}
+						
+					}else{
+						if(lines.hasNext()){
+							
+							line = lines.next();
+							typeRecord = record.readID(line);
+							
+							if(record.getIdType().getValue().equals(typeRecord.getValue())){
+								
+								record.read(line);
+								addRecord(record);
+								
+								if(record.isHeadOfGroup())
+									record.readInnerRecords(lines);
+								
+								record = null;
+							}
+						}
 					}
 				}
 			}
 		}
-		
 	}
 
 	@Override
@@ -114,13 +147,17 @@ public class FlatFile implements IFlatFile<IRecord>{
 		
 		ArrayList<String> out = new ArrayList<String>(records.size());
 		
-		for(String id : writtenOrder){
+		for(String id : recordsOrder){
 			
 			if(isRepitable(id)){
 				
-				for(Record rec : getRecords(id)){
+				Record rec = null;
+				
+				for(IRecord record : getRecords(id)){
 					
-					out.add(rec.write());
+					rec = Record.class.cast(record);
+					
+					out.add(rec.write()+"\r\n");
 					
 					if(rec.isHeadOfGroup())
 						out.addAll(rec.writeInnerRecords());
@@ -129,8 +166,8 @@ public class FlatFile implements IFlatFile<IRecord>{
 			}else{
 				
 				Record rec = getRecord(id);
-				
-				out.add(rec.write());
+
+				out.add(rec.write()+"\r\n");
 				
 				if(rec.isHeadOfGroup())
 					out.addAll(rec.writeInnerRecords());
@@ -141,15 +178,37 @@ public class FlatFile implements IFlatFile<IRecord>{
 	}
 
 	@Override
-	public void addAllRecords(Collection<IRecord> records) {
-		// TODO Auto-generated method stub
+	public void addRecord(IRecord record) {
 		
+		if(isNotNull(record)){
+			Record rec = Record.class.cast(record);
+			addRecord(rec);
+		}
 	}
 
 	@Override
-	public void addRecord(IRecord record) {
+	public Collection<IRecord> getRecords(String idName) {
+
+		List<IRecord> secRecords = new ArrayList<IRecord>();
+
+		if (isNotBlank(idName)) {
+			if (isRepitable(idName)) {
+				if (!records.isEmpty()) {
+					for (Record rec : records) {
+						if (idName.equals(rec.getName()))
+							secRecords.add(rec);
+					}
+				}
+			}
+		}
+
+		return secRecords;
+	}
+	
+	@Override
+	public void addAllRecords(Collection<IRecord> records) {
 		// TODO Auto-generated method stub
-		this.records.add((Record) record);
+		
 	}
 
 	@Override
@@ -160,12 +219,6 @@ public class FlatFile implements IFlatFile<IRecord>{
 
 	@Override
 	public Collection<IRecord> getAllRecords() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Collection<IRecord> getSameRecords(String idName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -183,9 +236,25 @@ public class FlatFile implements IFlatFile<IRecord>{
 	}
 
 	@Override
-	public void setRecords(Collection<IRecord> records) {
+	public void setRecords(String idName, Collection<IRecord> records) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public Set<String> getRepitablesRecords() {
+		return repitablesRecords;
+	}
+
+	public void setRepitablesRecords(Set<String> repitablesRecords) {
+		this.repitablesRecords = repitablesRecords;
+	}
+
+	public List<String> getRecordsOrder() {
+		return recordsOrder;
+	}
+
+	public void setRecordsOrder(List<String> recordsOrder) {
+		this.recordsOrder = recordsOrder;
 	}
 	
 }
