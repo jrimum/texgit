@@ -5,7 +5,6 @@ import static br.com.nordestefomento.jrimum.ACurbitaObject.isNull;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -111,11 +110,79 @@ public class Record extends BlockOfFields implements IRecord{
 		return pos;
 	}
 	
-	public void readInnerRecords(Iterator<String> lines) {
-		// TODO Auto-generated method stub
+	public int readInnerRecords(List<String> lines, int lineIndex, IFactory4Record<Record> iFactory) {
 		
+		return readInnerRecords(this,lines,lineIndex,iFactory);
 	}
 	
+	private int readInnerRecords(Record record, List<String> lines, int lineIndex, IFactory4Record<Record> iFactory) {
+		
+		if(isNotNull(record)){
+			if(isNotNull(record.getDeclaredInnerRecords()) && !record.getDeclaredInnerRecords().isEmpty()){
+				
+				boolean read = true;
+				String line = null;
+				
+				FixedField<String> typeRecord = null;
+				Record innerRec = null;
+				
+				for(String id : record.getDeclaredInnerRecords()){
+					
+					innerRec = iFactory.create(id);
+					
+					if(isRepitable(id)){
+						
+						while(read){
+							
+							if(isNull(innerRec))
+								innerRec = iFactory.create(id);
+							
+							if(lineIndex < lines.size())
+								line = lines.get(lineIndex);
+							
+							typeRecord = innerRec.readID(line);
+							
+							read = innerRec.getIdType().getValue().equals(typeRecord.getValue()) && (lineIndex < lines.size()); 
+
+							if(read){
+								
+								innerRec.read(line);
+								lineIndex++;
+								record.addInnerRecord(innerRec);
+								
+								if(innerRec.isHeadOfGroup())
+									innerRec.readInnerRecords(lines,lineIndex,iFactory);
+								
+								innerRec = null;
+							}
+						}
+						
+					}else{
+						if((lineIndex < lines.size())){
+							
+							line = lines.get(lineIndex);
+							typeRecord = innerRec.readID(line);
+							
+							if(innerRec.getIdType().getValue().equals(typeRecord.getValue())){
+								
+								innerRec.read(line);
+								lineIndex++;
+								record.addInnerRecord(innerRec);
+								
+								if(innerRec.isHeadOfGroup())
+									innerRec.readInnerRecords(lines,lineIndex,iFactory);
+								
+								innerRec = null;
+							}
+						}
+					}
+				}
+			}		
+		}
+		
+		return lineIndex;
+	}
+
 	public List<String> writeInnerRecords(){
 		
 		return writeInnerRecords(this);

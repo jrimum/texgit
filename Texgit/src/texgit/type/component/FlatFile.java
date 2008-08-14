@@ -6,7 +6,6 @@ import static org.apache.commons.lang.StringUtils.isNotBlank;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -87,7 +86,7 @@ public class FlatFile implements IFlatFile<IRecord>{
 				boolean read = true;
 				
 				String line = null;
-				Iterator<String> lines = str.iterator();
+				int lineIndex = 0;
 				
 				FixedField<String> typeRecord = null;
 				Record record = null;
@@ -103,35 +102,40 @@ public class FlatFile implements IFlatFile<IRecord>{
 							if(isNull(record))
 								record = iFactory4Record.create(id);
 							
-							line = lines.next();
+							if(lineIndex < str.size())
+								line = str.get(lineIndex);
+							
 							typeRecord = record.readID(line);
-							read = record.getIdType().getValue().equals(typeRecord.getValue()) && lines.hasNext(); 
+							
+							read = record.getIdType().getValue().equals(typeRecord.getValue()) && (lineIndex < str.size()); 
 
 							if(read){
 								
 								record.read(line);
+								lineIndex++;
 								addRecord(record);
 								
 								if(record.isHeadOfGroup())
-									record.readInnerRecords(lines);
+									lineIndex = record.readInnerRecords(str,lineIndex,iFactory4Record);
 								
 								record = null;
 							}
 						}
 						
 					}else{
-						if(lines.hasNext()){
+						if((lineIndex < str.size())){
 							
-							line = lines.next();
+							line = str.get(lineIndex);
 							typeRecord = record.readID(line);
 							
 							if(record.getIdType().getValue().equals(typeRecord.getValue())){
 								
 								record.read(line);
+								lineIndex++;
 								addRecord(record);
 								
 								if(record.isHeadOfGroup())
-									record.readInnerRecords(lines);
+									lineIndex = record.readInnerRecords(str,lineIndex,iFactory4Record);
 								
 								record = null;
 							}

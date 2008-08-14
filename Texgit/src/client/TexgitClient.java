@@ -118,6 +118,8 @@ public class TexgitClient {
 		
 		System.out.println("Empresa: "+header.getValue("CodigoDaEmpresa"));
 		
+		System.out.println("_______________________________________________________________________________________");
+		
 		Collection<IRecord> lancamentos = ff.getRecords("Detalhe-Header-Lancamento");
 		
 		for(IRecord lancamento : lancamentos){
@@ -140,7 +142,7 @@ public class TexgitClient {
 				System.out.println("---Historico: "+detalhe.getValue("ConteudoDoHistorico"));
 				System.out.println("---Loja: "+detalhe.getValue("CodigoDaLoja"));
 			}
-			System.out.println("_______________________________________________");
+			System.out.println("_______________________________________________________________________________________");
 		}
 		
 	}
