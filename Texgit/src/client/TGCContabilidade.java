@@ -2,6 +2,8 @@ package client;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 
@@ -10,12 +12,12 @@ import texgit.IRecord;
 import texgit.Texgit;
 import texgit.util.FileUtil;
 
-public class TexgitClient {
+public class TGCContabilidade {
 
 
 	public static void main(String[] args) {
 
-		//testWrite();
+		testWrite();
 
 		testRead();
 	}
@@ -122,9 +124,11 @@ public class TexgitClient {
 		
 		Collection<IRecord> lancamentos = ff.getRecords("Detalhe-Header-Lancamento");
 		
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		
 		for(IRecord lancamento : lancamentos){
 			
-			System.out.println("Data do Lançamento: "+lancamento.getValue("DataDoLancamento"));
+			System.out.println("Data do Lançamento: "+df.format(lancamento.getValue("DataDoLancamento")));
 			System.out.println("Tipo de Lançamento: "+lancamento.getValue("TipoDeLancamento"));
 			System.out.println("Usuário: "+lancamento.getValue("Usuario"));
 			
