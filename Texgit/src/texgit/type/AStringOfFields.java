@@ -12,6 +12,7 @@ import org.apache.commons.lang.StringUtils;
 
 import br.com.nordestefomento.jrimum.utilix.ITextStream;
 
+@SuppressWarnings("serial")
 public abstract class AStringOfFields<G extends IField<?>> implements ITextStream, List<G>, Cloneable{
 
 	/**

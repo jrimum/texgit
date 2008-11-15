@@ -74,7 +74,6 @@ public class FixedField<G> extends Field<G> implements IFixedField<G>{
 		setFiller(filler);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public FixedField<G> clone() throws CloneNotSupportedException {
 		

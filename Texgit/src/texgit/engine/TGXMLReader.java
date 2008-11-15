@@ -15,6 +15,7 @@ import javax.xml.validation.SchemaFactory;
 
 import org.xml.sax.SAXException;
 
+import texgit.Texgit;
 import texgit.TexgitException;
 import texgit.language.MetaTexgit;
 
@@ -35,9 +36,9 @@ class TGXMLReader {
 
 				SchemaFactory aSchemaFactory = SchemaFactory
 						.newInstance(W3C_XML_SCHEMA_NS_URI);
-
-				Schema schema = aSchemaFactory.newSchema(new File(
-						"TexgitSchema.xsd"));
+				
+				Schema schema = aSchemaFactory.newSchema(Texgit.class
+						.getResource("/resource/TexgitSchema.xsd"));
 
 				aUnmarshaller.setSchema(schema);
 
@@ -57,7 +58,6 @@ class TGXMLReader {
 			} catch (FileNotFoundException e) {
 
 				throw new TGLanguageException(e);
-
 			}
 		}
 

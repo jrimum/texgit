@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <txg:Texgit xmlns:txg="http://gilmatryx.googlepages.com/Texgit"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://gilmatryx.googlepages.com/Texgit TexgitSchema.xsd" version="1.0-academic">
+	xsi:schemaLocation="http://gilmatryx.googlepages.com/Texgit file:///D:\Gilmatryx\Workspace\eclipse\JRimum\Workspace\Texgit\src\resource\TexgitSchema.xsd" version="1.0-academic">
 
 	<FlatFile>
 		<layout>
@@ -25,8 +25,12 @@
 						Cadastro de Pessoa na Receita Federal 
 					-->
 					<Field name="CPRF" length="14" padding="ZERO_LEFT" />
-					<Field name="DataInicial" type="DATE" format="DATE_DDMMYY" length="10" />
-					<Field name="DataFinal" type="DATE" format="DATE_DDMMYY" length="10" />
+					<Field name="DataInicial" type="DATE" length="10">
+						<Formatter type="DATE" format="dd/MM/yyyy" />
+					</Field>
+					<Field name="DataFinal" type="DATE" length="10" >
+						<Formatter type="DATE" format="dd/MM/yyyy" />
+					</Field>
 					<!-- 
 						"N"
 					-->
@@ -45,8 +49,8 @@
 						2=Caixa,
 						0=Outro 
 					-->
-					<Field name="Sistema" type="INTEGER" length="2" padding="ZERO_LEFT" />
-					<Field name="Constante2" type="INTEGER" value="16" length="2" padding="ZERO_LEFT" />
+					<Field name="Sistema" type="INTEGER" length="1" padding="ZERO_LEFT" />
+					<Field name="Constante2" type="INTEGER" value="17" length="2" padding="ZERO_LEFT" />
 				</GroupOfFields>
 			</Record>
 			<Record name="Detalhe-Header-Lancamento" repeatable="true">
@@ -58,20 +62,23 @@
 						X=Um debito para um credito
 						V=Vários débitos para vários créditos
 					-->
+					<Field name="Sequencia" type="INTEGER" length="7" padding="ZERO_LEFT" />
 					<Field name="TipoDeLancamento" type="CHARACTER" length="1" />
-					<Field name="DataDoLancamento" type="DATE" format="DATE_DDMMYY" length="10" />
+					<Field name="DataDoLancamento" type="DATE" length="10">
+					<Formatter type="DATE" format="dd/MM/yyyy" />
+					</Field>
+	
 					<Field name="Usuario" length="30" />
 					<Field name="Constante" length="100" />
-					<SequencialNumber name="sequencia" type="INTEGER" length="7" position="2" padding="ZERO_LEFT" />
 				</GroupOfFields>
 				<GroupOfInnerRecords>
 					<Record name="Detalhe-Body-Lancamento" repeatable="true">
 						<GroupOfFields>
 							<IdType name="IDReg" value="03" length="2" position="1" />
-
+							<Field name="Sequencia" type="INTEGER" length="7" padding="ZERO_LEFT" />
 							<Field name="ContaDebito" type="INTEGER" length="7" padding="ZERO_LEFT" />
 							<Field name="ContaCredito" type="INTEGER" length="7" padding="ZERO_LEFT" />
-							<Field name="Valor" type="BIGDECIMAL" length="15" format="DECIMAL_DD" />
+							<Field name="Valor" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
 							<Field name="CodigoDoHistorico" type="INTEGER" length="7" padding="ZERO_LEFT" />
 							<Field name="ConteudoDoHistorico" length="512" />
 							<!-- 
@@ -79,7 +86,6 @@
 							-->
 							<Field name="CodigoDaLoja" type="INTEGER" length="7" padding="ZERO_LEFT" />
 							<Field name="Constante" length="100" />
-							<SequencialNumber name="sequencia" type="INTEGER" length="7" position="2" padding="ZERO_LEFT" />
 						</GroupOfFields>
 					</Record>
 				</GroupOfInnerRecords>
