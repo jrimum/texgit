@@ -6,6 +6,11 @@
 	<artifactId>texgit</artifactId>
 	<name>Projeto Texgit</name>
 	<version>0.1.0-SNAPSHOT</version>
+	<parent>
+		<artifactId>jrimum</artifactId>
+		<groupId>jrimum</groupId>
+		<version>0.3.0-SNAPSHOT</version>
+	</parent>
 	
 	<licenses>
 		<license>
@@ -14,5 +19,12 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+	<dependencies>
+		<dependency>
+			<groupId>jrimum</groupId>
+			<artifactId>utilix</artifactId>
+			<version>0.3.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 	
 </project>
