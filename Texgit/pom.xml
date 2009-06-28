@@ -11,6 +11,10 @@
 		<groupId>jrimum</groupId>
 		<version>0.3.0-SNAPSHOT</version>
 	</parent>
+	<ciManagement>
+		<system>hudson</system>
+		<url>http://localhost:8080</url>
+	</ciManagement>
 	
 	<licenses>
 		<license>
@@ -21,6 +25,8 @@
 	</licenses>
 	<scm>
 		<connection>scm:svn:http://jrimum.nordestefomento.com.br/svn/texgit</connection>
+		<developerConnection>scm:svn:http://jrimum.nordestefomento.com.br/svn/texgit</developerConnection>
+		<tag>HEAD</tag>
 		<url>http://jrimum.nordestefomento.com.br/svn/texgit</url>
 	</scm>
 	<dependencies>
