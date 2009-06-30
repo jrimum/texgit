@@ -19,6 +19,10 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+	<scm>
+		<connection>scm:svn:http://jrimum.nordestefomento.com.br/svn/texgit</connection>
+		<url>http://jrimum.nordestefomento.com.br/svn/texgit</url>
+	</scm>
 	<dependencies>
 		<dependency>
 			<groupId>jrimum</groupId>
