@@ -61,9 +61,7 @@ public class Record extends BlockOfFields implements IRecord{
 			e.printStackTrace();
 		}
 		
-		getIdType().read(
-				lineRecord.substring(getIdPosition(), getIdType()
-						.getFixedLength()));
+		getIdType().read(lineRecord.substring(getIdPosition(), getIdPosition() + getIdType().getFixedLength()));
 		
 		return ffID;
 	}
