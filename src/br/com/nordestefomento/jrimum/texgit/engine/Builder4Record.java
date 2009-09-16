@@ -1,7 +1,7 @@
 package br.com.nordestefomento.jrimum.texgit.engine;
 
-import static br.com.nordestefomento.jrimum.ACurbitaObject.isNotNull;
-import static br.com.nordestefomento.jrimum.ACurbitaObject.isNull;
+import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
+import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNull;
 
 import java.util.ArrayList;
 import java.util.HashSet;

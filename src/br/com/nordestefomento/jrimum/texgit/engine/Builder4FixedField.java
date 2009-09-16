@@ -1,6 +1,6 @@
 package br.com.nordestefomento.jrimum.texgit.engine;
 
-import static br.com.nordestefomento.jrimum.ACurbitaObject.isNotNull;
+import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
 import static org.apache.commons.lang.StringUtils.EMPTY;
 import static org.apache.commons.lang.StringUtils.countMatches;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
@@ -21,7 +21,7 @@ import br.com.nordestefomento.jrimum.texgit.type.component.EnumCommonFiller;
 import br.com.nordestefomento.jrimum.texgit.type.component.EnumSide;
 import br.com.nordestefomento.jrimum.texgit.type.component.Filler;
 import br.com.nordestefomento.jrimum.texgit.type.component.FixedField;
-import br.com.nordestefomento.jrimum.utilix.Util4Date;
+import br.com.nordestefomento.jrimum.utilix.DateUtil;
 
 class Builder4FixedField {
 
@@ -116,7 +116,7 @@ class Builder4FixedField {
 				fDTE.setValue(DateFormat.class.cast(formatter).parse(
 						metaField.getValue()));
 			else
-				fDTE.setValue(Util4Date.DATE_NULL);
+				fDTE.setValue(DateUtil.DATE_NULL);
 			fField = fDTE;
 			break;
 		}

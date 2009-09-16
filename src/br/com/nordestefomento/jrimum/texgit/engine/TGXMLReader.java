@@ -1,6 +1,6 @@
 package br.com.nordestefomento.jrimum.texgit.engine;
 
-import static br.com.nordestefomento.jrimum.ACurbitaObject.isNotNull;
+import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
 import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
 
 import java.io.File;

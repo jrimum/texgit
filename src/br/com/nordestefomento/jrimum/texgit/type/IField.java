@@ -2,9 +2,9 @@ package br.com.nordestefomento.jrimum.texgit.type;
 
 import java.text.Format;
 
-import br.com.nordestefomento.jrimum.utilix.ITextStream;
+import br.com.nordestefomento.jrimum.utilix.TextStream;
 
-public interface IField<G> extends ITextStream, Cloneable{
+public interface IField<G> extends TextStream, Cloneable{
 
 	public abstract String getName();
 

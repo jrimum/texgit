@@ -1,6 +1,6 @@
 package br.com.nordestefomento.jrimum.texgit.type.component;
 
-import static br.com.nordestefomento.jrimum.ACurbitaObject.isNotNull;
+import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
 import br.com.nordestefomento.jrimum.texgit.type.AStringOfFields;
 import br.com.nordestefomento.jrimum.texgit.type.IFixedLength;
 import br.com.nordestefomento.jrimum.texgit.type.IFixedSize;

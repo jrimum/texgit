@@ -30,13 +30,13 @@
 
 package br.com.nordestefomento.jrimum.texgit.type.component;
 
-import static br.com.nordestefomento.jrimum.ACurbitaObject.isNotNull;
+import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
 
 import java.io.Serializable;
 
 import org.apache.commons.lang.StringUtils;
 
-import br.com.nordestefomento.jrimum.utilix.ITextStream;
+import br.com.nordestefomento.jrimum.utilix.TextStream;
 
 /**
  * <p>
@@ -350,7 +350,7 @@ public class Filler<G> implements Serializable{
 	 * 
 	 * @since
 	 */
-	public String fill(ITextStream tofill, int length){
+	public String fill(TextStream tofill, int length){
 
 		String toFillTemp = null;
 		

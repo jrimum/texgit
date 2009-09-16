@@ -1,6 +1,6 @@
 package br.com.nordestefomento.jrimum.texgit;
 
-import static br.com.nordestefomento.jrimum.ACurbitaObject.isNotNull;
+import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
 
 import java.io.File;

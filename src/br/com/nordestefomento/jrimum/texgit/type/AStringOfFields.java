@@ -1,6 +1,6 @@
 package br.com.nordestefomento.jrimum.texgit.type;
 
-import static br.com.nordestefomento.jrimum.ACurbitaObject.isNotNull;
+import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,10 +10,10 @@ import java.util.ListIterator;
 
 import org.apache.commons.lang.StringUtils;
 
-import br.com.nordestefomento.jrimum.utilix.ITextStream;
+import br.com.nordestefomento.jrimum.utilix.TextStream;
 
 @SuppressWarnings("serial")
-public abstract class AStringOfFields<G extends IField<?>> implements ITextStream, List<G>, Cloneable{
+public abstract class AStringOfFields<G extends IField<?>> implements TextStream, List<G>, Cloneable{
 
 	/**
 	 * 

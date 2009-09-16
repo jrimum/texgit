@@ -2,6 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/JRimum/dist/JRimum-Bopepo-v.0.2.1-INC2-ComDependencias.jar"/>
+	<classpathentry kind="lib" path="/JRimum/lib/toDist/commons-lang-2.4.jar" sourcepath="/JRimum/lib/toDist/commons-lang-2.4-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/_JRimum/lib/toDist/commons-lang-2.4-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/Utilix"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

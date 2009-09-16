@@ -1,6 +1,6 @@
 package br.com.nordestefomento.jrimum.texgit.type.component;
 
-import static br.com.nordestefomento.jrimum.ACurbitaObject.isNotNull;
+import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
 import static org.apache.commons.lang.StringUtils.isBlank;
 import static org.apache.commons.lang.StringUtils.isNumeric;
 
@@ -16,8 +16,8 @@ import org.apache.commons.lang.StringUtils;
 
 
 import br.com.nordestefomento.jrimum.texgit.type.IField;
-import br.com.nordestefomento.jrimum.utilix.ITextStream;
-import br.com.nordestefomento.jrimum.utilix.Util4Date;
+import br.com.nordestefomento.jrimum.utilix.TextStream;
+import br.com.nordestefomento.jrimum.utilix.DateUtil;
 
 @SuppressWarnings("serial")
 public class Field<G> implements IField<G>{
@@ -112,9 +112,9 @@ public class Field<G> implements IField<G>{
 		
 		if(isNotNull(str,"String Inválida")){
 			
-			if(this.value instanceof ITextStream){
+			if(this.value instanceof TextStream){
 				
-				ITextStream reader = (ITextStream) this.value;
+				TextStream reader = (TextStream) this.value;
 				reader.read(str);
 				
 			}else if(this.value instanceof BigDecimal){
@@ -179,7 +179,7 @@ public class Field<G> implements IField<G>{
 			if(isBlank(str)){
 				
 				if(isBlankAccepted())
-					value = (G) Util4Date.DATE_NULL;
+					value = (G) DateUtil.DATE_NULL;
 				else
 					new IllegalArgumentException("Campo data vazio não permitido: ["+str+"]");
 			}
@@ -226,9 +226,9 @@ public class Field<G> implements IField<G>{
 		
 		String str = null;
 
-		if (value instanceof ITextStream) {
+		if (value instanceof TextStream) {
 
-			ITextStream its = (ITextStream) value;
+			TextStream its = (TextStream) value;
 
 			str = its.write();
 
@@ -261,7 +261,7 @@ public class Field<G> implements IField<G>{
 		
 		Date dateValue = (Date) value;
 
-		if (dateValue.compareTo(Util4Date.DATE_NULL) != 0)
+		if (dateValue.compareTo(DateUtil.DATE_NULL) != 0)
 			str = formatter.format(dateValue);
 		
 		return str;
