@@ -22,11 +22,11 @@ public class FlatFile implements IFlatFile<IRecord>{
 	
 	private List<String> recordsOrder;
 	
-	private IFactory4Record<Record> iFactory4Record;
+	private RecordFactory<Record> recordFactory;
 
-	public FlatFile(IFactory4Record<Record> iFac4Rec) {
+	public FlatFile(RecordFactory<Record> iFac4Rec) {
 		
-		this.iFactory4Record = iFac4Rec;
+		this.recordFactory = iFac4Rec;
 		this.records = new ArrayList<Record>();
 	}
 
@@ -55,7 +55,7 @@ public class FlatFile implements IFlatFile<IRecord>{
 	
 	public IRecord createRecord(String idName){
 		
-		return iFactory4Record.create(idName);
+		return recordFactory.create(idName);
 	}
 	
 	public void addRecord(Record record){
@@ -94,14 +94,14 @@ public class FlatFile implements IFlatFile<IRecord>{
 				
 				for(String id : recordsOrder){
 					
-					record = iFactory4Record.create(id);
+					record = recordFactory.create(id);
 					
 					if(isRepitable(id)){
 						
 						while(read){
 							
 							if(isNull(record))
-								record = iFactory4Record.create(id);
+								record = recordFactory.create(id);
 							
 							if(lineIndex < str.size())
 								line = str.get(lineIndex);
@@ -117,7 +117,7 @@ public class FlatFile implements IFlatFile<IRecord>{
 								addRecord(record);
 								
 								if(record.isHeadOfGroup())
-									lineIndex = record.readInnerRecords(str,lineIndex,iFactory4Record);
+									lineIndex = record.readInnerRecords(str,lineIndex,recordFactory);
 								
 								record = null;
 							}
@@ -136,7 +136,7 @@ public class FlatFile implements IFlatFile<IRecord>{
 								addRecord(record);
 								
 								if(record.isHeadOfGroup())
-									lineIndex = record.readInnerRecords(str,lineIndex,iFactory4Record);
+									lineIndex = record.readInnerRecords(str,lineIndex,recordFactory);
 								
 								record = null;
 							}

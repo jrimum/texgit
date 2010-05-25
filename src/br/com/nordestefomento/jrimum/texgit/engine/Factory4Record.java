@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.nordestefomento.jrimum.texgit.language.MetaRecord;
-import br.com.nordestefomento.jrimum.texgit.type.component.IFactory4Record;
+import br.com.nordestefomento.jrimum.texgit.type.component.RecordFactory;
 import br.com.nordestefomento.jrimum.texgit.type.component.Record;
 
 
-public class Factory4Record implements IFactory4Record<Record> {
+public class Factory4Record implements RecordFactory<Record> {
 
 	private Map<String, MetaRecord> name_record;
 

@@ -109,12 +109,12 @@ public class Record extends BlockOfFields implements IRecord{
 		return pos;
 	}
 	
-	public int readInnerRecords(List<String> lines, int lineIndex, IFactory4Record<Record> iFactory) {
+	public int readInnerRecords(List<String> lines, int lineIndex, RecordFactory<Record> iFactory) {
 		
 		return readInnerRecords(this,lines,lineIndex,iFactory);
 	}
 	
-	private int readInnerRecords(Record record, List<String> lines, int lineIndex, IFactory4Record<Record> iFactory) {
+	private int readInnerRecords(Record record, List<String> lines, int lineIndex, RecordFactory<Record> iFactory) {
 		
 		if(isNotNull(record)){
 			if(isNotNull(record.getDeclaredInnerRecords()) && !record.getDeclaredInnerRecords().isEmpty()){
