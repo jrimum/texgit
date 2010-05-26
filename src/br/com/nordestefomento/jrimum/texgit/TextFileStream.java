@@ -4,6 +4,6 @@ import java.util.List;
 
 import br.com.nordestefomento.jrimum.utilix.ReadWriteStream;
 
-public interface ITextFileStream extends ReadWriteStream<List<String>> {
+public interface TextFileStream extends ReadWriteStream<List<String>> {
 
 }

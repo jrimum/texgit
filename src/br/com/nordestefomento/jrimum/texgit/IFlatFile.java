@@ -2,7 +2,7 @@ package br.com.nordestefomento.jrimum.texgit;
 
 import java.util.Collection;
 
-public interface IFlatFile<G extends IRecord> extends ITextFileStream {
+public interface IFlatFile<G extends IRecord> extends TextFileStream {
 
 	// Registros individuais
 
