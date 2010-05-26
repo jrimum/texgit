@@ -1,12 +1,12 @@
 package br.com.nordestefomento.jrimum.texgit.type.component;
 
 import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
-import br.com.nordestefomento.jrimum.texgit.type.AStringOfFields;
+import br.com.nordestefomento.jrimum.texgit.type.AbstractStringOfFields;
 import br.com.nordestefomento.jrimum.texgit.type.IFixedLength;
 import br.com.nordestefomento.jrimum.texgit.type.IFixedSize;
 
 @SuppressWarnings("serial")
-public class BlockOfFields extends AStringOfFields<FixedField<?>> implements IFixedSize, IFixedLength{
+public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> implements IFixedSize, IFixedLength{
 
 	/**
 	 * Definição

@@ -13,7 +13,7 @@ import org.apache.commons.lang.StringUtils;
 import br.com.nordestefomento.jrimum.utilix.TextStream;
 
 @SuppressWarnings("serial")
-public abstract class AStringOfFields<G extends IField<?>> implements TextStream, List<G>, Cloneable{
+public abstract class AbstractStringOfFields<G extends IField<?>> implements TextStream, List<G>, Cloneable{
 
 	/**
 	 * 
@@ -23,7 +23,7 @@ public abstract class AStringOfFields<G extends IField<?>> implements TextStream
 	/**
 	 * 
 	 */
-	public AStringOfFields() {
+	public AbstractStringOfFields() {
 
 		fields = new ArrayList<G>();
 	}
@@ -31,7 +31,7 @@ public abstract class AStringOfFields<G extends IField<?>> implements TextStream
 	/**
 	 * 
 	 */
-	public AStringOfFields(Integer size) {
+	public AbstractStringOfFields(Integer size) {
 
 		if(isNotNull(size, "size"))
 			if(size > 0){
@@ -46,10 +46,10 @@ public abstract class AStringOfFields<G extends IField<?>> implements TextStream
 
 	@SuppressWarnings("unchecked")
 	@Override
-	protected AStringOfFields<G> clone() throws CloneNotSupportedException {
+	protected AbstractStringOfFields<G> clone() throws CloneNotSupportedException {
 		
 		//Clona apenas com uma referência a fields.
-		AStringOfFields<G> sof = (AStringOfFields<G>) super.clone();
+		AbstractStringOfFields<G> sof = (AbstractStringOfFields<G>) super.clone();
 		
 		//Clonagem real
 		sof.fields = new ArrayList<G>();

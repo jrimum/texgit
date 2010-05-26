@@ -74,7 +74,7 @@ public class Filler<G> implements Serializable{
 
 	private G padding;
 	
-	private EnumSide sideToFill;
+	private Side sideToFill;
 	
 	public Filler() {
 		super();
@@ -86,14 +86,14 @@ public class Filler<G> implements Serializable{
 	public Filler(G fillWith) {
 		
 		setPadding(fillWith);
-		setSideToFill(EnumSide.LEFT);
+		setSideToFill(Side.LEFT);
 	}
 
 	/**
 	 * @param padding
 	 * @param sideToFill
 	 */
-	public Filler(G fillWith, EnumSide sideToFill) {
+	public Filler(G fillWith, Side sideToFill) {
 		
 		setPadding(fillWith);
 		setSideToFill(sideToFill);
@@ -118,14 +118,14 @@ public class Filler<G> implements Serializable{
 	/**
 	 * @return
 	 */
-	public EnumSide getSideToFill() {
+	public Side getSideToFill() {
 		return sideToFill;
 	}
 
 	/**
 	 * @param sideToFill
 	 */
-	public void setSideToFill(EnumSide sideToFill) {
+	public void setSideToFill(Side sideToFill) {
 		
 		if(isNotNull(sideToFill))
 			this.sideToFill = sideToFill;

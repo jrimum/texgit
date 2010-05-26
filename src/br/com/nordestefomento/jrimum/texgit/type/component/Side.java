@@ -6,7 +6,7 @@ package br.com.nordestefomento.jrimum.texgit.type.component;
  * Lados para alinhar campos, preenchimento ou orientações em geral.
  * </p> 
  */
-public enum EnumSide {
+public enum Side {
 
 	LEFT,
 	

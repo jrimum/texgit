@@ -3,31 +3,31 @@ package br.com.nordestefomento.jrimum.texgit.type.component;
 import br.com.nordestefomento.jrimum.utilix.StringUtil;
 
 
-public enum EnumCommonFiller {
+public enum CommonFiller {
 
 	/**
 	 * Filler padrão para preenchimento com zeros a esquerda.
 	 */
-	ZERO_LEFT(new Filler<Integer>(0, EnumSide.LEFT)),
+	ZERO_LEFT(new Filler<Integer>(0, Side.LEFT)),
 	
 	/**
 	 * Filler padrão para preenchimento com zeros a direita.
 	 */
-	ZERO_RIGHT(new Filler<Integer>(0, EnumSide.RIGHT)),
+	ZERO_RIGHT(new Filler<Integer>(0, Side.RIGHT)),
 	
 	/**
 	 * Filler padrão para preenchimento com espaços em branco a esquerda.
 	 */
-	WHITE_SPACE_LEFT(new Filler<String>(StringUtil.WHITE_SPACE, EnumSide.LEFT)),
+	WHITE_SPACE_LEFT(new Filler<String>(StringUtil.WHITE_SPACE, Side.LEFT)),
 	
 	/**
 	 * Filler padrão para preenchimento com espaços em branco a direita.
 	 */
-	WHITE_SPACE_RIGHT(new Filler<String>(StringUtil.WHITE_SPACE, EnumSide.RIGHT));
+	WHITE_SPACE_RIGHT(new Filler<String>(StringUtil.WHITE_SPACE, Side.RIGHT));
 	
 	private Filler<?> instanceEnumFiller;
 	
-	EnumCommonFiller(Filler<?> filler){
+	CommonFiller(Filler<?> filler){
 		
 		this.instanceEnumFiller = filler;
 	}

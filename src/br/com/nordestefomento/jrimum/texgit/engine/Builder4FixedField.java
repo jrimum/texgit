@@ -17,8 +17,8 @@ import br.com.nordestefomento.jrimum.texgit.TexgitException;
 import br.com.nordestefomento.jrimum.texgit.language.EnumFormats;
 import br.com.nordestefomento.jrimum.texgit.language.EnumFormatsTypes;
 import br.com.nordestefomento.jrimum.texgit.language.MetaField;
-import br.com.nordestefomento.jrimum.texgit.type.component.EnumCommonFiller;
-import br.com.nordestefomento.jrimum.texgit.type.component.EnumSide;
+import br.com.nordestefomento.jrimum.texgit.type.component.CommonFiller;
+import br.com.nordestefomento.jrimum.texgit.type.component.Side;
 import br.com.nordestefomento.jrimum.texgit.type.component.Filler;
 import br.com.nordestefomento.jrimum.texgit.type.component.FixedField;
 import br.com.nordestefomento.jrimum.utilix.DateUtil;
@@ -140,12 +140,12 @@ class Builder4FixedField {
 
 			Filler<String> filr = new Filler<String>();
 			filr.setPadding(metaField.getFiller().getPadding());
-			filr.setSideToFill(EnumSide.valueOf(metaField.getFiller()
+			filr.setSideToFill(Side.valueOf(metaField.getFiller()
 					.getSideToFill().name()));
 			filler = filr;
 
 		} else {
-			filler = EnumCommonFiller.valueOf(metaField.getPadding().name())
+			filler = CommonFiller.valueOf(metaField.getPadding().name())
 					.getOne();
 		}
 
@@ -216,7 +216,7 @@ class Builder4FixedField {
 			int lengthToFill = BASE_DECIMAL_FORMAT.length()
 					+ countMatches(defFormat, "D");
 
-			strFormat = EnumCommonFiller.ZERO_RIGHT.getOne().fill(
+			strFormat = CommonFiller.ZERO_RIGHT.getOne().fill(
 					BASE_DECIMAL_FORMAT, lengthToFill);
 
 			break;

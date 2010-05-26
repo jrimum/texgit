@@ -58,7 +58,7 @@ public class MetaFiller {
 	/**
 	 * Gets the value of the sideToFill property.
 	 * 
-	 * @return possible object is {@link EnumSide }
+	 * @return possible object is {@link Side }
 	 * 
 	 */
 	public EnumSide getSideToFill() {
@@ -73,7 +73,7 @@ public class MetaFiller {
 	 * Sets the value of the sideToFill property.
 	 * 
 	 * @param value
-	 *            allowed object is {@link EnumSide }
+	 *            allowed object is {@link Side }
 	 * 
 	 */
 	public void setSideToFill(EnumSide value) {
