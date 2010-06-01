@@ -4,7 +4,7 @@ import java.text.Format;
 
 import br.com.nordestefomento.jrimum.utilix.TextStream;
 
-public interface IField<G> extends TextStream, Cloneable{
+public interface Field<G> extends TextStream, Cloneable{
 
 	public abstract String getName();
 
@@ -22,5 +22,5 @@ public interface IField<G> extends TextStream, Cloneable{
 
 	public abstract void setBlankAccepted(boolean blankAccepted);
 	
-	public abstract IField<G> clone() throws CloneNotSupportedException;
+	public abstract Field<G> clone() throws CloneNotSupportedException;
 }

@@ -9,12 +9,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import br.com.nordestefomento.jrimum.texgit.IFlatFile;
-import br.com.nordestefomento.jrimum.texgit.IRecord;
-
 
 @SuppressWarnings("serial")
-public class FlatFile implements IFlatFile<IRecord>{
+public class FlatFile implements br.com.nordestefomento.jrimum.texgit.FlatFile<br.com.nordestefomento.jrimum.texgit.Record>{
 
 	private List<Record> records;
 	
@@ -53,7 +50,7 @@ public class FlatFile implements IFlatFile<IRecord>{
 		return (isNotNull(repitablesRecords) && !repitablesRecords.isEmpty() && repitablesRecords.contains(idName));
 	}
 	
-	public IRecord createRecord(String idName){
+	public br.com.nordestefomento.jrimum.texgit.Record createRecord(String idName){
 		
 		return recordFactory.create(idName);
 	}
@@ -158,7 +155,7 @@ public class FlatFile implements IFlatFile<IRecord>{
 				
 				Record rec = null;
 				
-				for(IRecord record : getRecords(id)){
+				for(br.com.nordestefomento.jrimum.texgit.Record record : getRecords(id)){
 					
 					rec = Record.class.cast(record);
 					
@@ -183,7 +180,7 @@ public class FlatFile implements IFlatFile<IRecord>{
 	}
 
 	@Override
-	public void addRecord(IRecord record) {
+	public void addRecord(br.com.nordestefomento.jrimum.texgit.Record record) {
 		
 		if(isNotNull(record)){
 			Record rec = Record.class.cast(record);
@@ -192,9 +189,9 @@ public class FlatFile implements IFlatFile<IRecord>{
 	}
 
 	@Override
-	public Collection<IRecord> getRecords(String idName) {
+	public Collection<br.com.nordestefomento.jrimum.texgit.Record> getRecords(String idName) {
 
-		List<IRecord> secRecords = new ArrayList<IRecord>();
+		List<br.com.nordestefomento.jrimum.texgit.Record> secRecords = new ArrayList<br.com.nordestefomento.jrimum.texgit.Record>();
 
 		if (isNotBlank(idName)) {
 			if (isRepitable(idName)) {
@@ -211,37 +208,37 @@ public class FlatFile implements IFlatFile<IRecord>{
 	}
 	
 	@Override
-	public void addAllRecords(Collection<IRecord> records) {
+	public void addAllRecords(Collection<br.com.nordestefomento.jrimum.texgit.Record> records) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void addRecords(String idName, Collection<IRecord> records) {
+	public void addRecords(String idName, Collection<br.com.nordestefomento.jrimum.texgit.Record> records) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Collection<IRecord> getAllRecords() {
+	public Collection<br.com.nordestefomento.jrimum.texgit.Record> getAllRecords() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public IRecord removeRecord(String idName) {
+	public br.com.nordestefomento.jrimum.texgit.Record removeRecord(String idName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void setAllRecords(Collection<IRecord> records) {
+	public void setAllRecords(Collection<br.com.nordestefomento.jrimum.texgit.Record> records) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void setRecords(String idName, Collection<IRecord> records) {
+	public void setRecords(String idName, Collection<br.com.nordestefomento.jrimum.texgit.Record> records) {
 		// TODO Auto-generated method stub
 		
 	}

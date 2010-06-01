@@ -4,13 +4,13 @@ import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
 
 import java.text.Format;
 
-import br.com.nordestefomento.jrimum.texgit.type.IFixedField;
+import br.com.nordestefomento.jrimum.utilix.ObjectUtil;
 
 
 
 
 @SuppressWarnings("serial")
-public class FixedField<G> extends Field<G> implements IFixedField<G>{
+public class FixedField<G> extends Field<G> implements br.com.nordestefomento.jrimum.texgit.type.FixedField<G>{
 	
 	/**
 	 * <p>
@@ -86,14 +86,15 @@ public class FixedField<G> extends Field<G> implements IFixedField<G>{
 	 */
 	@Override
 	public void read(String str) {
-		
-		if(isNotNull(str,"String Inválida")){
-			
-			if(str.length() == getFixedLength())
-				super.read(str);
-			else
-				throw new IllegalArgumentException("Tamanho da string [ " + str.length() + " ] diferente do especificado [ "+getFixedLength()+" ]!");
-		}
+
+		ObjectUtil.checkNotNull(str, "String Inválida");
+
+		if (str.length() == getFixedLength()) {
+			super.read(str);
+		} else
+			throw new IllegalArgumentException("Tamanho da string [ "
+					+ str.length() + " ] diferente do especificado [ "
+					+ getFixedLength() + " ]!");
 	}
 
 	/**

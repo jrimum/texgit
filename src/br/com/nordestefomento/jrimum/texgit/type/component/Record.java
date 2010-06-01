@@ -8,13 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import br.com.nordestefomento.jrimum.texgit.IRecord;
-import br.com.nordestefomento.jrimum.texgit.type.IField;
-import br.com.nordestefomento.jrimum.texgit.type.IFixedField;
+import br.com.nordestefomento.jrimum.texgit.type.Field;
 
 
 @SuppressWarnings("serial")
-public class Record extends BlockOfFields implements IRecord{
+public class Record extends BlockOfFields implements br.com.nordestefomento.jrimum.texgit.Record{
 
 	private String name;
 	
@@ -26,7 +24,7 @@ public class Record extends BlockOfFields implements IRecord{
 	
 	private boolean headOfGroup;
 	
-	private List<IRecord> innerRecords;
+	private List<br.com.nordestefomento.jrimum.texgit.Record> innerRecords;
 	
 	private Set<String> repitablesRecords;
 	
@@ -68,9 +66,9 @@ public class Record extends BlockOfFields implements IRecord{
 		return ffID;
 	}
 	
-	public IFixedField<?> getField(String fieldName) {
+	public br.com.nordestefomento.jrimum.texgit.type.FixedField<?> getField(String fieldName) {
 
-		IFixedField<?> field = null;
+		br.com.nordestefomento.jrimum.texgit.type.FixedField<?> field = null;
 
 		if (isNotBlank(fieldName))
 			if (!getFields().isEmpty())
@@ -88,7 +86,7 @@ public class Record extends BlockOfFields implements IRecord{
 		
 		if (isNotBlank(idName)) {
 			if(!getFields().isEmpty())
-				for(IField<?> f : getFields())
+				for(br.com.nordestefomento.jrimum.texgit.type.Field<?> f : getFields())
 					if(idName.equals(f.getName())){
 						is = true;
 						break;
@@ -224,7 +222,7 @@ public class Record extends BlockOfFields implements IRecord{
 		if (isNotBlank(idName)) {
 			if (!isRepitable(idName)){	
 				if (!getInnerRecords().isEmpty()) {
-					for (IRecord iRec : getInnerRecords()) {
+					for (br.com.nordestefomento.jrimum.texgit.Record iRec : getInnerRecords()) {
 						Record rec = (Record) iRec;
 						if (idName.equals(rec.getName()))
 							record = rec;
@@ -243,7 +241,7 @@ public class Record extends BlockOfFields implements IRecord{
 		if (isNotBlank(idName)) {
 			if (isRepitable(idName)) {
 				if (!getInnerRecords().isEmpty()) {
-					for (IRecord iRec : getInnerRecords()) {
+					for (br.com.nordestefomento.jrimum.texgit.Record iRec : getInnerRecords()) {
 						Record rec = (Record) iRec;
 						if (idName.equals(rec.getName()))
 							secRecords.add(rec);
@@ -272,11 +270,11 @@ public class Record extends BlockOfFields implements IRecord{
 	}
 	
 	@Override
-	public void addInnerRecord(IRecord record) {
+	public void addInnerRecord(br.com.nordestefomento.jrimum.texgit.Record record) {
 		
 		if(isNotNull(record)){
 			if(isNull(this.innerRecords))
-				this.innerRecords = new ArrayList<IRecord>();
+				this.innerRecords = new ArrayList<br.com.nordestefomento.jrimum.texgit.Record>();
 		
 		if(isMyRecord(Record.class.cast(record).getName()))
 			this.innerRecords.add(record);
@@ -287,7 +285,7 @@ public class Record extends BlockOfFields implements IRecord{
 	}
 
 	@Override
-	public List<IRecord> getInnerRecords() {
+	public List<br.com.nordestefomento.jrimum.texgit.Record> getInnerRecords() {
 		
 		return this.innerRecords;
 	}
@@ -298,7 +296,7 @@ public class Record extends BlockOfFields implements IRecord{
 		
 		G value = null;
 		
-		IField f = getField(fieldName);
+		br.com.nordestefomento.jrimum.texgit.type.Field f = getField(fieldName);
 		
 		if(isNotNull(f))
 			value = (G) f.getValue();
@@ -310,7 +308,7 @@ public class Record extends BlockOfFields implements IRecord{
 	@Override
 	public <G> void setValue(String fieldName, G value) {
 		
-		IField<G> f = (IField<G>) getField(fieldName);
+		br.com.nordestefomento.jrimum.texgit.type.Field<G> f = (Field<G>) getField(fieldName);
 		
 		if(isNotNull(f))
 			f.setValue(value);

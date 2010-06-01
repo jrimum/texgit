@@ -14,13 +14,12 @@ import java.util.Date;
 
 import org.apache.commons.lang.StringUtils;
 
-
-import br.com.nordestefomento.jrimum.texgit.type.IField;
-import br.com.nordestefomento.jrimum.utilix.TextStream;
 import br.com.nordestefomento.jrimum.utilix.DateUtil;
+import br.com.nordestefomento.jrimum.utilix.ObjectUtil;
+import br.com.nordestefomento.jrimum.utilix.TextStream;
 
 @SuppressWarnings("serial")
-public class Field<G> implements IField<G>{
+public class Field<G> implements br.com.nordestefomento.jrimum.texgit.type.Field<G>{
 	
 	/**
 	 *<p>
@@ -109,31 +108,30 @@ public class Field<G> implements IField<G>{
 
 	@Override
 	public void read(String str) {
-		
-		if(isNotNull(str,"String Inválida")){
-			
-			if(this.value instanceof TextStream){
-				
-				TextStream reader = (TextStream) this.value;
-				reader.read(str);
-				
-			}else if(this.value instanceof BigDecimal){
-			
-				readDecimalField(str);
-				
-			}else if(this.value instanceof Date) {
-				
-				readDateField(str);
-				
-			}else if(this.value instanceof Character){
-				
-				readCharacter(str);
-				
-			}else {
-				
-				readStringOrNumericField(str);
-			}
-		}	
+
+		ObjectUtil.checkNotNull(str, "String Inválida");
+
+		if (this.value instanceof TextStream) {
+
+			TextStream reader = (TextStream) this.value;
+			reader.read(str);
+
+		} else if (this.value instanceof BigDecimal) {
+
+			readDecimalField(str);
+
+		} else if (this.value instanceof Date) {
+
+			readDateField(str);
+
+		} else if (this.value instanceof Character) {
+
+			readCharacter(str);
+
+		} else {
+
+			readStringOrNumericField(str);
+		}
 	}
 
 	@SuppressWarnings("unchecked")

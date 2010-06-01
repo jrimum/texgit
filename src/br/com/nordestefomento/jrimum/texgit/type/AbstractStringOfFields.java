@@ -1,7 +1,5 @@
 package br.com.nordestefomento.jrimum.texgit.type;
 
-import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -10,10 +8,11 @@ import java.util.ListIterator;
 
 import org.apache.commons.lang.StringUtils;
 
+import br.com.nordestefomento.jrimum.utilix.ObjectUtil;
 import br.com.nordestefomento.jrimum.utilix.TextStream;
 
 @SuppressWarnings("serial")
-public abstract class AbstractStringOfFields<G extends IField<?>> implements TextStream, List<G>, Cloneable{
+public abstract class AbstractStringOfFields<G extends Field<?>> implements TextStream, List<G>, Cloneable{
 
 	/**
 	 * 
@@ -33,15 +32,17 @@ public abstract class AbstractStringOfFields<G extends IField<?>> implements Tex
 	 */
 	public AbstractStringOfFields(Integer size) {
 
-		if(isNotNull(size, "size"))
-			if(size > 0){
-				fields = new ArrayList<G>(size);
-				for(int i = 1; i <= size; i++ )
-					fields.add(null);
+		ObjectUtil.checkNotNull(size, "size");
+
+		if (size > 0) {
+			fields = new ArrayList<G>(size);
+			for (int i = 1; i <= size; i++){
+				fields.add(null);
 			}
-			else{
-				throw new IllegalArgumentException("A quantidade de campos [ " + size + " ] deve ser um número natural > 0!");
-			}
+		} else {
+			throw new IllegalArgumentException("A quantidade de campos [ "
+					+ size + " ] deve ser um número natural > 0!");
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -82,10 +83,10 @@ public abstract class AbstractStringOfFields<G extends IField<?>> implements Tex
 
 		StringBuilder lineOfFields = new StringBuilder(StringUtils.EMPTY);
 
-		if (isNotNull(fields, "fields")){
+		ObjectUtil.checkNotNull(fields, "fields");
 
-			for (G field : fields)
-				lineOfFields.append(field.write());
+		for (G field : fields) {
+			lineOfFields.append(field.write());
 		}
 
 		return lineOfFields.toString();

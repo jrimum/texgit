@@ -2,18 +2,17 @@ package br.com.nordestefomento.jrimum.texgit.engine;
 
 import java.io.File;
 
-import br.com.nordestefomento.jrimum.texgit.IFlatFile;
-import br.com.nordestefomento.jrimum.texgit.IRecord;
+import br.com.nordestefomento.jrimum.texgit.FlatFile;
 import br.com.nordestefomento.jrimum.texgit.TexgitException;
 import br.com.nordestefomento.jrimum.texgit.language.MetaTexgit;
-import br.com.nordestefomento.jrimum.texgit.type.component.FlatFile;
 
 
 public class TGManager {
 
-	public static IFlatFile<IRecord> buildFlatFile(File xmlDef) {
+	@SuppressWarnings("unchecked")
+	public static br.com.nordestefomento.jrimum.texgit.FlatFile<br.com.nordestefomento.jrimum.texgit.Record> buildFlatFile(File xmlDef) {
 
-		IFlatFile<IRecord> iFlatFile = null;
+		br.com.nordestefomento.jrimum.texgit.FlatFile<br.com.nordestefomento.jrimum.texgit.Record> iFlatFile = null;
 
 		try {
 

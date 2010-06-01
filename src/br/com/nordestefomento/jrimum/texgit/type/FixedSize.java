@@ -1,6 +1,6 @@
 package br.com.nordestefomento.jrimum.texgit.type;
 
-public interface IFixedSize extends IFixed{
+public interface FixedSize extends Fixed{
 	
 	public Integer getFixedSize();
 }

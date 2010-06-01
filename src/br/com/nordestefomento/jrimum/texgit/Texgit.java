@@ -11,9 +11,9 @@ import br.com.nordestefomento.jrimum.texgit.engine.TGManager;
 
 public final class Texgit {
 
-	public static final IFlatFile<IRecord> createFlatFile(File xmlDef)throws TexgitException{
+	public static final FlatFile<Record> createFlatFile(File xmlDef)throws TexgitException{
 		
-		IFlatFile<IRecord> iFlatFile = null;
+		FlatFile<Record> iFlatFile = null;
 		
 		if (isNotNull(xmlDef))
 			iFlatFile = TGManager.buildFlatFile(xmlDef);
@@ -21,9 +21,9 @@ public final class Texgit {
 		return iFlatFile;
 	}
 	
-	public static final IFlatFile<IRecord> createFlatFile(String xmlDef)throws TexgitException{
+	public static final FlatFile<Record> createFlatFile(String xmlDef)throws TexgitException{
 		
-		IFlatFile<IRecord> iFlatFile = null;
+		FlatFile<Record> iFlatFile = null;
 		
 		try{
 		

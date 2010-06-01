@@ -3,7 +3,7 @@ package br.com.nordestefomento.jrimum.texgit.type;
 import br.com.nordestefomento.jrimum.texgit.type.component.Filler;
 
 
-public interface IFixedField<G> extends IField<G>, IFixedLength{
+public interface FixedField<G> extends Field<G>, FixedLength{
 
 	/**
 	 * @return the filler

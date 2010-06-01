@@ -1,6 +1,6 @@
 package br.com.nordestefomento.jrimum.texgit.type;
 
-public interface IFixed {
+public interface Fixed {
 
 	
 	/**
