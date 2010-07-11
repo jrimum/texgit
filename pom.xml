@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>jrimum.org</groupId>
+	<artifactId>texgit</artifactId>
+	<name>Projeto Texgit</name>
+	<version>0.2.0-SNAPSHOT</version>
+	<description>Projeto open source de componentes de software para o domínio de negócios do Brasil.</description>
+	<url>http://www.jrimum.org/texgit</url>
+	
+		<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	
+	<ciManagement>
+		<system>hudson</system>
+		<url>http://localhost:8080</url>
+	</ciManagement>
+	<scm>
+		<connection>scm:svn:http://www.jrimum.org/svn/texgit</connection>
+		<developerConnection>scm:svn:http://www.jrimum.org/svn/texgit</developerConnection>
+		<tag>HEAD</tag>
+		<url>http://www.jrimum.org/svn/texgit</url>
+	</scm>
+	
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.0.2</version>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+			    	<groupId>org.apache.maven.plugins</groupId>
+			    	<artifactId>maven-surefire-plugin</artifactId>
+			    	<configuration>
+						<skipTests>true</skipTests>
+			        </configuration>
+			    </plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.jrimum</groupId>
+			<artifactId>utilix</artifactId>
+			<version>0.2.3-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>sun-jaxb</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>sun-jaxb</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+	<repositories>
+		<repository>
+			<id>JBoss Repository</id>
+			<url>http://repository.jboss.org/maven2/</url>
+		</repository>
+	</repositories>
+	
+</project>

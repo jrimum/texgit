@@ -1,8 +1,8 @@
 package org.jrimum.texgit.type.component;
 
-import static org.jrimum.utilix.ObjectUtil.isNotNull;
 import static org.apache.commons.lang.StringUtils.isBlank;
 import static org.apache.commons.lang.StringUtils.isNumeric;
+import static org.jrimum.utilix.ObjectUtil.isNotNull;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -13,7 +13,6 @@ import java.text.ParseException;
 import java.util.Date;
 
 import org.apache.commons.lang.StringUtils;
-
 import org.jrimum.utilix.DateUtil;
 import org.jrimum.utilix.ObjectUtil;
 import org.jrimum.utilix.TextStream;
@@ -106,7 +105,6 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 		return (Field<G>) super.clone();
 	}
 
-	@Override
 	public void read(String str) {
 
 		ObjectUtil.checkNotNull(str, "String Inválida");
@@ -219,7 +217,6 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 		}
 	}
 	
-	@Override
 	public String write() {
 		
 		String str = null;

@@ -1,7 +1,7 @@
 package org.jrimum.texgit.engine;
 
-import static org.jrimum.utilix.ObjectUtil.isNotNull;
 import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
+import static org.jrimum.utilix.ObjectUtil.isNotNull;
 
 import java.io.File;
 import java.io.FileInputStream;

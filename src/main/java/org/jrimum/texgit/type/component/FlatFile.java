@@ -1,8 +1,8 @@
 package org.jrimum.texgit.type.component;
 
+import static org.apache.commons.lang.StringUtils.isNotBlank;
 import static org.jrimum.utilix.ObjectUtil.isNotNull;
 import static org.jrimum.utilix.ObjectUtil.isNull;
-import static org.apache.commons.lang.StringUtils.isNotBlank;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -75,7 +75,6 @@ public class FlatFile implements org.jrimum.texgit.FlatFile<org.jrimum.texgit.Re
 		return is;
 	}
 
-	@Override
 	public void read(List<String> str) {
 		
 		if(isNotNull(str)){
@@ -144,7 +143,6 @@ public class FlatFile implements org.jrimum.texgit.FlatFile<org.jrimum.texgit.Re
 		}
 	}
 
-	@Override
 	public List<String> write() {
 		
 		ArrayList<String> out = new ArrayList<String>(records.size());
@@ -179,7 +177,6 @@ public class FlatFile implements org.jrimum.texgit.FlatFile<org.jrimum.texgit.Re
 		return out;
 	}
 
-	@Override
 	public void addRecord(org.jrimum.texgit.Record record) {
 		
 		if(isNotNull(record)){
@@ -188,7 +185,6 @@ public class FlatFile implements org.jrimum.texgit.FlatFile<org.jrimum.texgit.Re
 		}
 	}
 
-	@Override
 	public Collection<org.jrimum.texgit.Record> getRecords(String idName) {
 
 		List<org.jrimum.texgit.Record> secRecords = new ArrayList<org.jrimum.texgit.Record>();
@@ -207,37 +203,31 @@ public class FlatFile implements org.jrimum.texgit.FlatFile<org.jrimum.texgit.Re
 		return secRecords;
 	}
 	
-	@Override
 	public void addAllRecords(Collection<org.jrimum.texgit.Record> records) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void addRecords(String idName, Collection<org.jrimum.texgit.Record> records) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public Collection<org.jrimum.texgit.Record> getAllRecords() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public org.jrimum.texgit.Record removeRecord(String idName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public void setAllRecords(Collection<org.jrimum.texgit.Record> records) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void setRecords(String idName, Collection<org.jrimum.texgit.Record> records) {
 		// TODO Auto-generated method stub
 		

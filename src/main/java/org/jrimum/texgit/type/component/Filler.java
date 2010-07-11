@@ -35,7 +35,6 @@ import static org.jrimum.utilix.ObjectUtil.isNotNull;
 import java.io.Serializable;
 
 import org.apache.commons.lang.StringUtils;
-
 import org.jrimum.utilix.TextStream;
 
 /**

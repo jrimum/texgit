@@ -1,7 +1,7 @@
 package org.jrimum.texgit.engine;
 
-import static org.jrimum.utilix.ObjectUtil.isNotNull;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
+import static org.jrimum.utilix.ObjectUtil.isNotNull;
 
 import java.util.HashMap;
 import java.util.List;
@@ -56,7 +56,6 @@ public class Factory4Record implements RecordFactory<Record> {
 
 	}
 
-	@Override
 	public Record create(String name) {
 
 		Record record = null;

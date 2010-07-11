@@ -5,7 +5,6 @@ import static org.jrimum.utilix.ObjectUtil.isNotNull;
 import org.jrimum.texgit.type.AbstractStringOfFields;
 import org.jrimum.texgit.type.FixedLength;
 import org.jrimum.texgit.type.FixedSize;
-
 import org.jrimum.utilix.ObjectUtil;
 
 @SuppressWarnings("serial")
@@ -100,7 +99,6 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 		return str;
 	}
 	
-	@Override
 	public boolean isFixedAsDefined() throws IllegalStateException {
 		
 		return (isSizeAsDefinaed() && isLengthWithDefinaed());

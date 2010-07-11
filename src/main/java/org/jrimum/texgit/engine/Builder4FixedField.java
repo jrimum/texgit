@@ -1,9 +1,9 @@
 package org.jrimum.texgit.engine;
 
-import static org.jrimum.utilix.ObjectUtil.isNotNull;
 import static org.apache.commons.lang.StringUtils.EMPTY;
 import static org.apache.commons.lang.StringUtils.countMatches;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
+import static org.jrimum.utilix.ObjectUtil.isNotNull;
 
 import java.math.BigDecimal;
 import java.text.DateFormat;
@@ -21,7 +21,6 @@ import org.jrimum.texgit.type.component.CommonFiller;
 import org.jrimum.texgit.type.component.Filler;
 import org.jrimum.texgit.type.component.FixedField;
 import org.jrimum.texgit.type.component.Side;
-
 import org.jrimum.utilix.DateUtil;
 
 class Builder4FixedField {

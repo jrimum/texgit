@@ -120,7 +120,6 @@ public class FixedField<G> extends Field<G> implements org.jrimum.texgit.type.Fi
 		return str;
 	}
 	
-	@Override
 	public boolean isFixedAsDefined() throws IllegalStateException {
 		
 		if(instantLength.equals(getFixedLength()))
@@ -130,7 +129,6 @@ public class FixedField<G> extends Field<G> implements org.jrimum.texgit.type.Fi
 					+ " ] diferente do especificado [" + getFixedLength() + "]!");
 	}
 	
-	@Override
 	public Integer getFixedLength() {
 		
 		return this.length;
@@ -145,12 +143,10 @@ public class FixedField<G> extends Field<G> implements org.jrimum.texgit.type.Fi
 		
 	}
 	
-	@Override
 	public Filler<?> getFiller() {
 		return filler;
 	}
 
-	@Override
 	public void setFiller(Filler<?> filler) {
 		
 		if(isNotNull(filler))

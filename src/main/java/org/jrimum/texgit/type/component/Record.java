@@ -1,8 +1,8 @@
 package org.jrimum.texgit.type.component;
 
+import static org.apache.commons.lang.StringUtils.isNotBlank;
 import static org.jrimum.utilix.ObjectUtil.isNotNull;
 import static org.jrimum.utilix.ObjectUtil.isNull;
-import static org.apache.commons.lang.StringUtils.isNotBlank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -270,7 +270,6 @@ public class Record extends BlockOfFields implements org.jrimum.texgit.Record{
 		return is;
 	}
 	
-	@Override
 	public void addInnerRecord(org.jrimum.texgit.Record record) {
 		
 		if(isNotNull(record)){
@@ -285,14 +284,12 @@ public class Record extends BlockOfFields implements org.jrimum.texgit.Record{
 		}
 	}
 
-	@Override
 	public List<org.jrimum.texgit.Record> getInnerRecords() {
 		
 		return this.innerRecords;
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public <G> G getValue(String fieldName) {
 		
 		G value = null;
@@ -306,7 +303,6 @@ public class Record extends BlockOfFields implements org.jrimum.texgit.Record{
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public <G> void setValue(String fieldName, G value) {
 		
 		org.jrimum.texgit.type.Field<G> f = (Field<G>) getField(fieldName);

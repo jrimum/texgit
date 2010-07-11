@@ -6,7 +6,6 @@ import javax.xml.bind.ValidationEventLocator;
 
 class TGSchemaValidator implements ValidationEventHandler {
 
-	@Override
 	public boolean handleEvent(ValidationEvent event) {
 
 		boolean handled = false;

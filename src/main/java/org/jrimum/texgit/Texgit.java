@@ -1,7 +1,7 @@
 package org.jrimum.texgit;
 
-import static org.jrimum.utilix.ObjectUtil.isNotNull;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
+import static org.jrimum.utilix.ObjectUtil.isNotNull;
 
 import java.io.File;
 
