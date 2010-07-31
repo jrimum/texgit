@@ -1,6 +1,6 @@
 package org.jrimum.texgit.type.component;
 
-import org.jrimum.utilix.StringUtil;
+import org.jrimum.utilix.text.StringUtil;
 
 
 public enum CommonFiller {

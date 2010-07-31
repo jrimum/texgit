@@ -15,7 +15,7 @@ import java.util.Date;
 import org.apache.commons.lang.StringUtils;
 import org.jrimum.utilix.DateUtil;
 import org.jrimum.utilix.ObjectUtil;
-import org.jrimum.utilix.TextStream;
+import org.jrimum.utilix.text.TextStream;
 
 @SuppressWarnings("serial")
 public class Field<G> implements org.jrimum.texgit.type.Field<G>{

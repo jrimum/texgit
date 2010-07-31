@@ -8,7 +8,7 @@ import java.util.ListIterator;
 
 import org.apache.commons.lang.StringUtils;
 import org.jrimum.utilix.ObjectUtil;
-import org.jrimum.utilix.TextStream;
+import org.jrimum.utilix.text.TextStream;
 
 @SuppressWarnings("serial")
 public abstract class AbstractStringOfFields<G extends Field<?>> implements TextStream, List<G>, Cloneable{

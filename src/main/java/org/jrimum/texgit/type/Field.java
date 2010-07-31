@@ -2,7 +2,7 @@ package org.jrimum.texgit.type;
 
 import java.text.Format;
 
-import org.jrimum.utilix.TextStream;
+import org.jrimum.utilix.text.TextStream;
 
 public interface Field<G> extends TextStream, Cloneable{
 
