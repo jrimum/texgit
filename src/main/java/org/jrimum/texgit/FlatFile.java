@@ -2,7 +2,7 @@ package org.jrimum.texgit;
 
 import java.util.Collection;
 
-public interface FlatFile<G extends Record> extends TextFileStream {
+public interface FlatFile<G extends Record> extends TextListStream {
 
 	// Registros individuais
 
