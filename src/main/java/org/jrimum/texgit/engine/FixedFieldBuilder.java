@@ -112,11 +112,15 @@ class FixedFieldBuilder {
 			break;
 		case DATE:
 			FixedField<Date> fDTE = new FixedField<Date>();
-			if (isNotBlank(metaField.getValue()))
+			if (isNotBlank(metaField.getValue())){
+				
 				fDTE.setValue(DateFormat.class.cast(formatter).parse(
 						metaField.getValue()));
-			else
-				fDTE.setValue(DateUtil.DATE_NULL);
+			}
+			else{
+				
+				fDTE.setValue(DateUtil.invalidDate());
+			}
 			fField = fDTE;
 			break;
 		}

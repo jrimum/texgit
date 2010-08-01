@@ -175,7 +175,7 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 			if(isBlank(str)){
 				
 				if(isBlankAccepted())
-					value = (G) DateUtil.DATE_NULL;
+					value = (G) DateUtil.invalidDate();
 				else
 					new IllegalArgumentException("Campo data vazio não permitido: ["+str+"]");
 			}
@@ -256,8 +256,10 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 		
 		Date dateValue = (Date) value;
 
-		if (dateValue.compareTo(DateUtil.DATE_NULL) != 0)
+		if (DateUtil.equalsInvalidDate(dateValue)){
+		
 			str = formatter.format(dateValue);
+		}
 		
 		return str;
 	}
