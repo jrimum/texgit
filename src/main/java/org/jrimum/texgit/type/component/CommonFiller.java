@@ -1,6 +1,6 @@
 package org.jrimum.texgit.type.component;
 
-import org.jrimum.utilix.text.StringUtil;
+import org.jrimum.utilix.text.Strings;
 
 
 public enum CommonFiller {
@@ -18,12 +18,12 @@ public enum CommonFiller {
 	/**
 	 * Filler padrão para preenchimento com espaços em branco a esquerda.
 	 */
-	WHITE_SPACE_LEFT(new Filler<String>(StringUtil.WHITE_SPACE, Side.LEFT)),
+	WHITE_SPACE_LEFT(new Filler<String>(Strings.WHITE_SPACE, Side.LEFT)),
 	
 	/**
 	 * Filler padrão para preenchimento com espaços em branco a direita.
 	 */
-	WHITE_SPACE_RIGHT(new Filler<String>(StringUtil.WHITE_SPACE, Side.RIGHT));
+	WHITE_SPACE_RIGHT(new Filler<String>(Strings.WHITE_SPACE, Side.RIGHT));
 	
 	private Filler<?> instanceEnumFiller;
 	
