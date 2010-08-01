@@ -20,7 +20,7 @@ import org.xml.sax.SAXException;
 
 
 
-class TGXMLReader {
+class TexgitXmlReader {
 
 	public static MetaTexgit parse(File xmlDef) throws TexgitException {
 
@@ -43,22 +43,22 @@ class TGXMLReader {
 
 				aUnmarshaller.setSchema(schema);
 
-				aUnmarshaller.setEventHandler(new TGSchemaValidator());
+				aUnmarshaller.setEventHandler(new TexgitSchemaValidator());
 
 				txg = (MetaTexgit) aUnmarshaller.unmarshal(new FileInputStream(
 						xmlDef));
 
 			} catch (SAXException e) {
 
-				throw new TGLanguageException(e);
+				throw new TexgitLanguageException(e);
 
 			} catch (JAXBException e) {
 
-				throw new TGLanguageException(e);
+				throw new TexgitLanguageException(e);
 
 			} catch (FileNotFoundException e) {
 
-				throw new TGLanguageException(e);
+				throw new TexgitLanguageException(e);
 			}
 		}
 

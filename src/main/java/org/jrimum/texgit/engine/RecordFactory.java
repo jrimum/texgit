@@ -9,15 +9,14 @@ import java.util.Map;
 
 import org.jrimum.texgit.language.MetaRecord;
 import org.jrimum.texgit.type.component.Record;
-import org.jrimum.texgit.type.component.RecordFactory;
 
 
 
-public class Factory4Record implements RecordFactory<Record> {
+public class RecordFactory implements org.jrimum.texgit.type.component.RecordFactory<Record> {
 
 	private Map<String, MetaRecord> name_record;
 
-	Factory4Record(List<MetaRecord> metaRecords) {
+	RecordFactory(List<MetaRecord> metaRecords) {
 
 		if (isNotNull(metaRecords)) {
 			if (!metaRecords.isEmpty()) {
@@ -62,7 +61,7 @@ public class Factory4Record implements RecordFactory<Record> {
 
 		if (isNotBlank(name))
 			if (name_record.containsKey(name))
-				record = Builder4Record.build(name_record.get(name));
+				record = RecordBuilder.build(name_record.get(name));
 
 		return record;
 	}

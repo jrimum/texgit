@@ -4,7 +4,7 @@ import javax.xml.bind.ValidationEvent;
 import javax.xml.bind.ValidationEventHandler;
 import javax.xml.bind.ValidationEventLocator;
 
-class TGSchemaValidator implements ValidationEventHandler {
+class TexgitSchemaValidator implements ValidationEventHandler {
 
 	public boolean handleEvent(ValidationEvent event) {
 

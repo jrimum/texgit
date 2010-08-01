@@ -23,7 +23,7 @@ import org.jrimum.texgit.type.component.FixedField;
 import org.jrimum.texgit.type.component.Side;
 import org.jrimum.utilix.DateUtil;
 
-class Builder4FixedField {
+class FixedFieldBuilder {
 
 	static FixedField<?> build(MetaField metaField) {
 

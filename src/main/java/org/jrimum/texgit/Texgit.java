@@ -5,7 +5,7 @@ import static org.jrimum.utilix.Objects.isNotNull;
 
 import java.io.File;
 
-import org.jrimum.texgit.engine.TGManager;
+import org.jrimum.texgit.engine.TexgitManager;
 
 
 
@@ -17,7 +17,7 @@ public final class Texgit {
 		FlatFile<Record> iFlatFile = null;
 		
 		if (isNotNull(xmlDef))
-			iFlatFile = TGManager.buildFlatFile(xmlDef);
+			iFlatFile = TexgitManager.buildFlatFile(xmlDef);
 		
 		return iFlatFile;
 	}

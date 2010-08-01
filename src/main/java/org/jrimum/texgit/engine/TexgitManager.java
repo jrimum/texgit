@@ -8,7 +8,7 @@ import org.jrimum.texgit.language.MetaTexgit;
 
 
 
-public class TGManager {
+public class TexgitManager {
 
 	@SuppressWarnings("unchecked")
 	public static org.jrimum.texgit.FlatFile<org.jrimum.texgit.Record> buildFlatFile(File xmlDef) {
@@ -17,9 +17,9 @@ public class TGManager {
 
 		try {
 
-			MetaTexgit tgMeta = TGXMLReader.parse(xmlDef);
+			MetaTexgit tgMeta = TexgitXmlReader.parse(xmlDef);
 
-			FlatFile ff = Builder4FlatFile.build(tgMeta.getFlatFile());
+			FlatFile ff = FlatFileBuilder.build(tgMeta.getFlatFile());
 			
 			iFlatFile = ff;
 

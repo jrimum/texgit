@@ -15,7 +15,7 @@ import org.jrimum.texgit.type.component.Record;
 
 
 
-class Builder4Record {
+class RecordBuilder {
 
 	@SuppressWarnings("unchecked")
 	static Record build(MetaRecord metaRecord) {
@@ -46,12 +46,12 @@ class Builder4Record {
 		 * e nao de 0 a X.
 		 */ 
 		if(isNotNull(id)){
-			record.setIdType((FixedField<String>) Builder4FixedField.build(id));
+			record.setIdType((FixedField<String>) FixedFieldBuilder.build(id));
 			record.set(id.getPosition()-1, record.getIdType());
 		}
 		
 		if(isNotNull(sequencialNumber)){
-			record.setSequencialNumber((FixedField<Long>) Builder4FixedField.build(sequencialNumber));
+			record.setSequencialNumber((FixedField<Long>) FixedFieldBuilder.build(sequencialNumber));
 			record.set(sequencialNumber.getPosition()-1,record.getSequencialNumber());
 		}
 		
@@ -64,12 +64,12 @@ class Builder4Record {
 		for(MetaField mField : fields){
 			
 			if(isNull(record.get(fields.indexOf(mField))))
-				record.set(fields.indexOf(mField), Builder4FixedField.build(mField));
+				record.set(fields.indexOf(mField), FixedFieldBuilder.build(mField));
 			else
 				if(isNull(record.get(fields.indexOf(mField)+1)))
-					record.set(fields.indexOf(mField) + 1, Builder4FixedField.build(mField));
+					record.set(fields.indexOf(mField) + 1, FixedFieldBuilder.build(mField));
 				else
-					record.set(fields.indexOf(mField) + 2, Builder4FixedField.build(mField));
+					record.set(fields.indexOf(mField) + 2, FixedFieldBuilder.build(mField));
 		}
 
 		// innerRecords

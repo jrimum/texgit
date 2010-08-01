@@ -13,7 +13,7 @@ import org.jrimum.texgit.type.component.FlatFile;
 
 
 
-public class Builder4FlatFile {
+public class FlatFileBuilder {
 
 	static FlatFile build(MetaFlatFile mFlatFile) {
 		
@@ -21,7 +21,7 @@ public class Builder4FlatFile {
 		
 		List<MetaRecord> metaRecords = mFlatFile.getGroupOfRecords().getRecords();
 
-		ff = new FlatFile(new Factory4Record(metaRecords));
+		ff = new FlatFile(new RecordFactory(metaRecords));
 		
 		Set<String> repitables = new HashSet<String>();
 		
