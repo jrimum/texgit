@@ -1,8 +1,8 @@
 package org.jrimum.texgit.type.component;
 
 import static org.apache.commons.lang.StringUtils.isNotBlank;
-import static org.jrimum.utilix.ObjectUtil.isNotNull;
-import static org.jrimum.utilix.ObjectUtil.isNull;
+import static org.jrimum.utilix.Objects.isNotNull;
+import static org.jrimum.utilix.Objects.isNull;
 
 import java.util.ArrayList;
 import java.util.Collection;

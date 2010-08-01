@@ -2,7 +2,7 @@ package org.jrimum.texgit.type.component;
 
 import static org.apache.commons.lang.StringUtils.isBlank;
 import static org.apache.commons.lang.StringUtils.isNumeric;
-import static org.jrimum.utilix.ObjectUtil.isNotNull;
+import static org.jrimum.utilix.Objects.isNotNull;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -14,7 +14,7 @@ import java.util.Date;
 
 import org.apache.commons.lang.StringUtils;
 import org.jrimum.utilix.DateUtil;
-import org.jrimum.utilix.ObjectUtil;
+import org.jrimum.utilix.Objects;
 import org.jrimum.utilix.text.TextStream;
 
 @SuppressWarnings("serial")
@@ -107,7 +107,7 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 
 	public void read(String str) {
 
-		ObjectUtil.checkNotNull(str, "String Inválida");
+		Objects.checkNotNull(str, "String Inválida");
 
 		if (this.value instanceof TextStream) {
 

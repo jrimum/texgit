@@ -1,10 +1,10 @@
 package org.jrimum.texgit.type.component;
 
-import static org.jrimum.utilix.ObjectUtil.isNotNull;
+import static org.jrimum.utilix.Objects.isNotNull;
 
 import java.text.Format;
 
-import org.jrimum.utilix.ObjectUtil;
+import org.jrimum.utilix.Objects;
 
 
 
@@ -87,7 +87,7 @@ public class FixedField<G> extends Field<G> implements org.jrimum.texgit.type.Fi
 	@Override
 	public void read(String str) {
 
-		ObjectUtil.checkNotNull(str, "String Inválida");
+		Objects.checkNotNull(str, "String Inválida");
 
 		if (str.length() == getFixedLength()) {
 			super.read(str);

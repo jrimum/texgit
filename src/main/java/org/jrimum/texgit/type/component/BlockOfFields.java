@@ -1,11 +1,11 @@
 package org.jrimum.texgit.type.component;
 
-import static org.jrimum.utilix.ObjectUtil.isNotNull;
+import static org.jrimum.utilix.Objects.isNotNull;
 
 import org.jrimum.texgit.type.AbstractStringOfFields;
 import org.jrimum.texgit.type.FixedLength;
 import org.jrimum.texgit.type.FixedSize;
-import org.jrimum.utilix.ObjectUtil;
+import org.jrimum.utilix.Objects;
 
 @SuppressWarnings("serial")
 public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> implements FixedSize, FixedLength{
@@ -42,7 +42,7 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 
 		super(size);
 
-		ObjectUtil.checkNotNull(length, "length");
+		Objects.checkNotNull(length, "length");
 
 		if (length > 0) {
 
@@ -63,9 +63,9 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 	@Override
 	public void read(String lineOfFields) {
 
-		ObjectUtil.checkNotNull(lineOfFields, "lineOfFields");
+		Objects.checkNotNull(lineOfFields, "lineOfFields");
 
-		ObjectUtil.checkNotNull(getFields(), "fields");
+		Objects.checkNotNull(getFields(), "fields");
 
 		if (isSizeAsDefinaed() && isLengthWithDefinaed(lineOfFields.length())) {
 
@@ -84,7 +84,7 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 	@Override
 	public String write() {
 
-		ObjectUtil.checkNotNull(getFields(), "fields");
+		Objects.checkNotNull(getFields(), "fields");
 
 		String str = null;
 

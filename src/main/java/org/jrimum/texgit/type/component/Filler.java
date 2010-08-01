@@ -30,7 +30,7 @@
 
 package org.jrimum.texgit.type.component;
 
-import static org.jrimum.utilix.ObjectUtil.isNotNull;
+import static org.jrimum.utilix.Objects.isNotNull;
 
 import java.io.Serializable;
 

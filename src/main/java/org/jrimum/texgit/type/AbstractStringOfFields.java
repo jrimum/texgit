@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import org.apache.commons.lang.StringUtils;
-import org.jrimum.utilix.ObjectUtil;
+import org.jrimum.utilix.Objects;
 import org.jrimum.utilix.text.TextStream;
 
 @SuppressWarnings("serial")
@@ -31,7 +31,7 @@ public abstract class AbstractStringOfFields<G extends Field<?>> implements Text
 	 */
 	public AbstractStringOfFields(Integer size) {
 
-		ObjectUtil.checkNotNull(size, "size");
+		Objects.checkNotNull(size, "size");
 
 		if (size > 0) {
 			fields = new ArrayList<G>(size);
@@ -82,7 +82,7 @@ public abstract class AbstractStringOfFields<G extends Field<?>> implements Text
 
 		StringBuilder lineOfFields = new StringBuilder(StringUtils.EMPTY);
 
-		ObjectUtil.checkNotNull(fields, "fields");
+		Objects.checkNotNull(fields, "fields");
 
 		for (G field : fields) {
 			lineOfFields.append(field.write());

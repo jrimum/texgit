@@ -1,6 +1,6 @@
 package org.jrimum.texgit.engine;
 
-import static org.jrimum.utilix.ObjectUtil.isNotNull;
+import static org.jrimum.utilix.Objects.isNotNull;
 
 import java.util.ArrayList;
 import java.util.HashSet;
