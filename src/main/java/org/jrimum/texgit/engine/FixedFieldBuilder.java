@@ -21,7 +21,7 @@ import org.jrimum.texgit.type.component.CommonFiller;
 import org.jrimum.texgit.type.component.Filler;
 import org.jrimum.texgit.type.component.FixedField;
 import org.jrimum.texgit.type.component.Side;
-import org.jrimum.utilix.DateUtil;
+import org.jrimum.utilix.Dates;
 
 class FixedFieldBuilder {
 
@@ -119,7 +119,7 @@ class FixedFieldBuilder {
 			}
 			else{
 				
-				fDTE.setValue(DateUtil.invalidDate());
+				fDTE.setValue(Dates.invalidDate());
 			}
 			fField = fDTE;
 			break;

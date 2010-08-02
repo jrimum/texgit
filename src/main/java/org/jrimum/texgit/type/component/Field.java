@@ -13,7 +13,7 @@ import java.text.ParseException;
 import java.util.Date;
 
 import org.apache.commons.lang.StringUtils;
-import org.jrimum.utilix.DateUtil;
+import org.jrimum.utilix.Dates;
 import org.jrimum.utilix.Objects;
 import org.jrimum.utilix.text.TextStream;
 
@@ -175,7 +175,7 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 			if(isBlank(str)){
 				
 				if(isBlankAccepted())
-					value = (G) DateUtil.invalidDate();
+					value = (G) Dates.invalidDate();
 				else
 					new IllegalArgumentException("Campo data vazio não permitido: ["+str+"]");
 			}
@@ -256,7 +256,7 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 		
 		Date dateValue = (Date) value;
 
-		if (DateUtil.equalsInvalidDate(dateValue)){
+		if (Dates.equalsInvalidDate(dateValue)){
 		
 			str = formatter.format(dateValue);
 		}
