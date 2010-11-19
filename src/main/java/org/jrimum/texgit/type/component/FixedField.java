@@ -1,5 +1,7 @@
 package org.jrimum.texgit.type.component;
 
+import static java.lang.String.format;
+import static org.apache.commons.lang.StringUtils.EMPTY;
 import static org.jrimum.utilix.Objects.isNotNull;
 
 import java.text.Format;
@@ -154,4 +156,16 @@ public class FixedField<G> extends Field<G> implements org.jrimum.texgit.type.Fi
 		else
 			throw new IllegalArgumentException("Preenchedor inválido [ " + filler + " ]!");
 	}
+
+	@Override
+	public String toString() {
+
+		return format(
+				"%s FixedField: {length[%s], instantLength[%s], filler[%s]}",
+				super.toString()
+				, Objects.whenNull(this.length, EMPTY)
+				, Objects.whenNull(this.instantLength, EMPTY)
+				, Objects.whenNull(this.filler, EMPTY));
+	}
+
 }

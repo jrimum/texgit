@@ -1,5 +1,7 @@
 package org.jrimum.texgit.type.component;
 
+import static java.lang.String.format;
+import static org.apache.commons.lang.StringUtils.EMPTY;
 import static org.apache.commons.lang.StringUtils.isBlank;
 import static org.apache.commons.lang.StringUtils.isNumeric;
 import static org.jrimum.utilix.Objects.isNotNull;
@@ -331,5 +333,14 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 			this.formatter = formatter;
 		else
 			throw new IllegalArgumentException("Formato inválido [ " + formatter + " ]!");
+	}
+
+	@Override
+	public String toString() {
+		
+		return format("Field: {name[%s], value[%s], formatter[%s]}"
+				, Objects.whenNull(this.name, EMPTY)
+				, Objects.whenNull(this.value, EMPTY)
+				, Objects.whenNull(this.formatter, EMPTY));
 	}
 }

@@ -30,11 +30,14 @@
 
 package org.jrimum.texgit.type.component;
 
+import static java.lang.String.format;
+import static org.apache.commons.lang.StringUtils.EMPTY;
 import static org.jrimum.utilix.Objects.isNotNull;
 
 import java.io.Serializable;
 
 import org.apache.commons.lang.StringUtils;
+import org.jrimum.utilix.Objects;
 import org.jrimum.utilix.text.TextStream;
 
 /**
@@ -379,4 +382,12 @@ public class Filler<G> implements Serializable{
 		return StringUtils.leftPad(toFill, length, padding.toString());
 	}
 
+	@Override
+	public String toString() {
+		
+		return format(
+				"Filler: {padding[%s], sideToFill[%s]}"
+				, Objects.whenNull(this.padding, EMPTY)
+				, Objects.whenNull(this.sideToFill, EMPTY));
+	}
 }
