@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>jrimum.org</groupId>
 	<artifactId>texgit</artifactId>
@@ -8,57 +8,152 @@
 	<version>0.2.0-SNAPSHOT</version>
 	<description>Projeto open source de componentes de software para o domínio de negócios do Brasil.</description>
 	<url>http://www.jrimum.org/texgit</url>
-	
-		<licenses>
+
+	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
 			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
-	
+
+	<organization>
+		<name>Grupo JRimum</name>
+		<url>http://www.jrimum.org/</url>
+	</organization>
+
+	<issueManagement>
+		<system>TRAC</system>
+		<url>http://www.jrimum.org/texgit</url>
+	</issueManagement>
+
 	<ciManagement>
 		<system>hudson</system>
 		<url>http://localhost:8080</url>
 	</ciManagement>
+
 	<scm>
 		<connection>scm:svn:http://www.jrimum.org/svn/texgit</connection>
 		<developerConnection>scm:svn:http://www.jrimum.org/svn/texgit</developerConnection>
 		<tag>HEAD</tag>
 		<url>http://www.jrimum.org/svn/texgit</url>
 	</scm>
-	
+
+	<developers>
+		<developer>
+			<name>Gilmar P. S. L.</name>
+			<email>gilmatryx@gmail.com</email>
+		</developer>
+		<developer>
+			<name>Misael Barreto</name>
+			<email>misaelbarreto@gmail.com</email>
+		</developer>
+		<developer>
+			<name>Rômulo Augusto</name>
+			<email>romulomail@gmail.com</email>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.0.2</version>
-					<configuration>
-						<source>1.6</source>
-						<target>1.6</target>
-						<encoding>UTF-8</encoding>
-					</configuration>
-				</plugin>
-				<plugin>
-			    	<groupId>org.apache.maven.plugins</groupId>
-			    	<artifactId>maven-surefire-plugin</artifactId>
-			    	<configuration>
-						<skipTests>true</skipTests>
-			        </configuration>
-			    </plugin>
-			</plugins>
-		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.1</version>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<descriptors>
+						<descriptor>src/main/assembly/texgit-dependencias-jrimum.xml</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<skipTests>true</skipTests>
+					<includes>
+						<include>org/jrimum/texgit/**/*</include>
+					</includes>
+					<excludes>
+						<exclude>org/jrimum/texgit/**/*$*</exclude> <!-- Exclui classes internas anônimas para evitar erros -->
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.7</version>
+				<executions>
+					<execution>
+						<id>attach-javadoc</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 	</build>
 	
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.7</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.jrimum</groupId>
 			<artifactId>utilix</artifactId>
 			<version>0.2.3-SNAPSHOT</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>sun-jaxb</groupId>
 			<artifactId>jaxb-api</artifactId>
@@ -69,7 +164,7 @@
 			<artifactId>jaxb-impl</artifactId>
 			<version>2.2</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -77,12 +172,12 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<repositories>
 		<repository>
 			<id>JBoss Repository</id>
-			<url>http://repository.jboss.org/maven2/</url>
+			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
 		</repository>
 	</repositories>
-	
+
 </project>
