@@ -7,7 +7,6 @@ import static org.apache.commons.lang.StringUtils.isNumeric;
 import static org.jrimum.utilix.Objects.isNotNull;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.Format;
@@ -109,28 +108,35 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 
 	public void read(String str) {
 
-		Objects.checkNotNull(str, "String Inválida");
+		Objects.checkNotNull(str, "String inválida [null]!");
+		
+		try{
+			
+			if (this.value instanceof TextStream) {
 
-		if (this.value instanceof TextStream) {
+				TextStream reader = (TextStream) this.value;
+				reader.read(str);
 
-			TextStream reader = (TextStream) this.value;
-			reader.read(str);
+			} else if (this.value instanceof BigDecimal) {
 
-		} else if (this.value instanceof BigDecimal) {
+				readDecimalField(str);
 
-			readDecimalField(str);
+			} else if (this.value instanceof Date) {
 
-		} else if (this.value instanceof Date) {
+				readDateField(str);
 
-			readDateField(str);
+			} else if (this.value instanceof Character) {
 
-		} else if (this.value instanceof Character) {
+				readCharacter(str);
 
-			readCharacter(str);
+			} else {
 
-		} else {
-
-			readStringOrNumericField(str);
+				readStringOrNumericField(str);
+			}
+			
+		}catch (Exception e) {
+			
+			throw new IllegalStateException("FALHA NA LEITURA DO CAMPO! "+toString(),e);
 		}
 	}
 
@@ -165,7 +171,7 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 		} 
 		catch (ParseException e) {
 			
-			errorG(e, str);
+			throwReadError(e, str);
 		}
 	}
 
@@ -179,14 +185,14 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 				if(isBlankAccepted())
 					value = (G) Dates.invalidDate();
 				else
-					new IllegalArgumentException("Campo data vazio não permitido: ["+str+"]");
+					new IllegalArgumentException("Campo data vazio não permitido: ["+str+"]!");
 			}
 			
 			value = (G) formatter.parseObject(str);
 					
 		} catch (ParseException e) {
 			
-			errorG(e, str);
+			throwReadError(e, str);
 		}
 	}
 
@@ -205,14 +211,9 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 						
 						value = (G) cons.newInstance(str);
 
-					} catch (IllegalArgumentException e) {
-						errorG(e, str).printStackTrace();
-					} catch (InstantiationException e) {
-						errorG(e, str).printStackTrace();
-					} catch (IllegalAccessException e) {
-						errorG(e, str).printStackTrace();
-					} catch (InvocationTargetException e) {
-						errorG(e, str).printStackTrace();
+					} catch (Exception e) {
+						
+						throwReadError(e, str);
 					}
 				}
 			}
@@ -221,26 +222,33 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 	
 	public String write() {
 		
-		String str = null;
+		try{
 
-		if (value instanceof TextStream) {
-
-			TextStream its = (TextStream) value;
-
-			str = its.write();
-
-		} else if (value instanceof Date) {
-
-			str = writeDateField();
+			String str = null;
+			
+			if (value instanceof TextStream) {
+	
+				TextStream its = (TextStream) value;
+	
+				str = its.write();
+	
+			} else if (value instanceof Date) {
+	
+				str = writeDateField();
+			}
+	
+			else if (value instanceof BigDecimal)
+				str = writeDecimalField();
+	
+			else
+				str = value.toString();
+	
+			return str;
+			
+		}catch (Exception e) {
+			
+			throw new IllegalStateException("FALHA NA ESCRITA DO CAMPO ESCRITA! "+toString(),e);
 		}
-
-		else if (value instanceof BigDecimal)
-			str = writeDecimalField();
-
-		else
-			str = value.toString();
-		
-		return str;
 	}
 	
 	private String writeDecimalField(){
@@ -266,13 +274,9 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 		return str;
 	}
 	
-	protected static Exception errorG(Exception e, String value){		
+	private void throwReadError(Exception e, String value){		
 		
-		StackTraceElement[] stackTrace = e.getStackTrace();
-		e = new RuntimeException("Problems entre a instância e o valor: [ " + value + " ]!\nCausado por: "+e.getCause());
-		e.setStackTrace(stackTrace);
-		
-		return e;
+		throw new IllegalArgumentException("Falha na leitura da string: [ " + value + " ] ! "+toString(), e);
 	}
 	
 	private String parseNumber(String str){
@@ -282,10 +286,10 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 			if(isBlankAccepted())
 				str = "0";
 			else
-				new IllegalArgumentException("Campo numérico vazio não permitido: ["+str+"]");
+				new IllegalArgumentException("Campo numérico vazio não permitido: ["+str+"]!");
 		}else
 			if(!isNumeric(str))
-				new IllegalArgumentException("O campo deve ser numérico e não: ["+str+"]");
+				new IllegalArgumentException("O campo deve ser numérico e não: ["+str+"]!");
 		
 		return str;
 	}

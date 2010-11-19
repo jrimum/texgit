@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.jrimum.texgit.type.Field;
+import org.jrimum.utilix.Objects;
 
 
 
@@ -51,6 +52,7 @@ public class Record extends BlockOfFields implements org.jrimum.texgit.Record{
 		return (Record) super.clone();
 	}
 	
+	@SuppressWarnings("null")
 	public FixedField<String> readID(String lineRecord) {
 
 		FixedField<String> ffID = null;
@@ -61,7 +63,8 @@ public class Record extends BlockOfFields implements org.jrimum.texgit.Record{
 			ffID.setName("");
 			
 		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
+			
+			throw new UnsupportedOperationException(format("Quebra de contrato [%s] não suporta clonagem!",Objects.whenNull(ffID, "FixedField", ffID.getClass())), e);
 		}
 		
 		getIdType().read(lineRecord.substring(getIdPosition(), getIdPosition() + getIdType().getFixedLength())); 

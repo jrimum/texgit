@@ -89,14 +89,14 @@ public class FixedField<G> extends Field<G> implements org.jrimum.texgit.type.Fi
 	@Override
 	public void read(String str) {
 
-		Objects.checkNotNull(str, "String Inválida");
+		Objects.checkNotNull(str, "String inválida [null]!");
 
 		if (str.length() == getFixedLength()) {
 			super.read(str);
 		} else
 			throw new IllegalArgumentException("Tamanho da string [ "
 					+ str.length() + " ] diferente do especificado [ "
-					+ getFixedLength() + " ]!");
+					+ getFixedLength() + " ]! "+toString());
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class FixedField<G> extends Field<G> implements org.jrimum.texgit.type.Fi
 			return true;
 		else
 			throw new IllegalStateException("Tamanho da string [ " + instantLength 
-					+ " ] diferente do especificado [" + getFixedLength() + "]!");
+					+ " ] diferente do especificado [" + getFixedLength() + "]! "+toString());
 	}
 	
 	public Integer getFixedLength() {
