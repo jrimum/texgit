@@ -1,10 +1,12 @@
 package org.jrimum.texgit.type.component;
 
+import static java.lang.String.format;
 import static org.jrimum.utilix.Objects.isNotNull;
 
 import org.jrimum.texgit.type.AbstractStringOfFields;
 import org.jrimum.texgit.type.FixedLength;
 import org.jrimum.texgit.type.FixedSize;
+import org.jrimum.utilix.Collections;
 import org.jrimum.utilix.Objects;
 
 @SuppressWarnings("serial")
@@ -63,9 +65,10 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 	@Override
 	public void read(String lineOfFields) {
 
-		Objects.checkNotNull(lineOfFields, "lineOfFields");
+		Objects.checkNotNull(lineOfFields, "String de leitura nula!");
 
-		Objects.checkNotNull(getFields(), "fields");
+		Objects.checkNotNull(getFields(), "Fields == null");
+		Collections.checkNotEmpty(getFields(), "Coleção de fields vazia!");
 
 		if (isSizeAsDefinaed() && isLengthWithDefinaed(lineOfFields.length())) {
 
@@ -73,8 +76,18 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 
 			for (FixedField<?> field : getFields()) {
 
-				field.read(builder.substring(0, field.getFixedLength()));
-				builder.delete(0, field.getFixedLength());
+				try {
+
+					field.read(builder.substring(0, field.getFixedLength()));
+					builder.delete(0, field.getFixedLength());
+
+				} catch (Exception e) {
+
+					throw new IllegalStateException(
+							format(
+									"Erro ao tentar ler o campo \"%s\" na posição [%s].",
+									field.getName(), getFields().indexOf(field)),e);
+				}
 			}
 
 			builder = null;
@@ -84,7 +97,8 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 	@Override
 	public String write() {
 
-		Objects.checkNotNull(getFields(), "fields");
+		Objects.checkNotNull(getFields(), "Fields == null");
+		Collections.checkNotEmpty(getFields(), "Coleção de fields vazia!");
 
 		String str = null;
 

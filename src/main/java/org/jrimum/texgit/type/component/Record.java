@@ -1,5 +1,7 @@
 package org.jrimum.texgit.type.component;
 
+import static java.lang.String.format;
+import static org.apache.commons.lang.StringUtils.EMPTY;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
 import static org.jrimum.utilix.Objects.isNotNull;
 import static org.jrimum.utilix.Objects.isNull;
@@ -116,6 +118,7 @@ public class Record extends BlockOfFields implements org.jrimum.texgit.Record{
 	private int readInnerRecords(Record record, List<String> lines, int lineIndex, RecordFactory<Record> iFactory) {
 		
 		if(isNotNull(record)){
+			
 			if(isNotNull(record.getDeclaredInnerRecords()) && !record.getDeclaredInnerRecords().isEmpty()){
 				
 				boolean read = true;
@@ -128,51 +131,60 @@ public class Record extends BlockOfFields implements org.jrimum.texgit.Record{
 					
 					innerRec = iFactory.create(id);
 					
-					if(isRepitable(id)){
+					try{
 						
-						while(read){
+						if(isRepitable(id)){
 							
-							if(isNull(innerRec))
-								innerRec = iFactory.create(id);
-							
-							if(lineIndex < lines.size())
-								line = lines.get(lineIndex);
-							
-							typeRecord = innerRec.readID(line);
-							
-							read = innerRec.getIdType().getValue().equals(typeRecord.getValue()) && (lineIndex < lines.size()); 
+							while(read){
+								
+								if(isNull(innerRec))
+									innerRec = iFactory.create(id);
+								
+								if(lineIndex < lines.size())
+									line = lines.get(lineIndex);
+								
+								typeRecord = innerRec.readID(line);
+								
+								read = innerRec.getIdType().getValue().equals(typeRecord.getValue()) && (lineIndex < lines.size()); 
 
-							if(read){
+								if(read){
+									
+									innerRec.read(line);
+									lineIndex++;
+									record.addInnerRecord(innerRec);
+									
+									if(innerRec.isHeadOfGroup())
+										innerRec.readInnerRecords(lines,lineIndex,iFactory);
+									
+									innerRec = null;
+								}
+							}
+							
+						}else{
+							if((lineIndex < lines.size())){
 								
-								innerRec.read(line);
-								lineIndex++;
-								record.addInnerRecord(innerRec);
+								line = lines.get(lineIndex);
+								typeRecord = innerRec.readID(line);
 								
-								if(innerRec.isHeadOfGroup())
-									innerRec.readInnerRecords(lines,lineIndex,iFactory);
-								
-								innerRec = null;
+								if(innerRec.getIdType().getValue().equals(typeRecord.getValue())){
+									
+									innerRec.read(line);
+									lineIndex++;
+									record.addInnerRecord(innerRec);
+									
+									if(innerRec.isHeadOfGroup())
+										innerRec.readInnerRecords(lines,lineIndex,iFactory);
+									
+									innerRec = null;
+								}
 							}
 						}
 						
-					}else{
-						if((lineIndex < lines.size())){
-							
-							line = lines.get(lineIndex);
-							typeRecord = innerRec.readID(line);
-							
-							if(innerRec.getIdType().getValue().equals(typeRecord.getValue())){
-								
-								innerRec.read(line);
-								lineIndex++;
-								record.addInnerRecord(innerRec);
-								
-								if(innerRec.isHeadOfGroup())
-									innerRec.readInnerRecords(lines,lineIndex,iFactory);
-								
-								innerRec = null;
-							}
-						}
+					} catch (Exception e) {
+
+						throw new IllegalStateException(format(
+								"Erro ao tentar ler o registro \"%s\".",
+								innerRec.getName()), e);
 					}
 				}
 			}		
@@ -183,10 +195,15 @@ public class Record extends BlockOfFields implements org.jrimum.texgit.Record{
 
 	public List<String> writeInnerRecords(){
 		
-		return writeInnerRecords(this);
+		return writeInnerRecords(this,EMPTY);
 	}
 	
-	private List<String> writeInnerRecords(Record record){
+	public List<String> writeInnerRecords(String lineEnding){
+		
+		return writeInnerRecords(this,lineEnding);
+	}
+	
+	private List<String> writeInnerRecords(Record record, String lineEnding){
 
 		ArrayList<String> out = new ArrayList<String>(record.getInnerRecords().size());
 		
@@ -196,7 +213,15 @@ public class Record extends BlockOfFields implements org.jrimum.texgit.Record{
 					
 				for(Record rec : getRecords(id)){
 					
-					out.add(rec.write()+"\r\n");
+					try{
+
+						out.add(rec.write()+lineEnding);
+						
+					} catch (Exception e) {
+
+						throw new IllegalStateException(format(
+								"Erro ao tentar escrever o registro \"%s\".", rec.getName()), e);
+					}
 					
 					if(rec.isHeadOfGroup())
 						out.addAll(rec.writeInnerRecords());
@@ -206,7 +231,15 @@ public class Record extends BlockOfFields implements org.jrimum.texgit.Record{
 				
 				Record rec = getRecord(id);
 
-				out.add(rec.write()+"\r\n");
+				try{
+					
+					out.add(rec.write()+lineEnding);
+					
+				} catch (Exception e) {
+
+					throw new IllegalStateException(format(
+							"Erro ao tentar escrever o registro \"%s\".", rec.getName()), e);
+				}
 				
 				if(rec.isHeadOfGroup())
 					out.addAll(rec.writeInnerRecords());

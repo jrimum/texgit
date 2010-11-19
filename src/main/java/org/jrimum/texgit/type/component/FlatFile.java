@@ -1,5 +1,7 @@
 package org.jrimum.texgit.type.component;
 
+import static java.lang.String.format;
+import static org.apache.commons.lang.StringUtils.EMPTY;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
 import static org.jrimum.utilix.Objects.isNotNull;
 import static org.jrimum.utilix.Objects.isNull;
@@ -92,51 +94,59 @@ public class FlatFile implements org.jrimum.texgit.FlatFile<org.jrimum.texgit.Re
 					
 					record = recordFactory.create(id);
 					
-					if(isRepitable(id)){
+					try{
 						
-						while(read){
+						if(isRepitable(id)){
 							
-							if(isNull(record))
-								record = recordFactory.create(id);
-							
-							if(lineIndex < str.size())
-								line = str.get(lineIndex);
-							
-							typeRecord = record.readID(line);
-							
-							read = record.getIdType().getValue().equals(typeRecord.getValue()) && (lineIndex < str.size()); 
+							while(read){
+								
+								if(isNull(record))
+									record = recordFactory.create(id);
+								
+								if(lineIndex < str.size())
+									line = str.get(lineIndex);
+								
+								typeRecord = record.readID(line);
+								
+								read = record.getIdType().getValue().equals(typeRecord.getValue()) && (lineIndex < str.size()); 
 
-							if(read){
+								if(read){
+									
+									record.read(line);
+									lineIndex++;
+									addRecord(record);
+									
+									if(record.isHeadOfGroup())
+										lineIndex = record.readInnerRecords(str,lineIndex,recordFactory);
+									
+									record = null;
+								}
+							}
+							
+						}else{
+							if((lineIndex < str.size())){
 								
-								record.read(line);
-								lineIndex++;
-								addRecord(record);
+								line = str.get(lineIndex);
+								typeRecord = record.readID(line);
 								
-								if(record.isHeadOfGroup())
-									lineIndex = record.readInnerRecords(str,lineIndex,recordFactory);
-								
-								record = null;
+								if(record.getIdType().getValue().equals(typeRecord.getValue())){
+									
+									record.read(line);
+									lineIndex++;
+									addRecord(record);
+									
+									if(record.isHeadOfGroup())
+										lineIndex = record.readInnerRecords(str,lineIndex,recordFactory);
+									
+									record = null;
+								}
 							}
 						}
 						
-					}else{
-						if((lineIndex < str.size())){
-							
-							line = str.get(lineIndex);
-							typeRecord = record.readID(line);
-							
-							if(record.getIdType().getValue().equals(typeRecord.getValue())){
-								
-								record.read(line);
-								lineIndex++;
-								addRecord(record);
-								
-								if(record.isHeadOfGroup())
-									lineIndex = record.readInnerRecords(str,lineIndex,recordFactory);
-								
-								record = null;
-							}
-						}
+					} catch (Exception e) {
+	
+						throw new IllegalStateException(format(
+								"Erro ao tentar ler o registro \"%s\".", record.getName()), e);
 					}
 				}
 			}
@@ -144,6 +154,11 @@ public class FlatFile implements org.jrimum.texgit.FlatFile<org.jrimum.texgit.Re
 	}
 
 	public List<String> write() {
+	
+		return write(EMPTY);
+	}
+	
+	public List<String> write(String lineEnding) {
 		
 		ArrayList<String> out = new ArrayList<String>(records.size());
 		
@@ -157,20 +172,36 @@ public class FlatFile implements org.jrimum.texgit.FlatFile<org.jrimum.texgit.Re
 					
 					rec = Record.class.cast(record);
 					
-					out.add(rec.write()+"\r\n");
+					try{
+						
+						out.add(rec.write()+lineEnding);
+						
+					} catch (Exception e) {
+						
+						throw new IllegalStateException(format(
+								"Erro ao tentar escrever o registro \"%s\".", rec.getName()), e);
+					}
 					
 					if(rec.isHeadOfGroup())
-						out.addAll(rec.writeInnerRecords());
+						out.addAll(rec.writeInnerRecords(lineEnding));
 				}
 				
 			}else{
 				
 				Record rec = getRecord(id);
 
-				out.add(rec.write()+"\r\n");
+				try{
+					
+					out.add(rec.write()+lineEnding);
+					
+				} catch (Exception e) {
+					
+					throw new IllegalStateException(format(
+							"Erro ao tentar escrever o registro \"%s\".", rec.getName()), e);
+				}
 				
 				if(rec.isHeadOfGroup())
-					out.addAll(rec.writeInnerRecords());
+					out.addAll(rec.writeInnerRecords(lineEnding));
 			}
 		}
 		
