@@ -1,5 +1,7 @@
 package org.jrimum.texgit.type;
 
+import static java.lang.String.format;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -7,6 +9,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import org.apache.commons.lang.StringUtils;
+import org.jrimum.utilix.Collections;
 import org.jrimum.utilix.Objects;
 import org.jrimum.utilix.text.TextStream;
 
@@ -82,10 +85,23 @@ public abstract class AbstractStringOfFields<G extends Field<?>> implements Text
 
 		StringBuilder lineOfFields = new StringBuilder(StringUtils.EMPTY);
 
-		Objects.checkNotNull(fields, "fields");
+		Objects.checkNotNull(fields, "Fields == null");
+		Collections.checkNotEmpty(fields, "Coleção de fields vazia!");
 
 		for (G field : fields) {
-			lineOfFields.append(field.write());
+			
+			try {
+
+				lineOfFields.append(field.write());
+
+			} catch (Exception e) {
+
+				throw new IllegalStateException(
+						format(
+								"Erro ao tentar escrever o campo \"%s\" com valor [%s] na posição [%s].",
+								field.getName(), field.getValue(), fields
+										.indexOf(field)),e);
+			}
 		}
 
 		return lineOfFields.toString();
