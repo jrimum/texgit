@@ -75,7 +75,7 @@ class FixedFieldBuilder {
 			if (isNotBlank(metaField.getValue()))
 				fINT.setValue(Integer.parseInt(metaField.getValue()));
 			else
-				fINT.setValue(new Integer(0));
+				fINT.setValue(Integer.valueOf(0));
 			fField = fINT;
 			break;
 		case LONG:
@@ -83,7 +83,7 @@ class FixedFieldBuilder {
 			if (isNotBlank(metaField.getValue()))
 				fLNG.setValue(Long.parseLong(metaField.getValue()));
 			else
-				fLNG.setValue(new Long(0));
+				fLNG.setValue(Long.valueOf(0));
 			fField = fLNG;
 			break;
 		case FLOAT:
@@ -91,7 +91,7 @@ class FixedFieldBuilder {
 			if (isNotBlank(metaField.getValue()))
 				fFLT.setValue(Float.parseFloat(metaField.getValue()));
 			else
-				fFLT.setValue(new Float(0));
+				fFLT.setValue(Float.valueOf(0));
 			fField = fFLT;
 			break;
 		case DOUBLE:
@@ -99,7 +99,7 @@ class FixedFieldBuilder {
 			if (isNotBlank(metaField.getValue()))
 				fDBE.setValue(Double.parseDouble(metaField.getValue()));
 			else
-				fDBE.setValue(new Double(0));
+				fDBE.setValue(Double.valueOf(0));
 			fField = fDBE;
 			break;
 		case BIGDECIMAL:
@@ -109,7 +109,7 @@ class FixedFieldBuilder {
 						.cast(formatter).parse(metaField.getValue())
 						.doubleValue()));
 			else
-				fBDL.setValue(new BigDecimal(0));
+				fBDL.setValue(BigDecimal.ZERO);
 			fField = fBDL;
 			break;
 		case DATE:
