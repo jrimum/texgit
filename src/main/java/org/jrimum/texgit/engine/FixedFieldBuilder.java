@@ -25,6 +25,8 @@ import org.jrimum.utilix.Dates;
 
 class FixedFieldBuilder {
 
+	private final static String BASE_DECIMAL_FORMAT = "0.";
+	
 	static FixedField<?> build(MetaField metaField) {
 
 		FixedField<?> fixedField = null;
@@ -198,8 +200,6 @@ class FixedFieldBuilder {
 	}
 
 	private static String buildFormat(EnumFormats format, EnumFormatsTypes type) {
-
-		final String BASE_DECIMAL_FORMAT = "0.";
 
 		String strFormat = EMPTY;
 		/*
