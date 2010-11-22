@@ -136,7 +136,7 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 			
 		}catch (Exception e) {
 			
-			throw new IllegalStateException("FALHA NA LEITURA DO CAMPO! "+toString(),e);
+			throw new IllegalStateException(format("Falha na leitura do campo! %s",toString()),e);
 		}
 	}
 
@@ -185,7 +185,7 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 				if(isBlankAccepted())
 					value = (G) Dates.invalidDate();
 				else
-					new IllegalArgumentException("Campo data vazio não permitido: ["+str+"]!");
+					new IllegalArgumentException(format("Campo data vazio não permitido: [%s]!",str));
 			}
 			
 			value = (G) formatter.parseObject(str);
@@ -247,7 +247,7 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 			
 		}catch (Exception e) {
 			
-			throw new IllegalStateException("FALHA NA ESCRITA DO CAMPO ESCRITA! "+toString(),e);
+			throw new IllegalStateException(format("Falha na escrita do campo escrita! %s",toString()),e);
 		}
 	}
 	
@@ -274,11 +274,6 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 		return str;
 	}
 	
-	private void throwReadError(Exception e, String value){		
-		
-		throw new IllegalArgumentException("Falha na leitura da string: [ " + value + " ] ! "+toString(), e);
-	}
-	
 	private String parseNumber(String str){
 		
 		if(isBlank(str)){
@@ -286,10 +281,10 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 			if(isBlankAccepted())
 				str = "0";
 			else
-				new IllegalArgumentException("Campo numérico vazio não permitido: ["+str+"]!");
+				new IllegalArgumentException(format("Campo numérico vazio não permitido: [%s]!",str));
 		}else
 			if(!isNumeric(str))
-				new IllegalArgumentException("O campo deve ser numérico e não: ["+str+"]!");
+				new IllegalArgumentException(format("O campo deve ser numérico e não: [%s]!",str));
 		
 		return str;
 	}
@@ -304,7 +299,7 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 		if (isNotNull(name))
 			this.name = name;
 		else
-			throw new IllegalArgumentException("Nome Inválido [" + name + "]!");
+			throw new IllegalArgumentException(format("Nome Inválido: [%s]!",name));
 	}
 	
 	public boolean isBlankAccepted() {
@@ -324,7 +319,7 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 		if (isNotNull(value))
 			this.value = value;
 		else
-			throw new IllegalArgumentException("Valor Inválido [" + value + "]!");
+			throw new IllegalArgumentException(format("Valor Inválido: [%s]!",value));
 	}
 
 	public Format getFormatter() {
@@ -336,13 +331,18 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 		if (isNotNull(formatter))
 			this.formatter = formatter;
 		else
-			throw new IllegalArgumentException("Formato inválido [ " + formatter + " ]!");
+			throw new IllegalArgumentException(format("Formato inválido: [%s]!",formatter));
 	}
 
+	private void throwReadError(Exception e, String value){		
+		
+		throw new IllegalArgumentException(format("Falha na leitura da string: [\"%s\"]! %s",value,toString()), e);
+	}
+	
 	@Override
 	public String toString() {
 		
-		return format("Field: {name[%s], value[%s], formatter[%s]}"
+		return format("Field [name=\"%s\", value=\"%s\", formatter=%s]"
 				, Objects.whenNull(this.name, EMPTY)
 				, Objects.whenNull(this.value, EMPTY)
 				, Objects.whenNull(this.formatter, EMPTY));

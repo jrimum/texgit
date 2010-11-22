@@ -42,8 +42,7 @@ public abstract class AbstractStringOfFields<G extends Field<?>> implements Text
 				fields.add(null);
 			}
 		} else {
-			throw new IllegalArgumentException("A quantidade de campos [ "
-					+ size + " ] deve ser um número natural > 0!");
+			throw new IllegalArgumentException(format("A quantidade de campos [%s] deve ser um número natural > 0!", size));
 		}
 	}
 
@@ -98,9 +97,9 @@ public abstract class AbstractStringOfFields<G extends Field<?>> implements Text
 
 				throw new IllegalStateException(
 						format(
-								"Erro ao tentar escrever o campo \"%s\" com valor [%s] na posição [%s].",
+								"Erro ao tentar escrever o campo \"%s\" com valor [%s] na posição [%s] no layout do registo.",
 								field.getName(), field.getValue(), fields
-										.indexOf(field)),e);
+										.indexOf(field)+1),e);
 			}
 		}
 

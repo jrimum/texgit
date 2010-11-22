@@ -94,9 +94,7 @@ public class FixedField<G> extends Field<G> implements org.jrimum.texgit.type.Fi
 		if (str.length() == getFixedLength()) {
 			super.read(str);
 		} else
-			throw new IllegalArgumentException("Tamanho da string [ "
-					+ str.length() + " ] diferente do especificado [ "
-					+ getFixedLength() + " ]! "+toString());
+			throw new IllegalArgumentException(format("Tamanho da string [%s] diferente do especificado [%s]! %s",str.length(),getFixedLength(),toString()));
 	}
 
 	/**
@@ -127,8 +125,7 @@ public class FixedField<G> extends Field<G> implements org.jrimum.texgit.type.Fi
 		if(instantLength.equals(getFixedLength()))
 			return true;
 		else
-			throw new IllegalStateException("Tamanho da string [ " + instantLength 
-					+ " ] diferente do especificado [" + getFixedLength() + "]! "+toString());
+			throw new IllegalStateException(format("Tamanho da string [%s] diferente do especificado [%s]! %s",instantLength,getFixedLength(),toString()));
 	}
 	
 	public Integer getFixedLength() {
@@ -141,7 +138,7 @@ public class FixedField<G> extends Field<G> implements org.jrimum.texgit.type.Fi
 		if (isNotNull(length))
 			this.length = length;
 		else
-			throw new IllegalArgumentException("Comprimento inválido [" + length + "]!");
+			throw new IllegalArgumentException(format("Comprimento inválido [%s]!",length));
 		
 	}
 	
@@ -154,14 +151,14 @@ public class FixedField<G> extends Field<G> implements org.jrimum.texgit.type.Fi
 		if(isNotNull(filler))
 			this.filler = filler;
 		else
-			throw new IllegalArgumentException("Preenchedor inválido [ " + filler + " ]!");
+			throw new IllegalArgumentException(format("Preenchedor inválido [%s]!",filler));
 	}
 
 	@Override
 	public String toString() {
 
 		return format(
-				"%s FixedField: {length[%s], instantLength[%s], filler[%s]}",
+				"%s FixedField [length=%s, instantLength=%s, filler=%s]",
 				super.toString()
 				, Objects.whenNull(this.length, EMPTY)
 				, Objects.whenNull(this.instantLength, EMPTY)

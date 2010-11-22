@@ -52,8 +52,7 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 			setSize(size);
 
 		} else
-			throw new IllegalArgumentException("O comprimento do bloco [ "
-					+ length + " ] deve ser um número natural > 0!");
+			throw new IllegalArgumentException(format("O comprimento do bloco [%s] deve ser um número natural > 0!", length));
 	}
 	
 	@Override
@@ -85,8 +84,8 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 
 					throw new IllegalStateException(
 							format(
-									"Erro ao tentar ler o campo \"%s\" na posição [%s].",
-									field.getName(), getFields().indexOf(field)),e);
+									"Erro ao tentar ler o campo \"%s\" na posição [%s] no layout do registo.",
+									field.getName(), getFields().indexOf(field)+1),e);
 				}
 			}
 
@@ -128,7 +127,7 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 		if(length == getFixedLength())
 				return true;
 		else
-			throw new IllegalStateException("O comprimento da string [ " + instantLength + " ] é incompátivel com o definido ["+getFixedLength()+"]!");
+			throw new IllegalStateException(format("O comprimento da string [%s] é incompátivel com o definido [%s]!",instantLength,getFixedLength()));
 	}
 	
 	private boolean isSizeAsDefinaed(){
@@ -136,7 +135,7 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 		if(size() == getFixedSize())
 				return true;
 		else
-			throw new IllegalStateException("O número de fields [ " + size() + " ] é incompátivel com o definido ["+getFixedSize()+"]!");
+			throw new IllegalStateException(format("O número de fields [%s] é incompátivel com o definido [%s]!", size(), getFixedSize()));
 	}
 
 	/**
@@ -154,7 +153,7 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 		if (isNotNull(length))
 			this.length = length;
 		else
-			throw new IllegalArgumentException("Comprimento inválido [" + length + "]!");
+			throw new IllegalArgumentException(format("Comprimento inválido [%s]!", length));
 	}
 
 	/**
@@ -172,6 +171,6 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 		if (isNotNull(size))
 			this.size = size;
 		else
-			throw new IllegalArgumentException("Tamanho inválido [" + size + "]!");
+			throw new IllegalArgumentException(format("Tamanho inválido [%s]!", size));
 	}
 }

@@ -114,7 +114,7 @@ public class Filler<G> implements Serializable{
 			this.padding = fillWith;
 		
 		else
-			throw new IllegalArgumentException("Preenchimento inválido [ " + fillWith + " ]!");
+			throw new IllegalArgumentException(format("Preenchimento inválido [%s]!",fillWith));
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class Filler<G> implements Serializable{
 			this.sideToFill = sideToFill;
 		
 		else
-			throw new IllegalArgumentException("Lado para preenchimento [ " + sideToFill + " ]!");
+			throw new IllegalArgumentException(format("Lado para preenchimento [%s]!",sideToFill));
 	}
 	
 	/**
@@ -386,8 +386,9 @@ public class Filler<G> implements Serializable{
 	public String toString() {
 		
 		return format(
-				"Filler: {padding[%s], sideToFill[%s]}"
+				"Filler [padding=\"%s\", sideToFill=%s]"
 				, Objects.whenNull(this.padding, EMPTY)
 				, Objects.whenNull(this.sideToFill, EMPTY));
 	}
+	
 }
