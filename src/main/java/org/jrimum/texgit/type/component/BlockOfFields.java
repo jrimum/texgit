@@ -84,7 +84,7 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 
 					throw new IllegalStateException(
 							format(
-									"Erro ao tentar ler o campo \"%s\" na posição [%s] no layout do registo.",
+									"Erro ao tentar ler o campo \"%s\" na posição [%s] no layout do registro.",
 									field.getName(), getFields().indexOf(field)+1),e);
 				}
 			}

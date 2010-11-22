@@ -97,7 +97,7 @@ public abstract class AbstractStringOfFields<G extends Field<?>> implements Text
 
 				throw new IllegalStateException(
 						format(
-								"Erro ao tentar escrever o campo \"%s\" com valor [%s] na posição [%s] no layout do registo.",
+								"Erro ao tentar escrever o campo \"%s\" com valor [%s] na posição [%s] no layout do registro.",
 								field.getName(), field.getValue(), fields
 										.indexOf(field)+1),e);
 			}
