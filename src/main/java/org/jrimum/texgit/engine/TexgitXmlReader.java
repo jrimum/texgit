@@ -16,6 +16,7 @@ import javax.xml.validation.SchemaFactory;
 import org.jrimum.texgit.Texgit;
 import org.jrimum.texgit.TexgitException;
 import org.jrimum.texgit.language.MetaTexgit;
+import org.jrimum.utilix.ClassLoaders;
 import org.xml.sax.SAXException;
 
 
@@ -38,8 +39,7 @@ class TexgitXmlReader {
 				SchemaFactory aSchemaFactory = SchemaFactory
 						.newInstance(W3C_XML_SCHEMA_NS_URI);
 				
-				Schema schema = aSchemaFactory.newSchema(Texgit.class
-						.getResource("/resource/TexgitSchema.xsd"));
+				Schema schema = aSchemaFactory.newSchema(ClassLoaders.getResource("TexgitSchema.xsd",Texgit.class));
 
 				aUnmarshaller.setSchema(schema);
 
