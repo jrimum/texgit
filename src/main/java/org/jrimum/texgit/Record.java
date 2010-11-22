@@ -2,9 +2,11 @@ package org.jrimum.texgit;
 
 import java.util.List;
 
+import org.jrimum.utilix.text.TextStream;
 
 
-public interface Record{  
+
+public interface Record extends TextStream{  
 	
 	public <G> void setValue(String fieldName, G value);
 	
