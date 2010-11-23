@@ -127,7 +127,7 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 		if(length == getFixedLength())
 				return true;
 		else
-			throw new IllegalStateException(format("O comprimento da string [%s] é incompátivel com o definido [%s]!",instantLength,getFixedLength()));
+			throw new IllegalStateException(format("O comprimento da string [%s] é incompátivel com o definido [%s] no layout do registro!",length,getFixedLength()));
 	}
 	
 	private boolean isSizeAsDefinaed(){
