@@ -182,14 +182,20 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 			
 			if(isBlank(str)){
 				
-				if(isBlankAccepted())
-					value = (G) Dates.invalidDate();
-				else
-					new IllegalArgumentException(format("Campo data vazio não permitido: [%s]!",str));
-			}
-			
-			value = (G) formatter.parseObject(str);
+				if(isBlankAccepted()){
 					
+					value = (G) Dates.invalidDate();
+					
+				}else{
+					
+					new IllegalArgumentException(format("Campo data vazio não permitido: [%s]!",str));
+				}
+				
+			}else{
+				
+				value = (G) formatter.parseObject(str);
+			}					
+			
 		} catch (ParseException e) {
 			
 			throwReadError(e, str);
@@ -342,9 +348,11 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 	@Override
 	public String toString() {
 		
-		return format("Field [name=\"%s\", value=\"%s\", formatter=%s]"
+		return format("Field [name=\"%s\", value=\"%s\", isBlankAccepted=%s, formatter=%s]"
 				, Objects.whenNull(this.name, EMPTY)
 				, Objects.whenNull(this.value, EMPTY)
+				, Objects.whenNull(this.isBlankAccepted(), EMPTY)
 				, Objects.whenNull(this.formatter, EMPTY));
+				
 	}
 }
