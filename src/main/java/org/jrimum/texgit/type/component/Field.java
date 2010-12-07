@@ -13,7 +13,6 @@ import java.text.Format;
 import java.text.ParseException;
 import java.util.Date;
 
-import org.apache.commons.lang.StringUtils;
 import org.jrimum.utilix.Dates;
 import org.jrimum.utilix.Objects;
 import org.jrimum.utilix.text.TextStream;
@@ -268,16 +267,12 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 	
 	private String writeDateField(){
 		
-		String str = StringUtils.EMPTY;
+		if (!Dates.equalsInvalidDate((Date) value)){
 		
-		Date dateValue = (Date) value;
-
-		if (Dates.equalsInvalidDate(dateValue)){
-		
-			str = formatter.format(dateValue);
+			return formatter.format(value);
 		}
 		
-		return str;
+		return EMPTY;
 	}
 	
 	private String parseNumber(String str){
