@@ -8,11 +8,11 @@ import org.jrimum.utilix.text.TextStream;
 
 public interface Record extends TextStream{  
 	
-	public <G> void setValue(String fieldName, G value);
+	public <G> Record setValue(String fieldName, G value);
 	
 	public <G> G getValue(String fieldName);
 	
-	public void addInnerRecord(Record record);
+	public Record addInnerRecord(Record record);
 	
 	public List<Record> getInnerRecords();
 }

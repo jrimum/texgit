@@ -8,7 +8,7 @@ public interface FlatFile<G extends Record> extends TextListStream {
 
 	public G createRecord(String idType);
 
-	public void addRecord(G record);
+	public FlatFile<G> addRecord(G record);
 
 	public G getRecord(String idName);
 
@@ -16,17 +16,17 @@ public interface FlatFile<G extends Record> extends TextListStream {
 
 	// Grupos de Registros (Registros que se repetem)
 
-	public void addRecords(String idName, Collection<G> records);
+	public FlatFile<G> addRecords(String idName, Collection<G> records);
 
-	public void setRecords(String idName, Collection<G> records);
+	public FlatFile<G> setRecords(String idName, Collection<G> records);
 
 	public Collection<G> getRecords(String idName);
 
 	// Todos os Registros
 
-	public void addAllRecords(Collection<G> records);
+	public FlatFile<G> addAllRecords(Collection<G> records);
 
-	public void setAllRecords(Collection<G> records);
+	public FlatFile<G> setAllRecords(Collection<G> records);
 
 	public Collection<G> getAllRecords();
 
