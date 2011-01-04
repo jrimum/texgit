@@ -306,7 +306,7 @@ public class Record extends BlockOfFields implements org.jrimum.texgit.Record{
 		return is;
 	}
 	
-	public void addInnerRecord(org.jrimum.texgit.Record record) {
+	public org.jrimum.texgit.Record addInnerRecord(org.jrimum.texgit.Record record) {
 		
 		if(isNotNull(record)){
 			if(isNull(this.innerRecords))
@@ -318,6 +318,8 @@ public class Record extends BlockOfFields implements org.jrimum.texgit.Record{
 			throw new IllegalArgumentException("Record fora de scopo!");
 		
 		}
+		
+		return this;
 	}
 
 	public List<org.jrimum.texgit.Record> getInnerRecords() {
@@ -339,12 +341,14 @@ public class Record extends BlockOfFields implements org.jrimum.texgit.Record{
 	}
 
 	@SuppressWarnings("unchecked")
-	public <G> void setValue(String fieldName, G value) {
+	public <G> org.jrimum.texgit.Record setValue(String fieldName, G value) {
 		
 		org.jrimum.texgit.type.Field<G> f = (Field<G>) getField(fieldName);
 		
 		if(isNotNull(f))
 			f.setValue(value);
+		
+		return this;
 	}
 
 	public String getName() {

@@ -208,12 +208,14 @@ public class FlatFile implements org.jrimum.texgit.FlatFile<org.jrimum.texgit.Re
 		return out;
 	}
 
-	public void addRecord(org.jrimum.texgit.Record record) {
+	public org.jrimum.texgit.FlatFile<org.jrimum.texgit.Record> addRecord(org.jrimum.texgit.Record record) {
 		
 		if(isNotNull(record)){
 			Record rec = Record.class.cast(record);
 			addRecord(rec);
 		}
+		
+		return this;
 	}
 
 	public Collection<org.jrimum.texgit.Record> getRecords(String idName) {
@@ -234,34 +236,34 @@ public class FlatFile implements org.jrimum.texgit.FlatFile<org.jrimum.texgit.Re
 		return secRecords;
 	}
 	
-	public void addAllRecords(Collection<org.jrimum.texgit.Record> records) {
-		// TODO Auto-generated method stub
-		
+	public org.jrimum.texgit.FlatFile<org.jrimum.texgit.Record> addAllRecords(Collection<org.jrimum.texgit.Record> records) {
+		// TODO IMPLEMENTAR
+		throw new UnsupportedOperationException("AINDA NÃO IMPLEMENTADO!");
 	}
 
-	public void addRecords(String idName, Collection<org.jrimum.texgit.Record> records) {
-		// TODO Auto-generated method stub
-		
+	public org.jrimum.texgit.FlatFile<org.jrimum.texgit.Record> addRecords(String idName, Collection<org.jrimum.texgit.Record> records) {
+		// TODO IMPLEMENTAR
+		throw new UnsupportedOperationException("AINDA NÃO IMPLEMENTADO!");
 	}
 
 	public Collection<org.jrimum.texgit.Record> getAllRecords() {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO IMPLEMENTAR
+		throw new UnsupportedOperationException("AINDA NÃO IMPLEMENTADO!");
 	}
 
 	public org.jrimum.texgit.Record removeRecord(String idName) {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO IMPLEMENTAR
+		throw new UnsupportedOperationException("AINDA NÃO IMPLEMENTADO!");
 	}
 
-	public void setAllRecords(Collection<org.jrimum.texgit.Record> records) {
-		// TODO Auto-generated method stub
-		
+	public org.jrimum.texgit.FlatFile<org.jrimum.texgit.Record> setAllRecords(Collection<org.jrimum.texgit.Record> records) {
+		// TODO IMPLEMENTAR
+		throw new UnsupportedOperationException("AINDA NÃO IMPLEMENTADO!");
 	}
 
-	public void setRecords(String idName, Collection<org.jrimum.texgit.Record> records) {
-		// TODO Auto-generated method stub
-		
+	public org.jrimum.texgit.FlatFile<org.jrimum.texgit.Record> setRecords(String idName, Collection<org.jrimum.texgit.Record> records) {
+		// TODO IMPLEMENTAR
+		throw new UnsupportedOperationException("AINDA NÃO IMPLEMENTADO!");
 	}
 	
 	public Set<String> getRepitablesRecords() {
