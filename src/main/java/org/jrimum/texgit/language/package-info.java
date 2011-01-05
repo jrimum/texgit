@@ -7,6 +7,6 @@
 // Generated on: 2008.08.03 at 12:27:56 AM GMT-03:00
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://gilmatryx.googlepages.com/Texgit")
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://jrimum.org/texgit")
 package org.jrimum.texgit.language;
 

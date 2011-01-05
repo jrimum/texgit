@@ -27,7 +27,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
 	private final static QName TEXGIT_QNAME = new QName(
-			"http://gilmatryx.googlepages.com/Texgit", "Texgit");
+			"http://jrimum.org/texgit", "Texgit");
 
 	/**
 	 * Create a new ObjectFactory that can be used to create new instances of
@@ -121,7 +121,7 @@ public class ObjectFactory {
 	 * Create an instance of {@link JAXBElement }{@code <}{@link MetaTexgit }{@code >}}
 	 * 
 	 */
-	@XmlElementDecl(namespace = "http://gilmatryx.googlepages.com/Texgit", name = "Texgit")
+	@XmlElementDecl(namespace = "http://jrimum.org/texgit", name = "Texgit")
 	public JAXBElement<MetaTexgit> createTexgit(MetaTexgit value) {
 		return new JAXBElement<MetaTexgit>(TEXGIT_QNAME, MetaTexgit.class,
 				null, value);
