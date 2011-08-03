@@ -3,9 +3,9 @@ package org.jrimum.texgit.engine;
 import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
 import static org.jrimum.utilix.Objects.isNotNull;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -23,11 +23,11 @@ import org.xml.sax.SAXException;
 
 class TexgitXmlReader {
 
-	public static MetaTexgit parse(File xmlDef) throws TexgitException {
+	public static MetaTexgit parse(InputStream xmlDefStream) throws TexgitException {
 
 		MetaTexgit txg = null;
 
-		if (isNotNull(xmlDef)) {
+		if (isNotNull(xmlDefStream)) {
 
 			try {
 
@@ -45,8 +45,7 @@ class TexgitXmlReader {
 
 				aUnmarshaller.setEventHandler(new TexgitSchemaValidator());
 
-				txg = (MetaTexgit) aUnmarshaller.unmarshal(new FileInputStream(
-						xmlDef));
+				txg = (MetaTexgit) aUnmarshaller.unmarshal(xmlDefStream);
 
 			} catch (SAXException e) {
 
@@ -56,9 +55,6 @@ class TexgitXmlReader {
 
 				throw new TexgitLanguageException(e);
 
-			} catch (FileNotFoundException e) {
-
-				throw new TexgitLanguageException(e);
 			}
 		}
 

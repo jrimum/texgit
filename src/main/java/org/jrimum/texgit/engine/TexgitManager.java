@@ -1,27 +1,23 @@
 package org.jrimum.texgit.engine;
 
-import java.io.File;
+import java.io.InputStream;
 
 import org.jrimum.texgit.FlatFile;
+import org.jrimum.texgit.Record;
 import org.jrimum.texgit.TexgitException;
 import org.jrimum.texgit.language.MetaTexgit;
 
-
-
 public class TexgitManager {
 
-	@SuppressWarnings("unchecked")
-	public static org.jrimum.texgit.FlatFile<org.jrimum.texgit.Record> buildFlatFile(File xmlDef) {
+	public static FlatFile<org.jrimum.texgit.Record> buildFlatFile(InputStream xmlDefStream) {
 
-		org.jrimum.texgit.FlatFile<org.jrimum.texgit.Record> iFlatFile = null;
+		FlatFile<Record> iFlatFile = null;
 
 		try {
 
-			MetaTexgit tgMeta = TexgitXmlReader.parse(xmlDef);
+			MetaTexgit tgMeta = TexgitXmlReader.parse(xmlDefStream);
 
-			FlatFile ff = FlatFileBuilder.build(tgMeta.getFlatFile());
-			
-			iFlatFile = ff;
+			iFlatFile = FlatFileBuilder.build(tgMeta.getFlatFile());
 
 		} catch (Exception e) {
 			throw new TexgitException(e);
@@ -29,5 +25,4 @@ public class TexgitManager {
 
 		return iFlatFile;
 	}
-
 }

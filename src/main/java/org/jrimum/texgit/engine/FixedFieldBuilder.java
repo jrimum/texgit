@@ -131,6 +131,7 @@ class FixedFieldBuilder {
 		fField.setFixedLength(metaField.getLength());
 		fField.setFiller(getFiller(metaField));
 		fField.setBlankAccepted(metaField.isBlankAccepted());
+		fField.setTruncate(metaField.isTruncate());
 		
 		if(isNotNull(formatter))
 			fField.setFormatter(formatter);

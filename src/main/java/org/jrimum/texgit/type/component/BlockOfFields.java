@@ -30,6 +30,13 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 	private Integer instantLength; 
 	
 	/**
+	 * <p>
+	 * Ao ultrapassar o tamanho, define se pode truncar ou se dispara uma exceção.
+	 * </p>
+	 */
+	private boolean truncate;
+	
+	/**
 	 * 
 	 */
 	public BlockOfFields() {
@@ -106,6 +113,11 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 		str = super.write();
 
 		instantLength = str.length();
+		
+		if (isTruncate() && instantLength > getFixedLength()) {
+			str = str.substring(0, getFixedLength());
+			instantLength = getFixedLength();
+		}
 
 		isFixedAsDefined();
 
@@ -172,5 +184,13 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 			this.size = size;
 		else
 			throw new IllegalArgumentException(format("Tamanho inválido [%s]!", size));
+	}
+	
+	public boolean isTruncate() {
+		return this.truncate;
+	}
+
+	public void setTruncate(boolean truncate) {
+		this.truncate = truncate;
 	}
 }

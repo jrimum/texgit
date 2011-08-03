@@ -229,6 +229,8 @@
 			default=" " />
 		<xs:attribute name="length" type="txg:MetaLength"
 			use="required" />
+		<xs:attribute name="truncate" type="xs:boolean"
+			use="optional" default="false" />
 		<xs:attribute name="blankAccepted" type="xs:boolean"
 			use="optional" default="false" />
 		<xs:attribute name="type" type="txg:enumTypes" default="STRING" />

@@ -39,6 +39,8 @@ public class MetaField {
 	@XmlAttribute
 	protected Boolean blankAccepted;
 	@XmlAttribute
+	protected Boolean truncate;
+	@XmlAttribute
 	protected EnumFormats format;
 	@XmlAttribute(required = true)
 	protected int length;
@@ -116,6 +118,31 @@ public class MetaField {
 	 */
 	public void setBlankAccepted(Boolean value) {
 		this.blankAccepted = value;
+	}
+	
+	/**
+	 * Gets the value of the truncate property.
+	 * 
+	 * @return possible object is {@link Boolean }
+	 * 
+	 */
+	public boolean isTruncate() {
+		if (truncate == null) {
+			return false;
+		} else {
+			return truncate;
+		}
+	}
+
+	/**
+	 * Sets the value of the blankAccepted property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Boolean }
+	 * 
+	 */
+	public void setTruncate(Boolean value) {
+		this.truncate = value;
 	}
 
 	/**

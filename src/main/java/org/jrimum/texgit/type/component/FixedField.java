@@ -35,6 +35,13 @@ public class FixedField<G> extends Field<G> implements org.jrimum.texgit.type.Fi
 	 * </p>
 	 */
 	private Integer instantLength;
+	
+	/**
+	 * <p>
+	 * Ao ultrapassar o tamanho, define se pode truncar ou se dispara uma exceção.
+	 * </p>
+	 */
+	private boolean truncate;
 
 	
 	/**
@@ -107,6 +114,11 @@ public class FixedField<G> extends Field<G> implements org.jrimum.texgit.type.Fi
 
 		instantLength = str.length();
 		
+		if (isTruncate() && instantLength > getFixedLength()) {
+			str = str.substring(0, getFixedLength());
+			instantLength = getFixedLength();
+		}
+		
 		isFixedAsDefined();
 			
 		return str;
@@ -154,15 +166,25 @@ public class FixedField<G> extends Field<G> implements org.jrimum.texgit.type.Fi
 			throw new IllegalArgumentException(format("Preenchedor inválido [%s]!",filler));
 	}
 
+	public boolean isTruncate() {
+		return this.truncate;
+	}
+
+	public void setTruncate(boolean truncate) {
+		this.truncate = truncate;
+	}
+
+	
 	@Override
 	public String toString() {
 
 		return format(
-				"%s FixedField [length=%s, instantLength=%s, filler=%s]",
+				"%s FixedField [length=%s, instantLength=%s, filler=%s, truncate=%s]",
 				super.toString()
 				, Objects.whenNull(this.length, EMPTY)
 				, Objects.whenNull(this.instantLength, EMPTY)
-				, Objects.whenNull(this.filler, EMPTY));
+				, Objects.whenNull(this.filler, EMPTY)
+				, Objects.whenNull(this.truncate, EMPTY));
 	}
 
 }
