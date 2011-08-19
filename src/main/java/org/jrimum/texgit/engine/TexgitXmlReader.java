@@ -3,8 +3,6 @@ package org.jrimum.texgit.engine;
 import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
 import static org.jrimum.utilix.Objects.isNotNull;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import javax.xml.bind.JAXBContext;
