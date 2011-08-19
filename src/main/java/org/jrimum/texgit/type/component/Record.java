@@ -332,7 +332,7 @@ public class Record extends BlockOfFields implements org.jrimum.texgit.Record{
 		
 		G value = null;
 		
-		org.jrimum.texgit.type.Field f = getField(fieldName);
+		org.jrimum.texgit.type.Field<?> f = getField(fieldName);
 		
 		if(isNotNull(f))
 			value = (G) f.getValue();
