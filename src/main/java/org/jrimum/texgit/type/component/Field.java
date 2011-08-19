@@ -206,11 +206,22 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 		
 		str = parseNumber(str);
 		
-		Class<?> c = value.getClass();
-
-		for (Constructor<?> cons : c.getConstructors()) {
+		Class<?> clazz = value.getClass();
+		
+		if(clazz.equals(String.class)){
+			value = (G) str;
+		}else{
+			readNumeric(clazz,str);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void readNumeric(Class<?> clazz, String str) {
+		
+		for (Constructor<?> cons : clazz.getConstructors()) {
 
 			if (cons.getParameterTypes().length == 1){
+				
 				if (cons.getParameterTypes()[0].equals(String.class)){
 					try {
 						
@@ -224,7 +235,7 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 			}
 		}
 	}
-	
+
 	public String write() {
 		
 		try{
