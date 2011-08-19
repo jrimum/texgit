@@ -24,10 +24,6 @@ import javax.xml.namespace.QName;
  * Agregado de fields.
  * </p>
  * 
- * 
- * 
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "MetaGroupFields", propOrder = { "idType", "fields",
@@ -113,27 +109,33 @@ public class MetaGroupFields {
 		this.sequencialNumber = value;
 	}
 
-	@SuppressWarnings("serial")
 	public static class IdType extends JAXBElement<MetaOrderedField> {
 
+		/**
+		 * {@code serialVersionUID = -8934480908648452108L}
+		 */
+		private static final long serialVersionUID = -8934480908648452108L;
+		
 		protected final static QName NAME = new QName("", "IdType");
 
-		@SuppressWarnings("unchecked")
 		public IdType(MetaOrderedField value) {
-			super(NAME, ((Class) MetaOrderedField.class),
+			super(NAME, ((Class<MetaOrderedField>) MetaOrderedField.class),
 					MetaGroupFields.class, value);
 		}
 
 	}
 
-	@SuppressWarnings("serial")
 	public static class SequencialNumber extends JAXBElement<MetaOrderedField> {
 
+		/**
+		 * {@code serialVersionUID = 3923837730914132777L}
+		 */
+		private static final long serialVersionUID = 3923837730914132777L;
+		
 		protected final static QName NAME = new QName("", "SequencialNumber");
 
-		@SuppressWarnings("unchecked")
 		public SequencialNumber(MetaOrderedField value) {
-			super(NAME, ((Class) MetaOrderedField.class),
+			super(NAME, ((Class<MetaOrderedField>) MetaOrderedField.class),
 					MetaGroupFields.class, value);
 		}
 
