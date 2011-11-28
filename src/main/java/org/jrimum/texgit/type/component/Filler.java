@@ -26,8 +26,6 @@
  * Criado em: 30/03/2008 - 18:17:00
  * 
  */
-
-
 package org.jrimum.texgit.type.component;
 
 import static java.lang.String.format;
@@ -70,7 +68,6 @@ import org.jrimum.utilix.text.TextStream;
  * @version 0.2.1-inc
  *
  */
-
 @SuppressWarnings("serial")
 public class Filler<G> implements Serializable{
 

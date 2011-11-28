@@ -1,10 +1,9 @@
 package org.jrimum.texgit.type.component;
 
-
 /**
- * <p>
  * Lados para alinhar campos, preenchimento ou orientações em geral.
- * </p> 
+ * 
+ * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
  */
 public enum Side {
 
