@@ -144,7 +144,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.jrimum</groupId>
-			<artifactId>utilix</artifactId>
+			<artifactId>jrimum-utilix</artifactId>
 			<version>0.2.3-SNAPSHOT</version>
 		</dependency>
 
