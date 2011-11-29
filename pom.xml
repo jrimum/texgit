@@ -3,7 +3,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jrimum</groupId>
-	<artifactId>texgit</artifactId>
+	<artifactId>jrimum-texgit</artifactId>
 	<name>Projeto Texgit</name>
 	<version>0.2.0-SNAPSHOT</version>
 	<description>Projeto open source de componentes de software para o domínio de negócios do Brasil.</description>
@@ -72,7 +72,7 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
 					<descriptors>
-						<descriptor>src/main/assembly/texgit-dependencias-jrimum.xml</descriptor>
+						<descriptor>src/main/assembly/jrimum-texgit-with-dependencies.xml</descriptor>
 					</descriptors>
 				</configuration>
 				<executions>
