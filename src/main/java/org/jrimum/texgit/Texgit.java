@@ -31,9 +31,11 @@ package org.jrimum.texgit;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
 import static org.jrimum.utilix.Objects.isNotNull;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.net.URL;
 
 import org.jrimum.texgit.engine.TexgitManager;
 
@@ -42,33 +44,7 @@ import org.jrimum.texgit.engine.TexgitManager;
  * 
  */
 public final class Texgit {
-
-	public static final FlatFile<Record> createFlatFile(File xmlDefFile)
-			throws TexgitException {
-
-		try {
-
-			if (isNotNull(xmlDefFile))
-				return createFlatFile(new FileInputStream(xmlDefFile));
-
-		} catch (Exception e) {
-			throw new TexgitException(e);
-		}
-
-		return null;
-	}
-
-	public static final FlatFile<Record> createFlatFile(InputStream xmlDefStream)
-			throws TexgitException {
-
-		if (isNotNull(xmlDefStream)) {
-
-			return TexgitManager.buildFlatFile(xmlDefStream);
-		}
-
-		return null;
-	}
-
+	
 	public static final FlatFile<Record> createFlatFile(String xmlDefFilePath)
 			throws TexgitException {
 
@@ -83,4 +59,68 @@ public final class Texgit {
 
 		return null;
 	}
+
+	public static final FlatFile<Record> createFlatFile(File xmlDefFile)
+			throws TexgitException {
+
+		try {
+
+			if (isNotNull(xmlDefFile)) {
+				
+				return createFlatFile(new FileInputStream(xmlDefFile));
+			}
+
+		} catch (Exception e) {
+			throw new TexgitException(e);
+		}
+
+		return null;
+	}
+
+	public static final FlatFile<Record> createFlatFile(URL xmlDefUrl)
+			throws TexgitException {
+		
+		try {
+
+			if (isNotNull(xmlDefUrl)) {
+				
+				return TexgitManager.buildFlatFile(xmlDefUrl.openStream());
+			}
+
+		} catch (Exception e) {
+			throw new TexgitException(e);
+		}
+		
+		
+		return null;
+	}
+
+	public static final FlatFile<Record> createFlatFile(byte[] xmlDefBytes)
+			throws TexgitException {
+		
+		try {
+			
+			if (isNotNull(xmlDefBytes)) {
+				
+				return TexgitManager.buildFlatFile(new ByteArrayInputStream(xmlDefBytes));
+			}
+			
+		} catch (Exception e) {
+			throw new TexgitException(e);
+		}
+		
+		return null;
+	}
+	
+	public static final FlatFile<Record> createFlatFile(InputStream xmlDefStream)
+			throws TexgitException {
+
+		if (isNotNull(xmlDefStream)) {
+
+			return TexgitManager.buildFlatFile(xmlDefStream);
+		}
+
+		return null;
+	}
+
 }
