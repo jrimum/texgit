@@ -114,8 +114,6 @@ public class FlatFile implements org.jrimum.texgit.FlatFile<org.jrimum.texgit.Re
 		if(isNotNull(str)){
 			if(!str.isEmpty()){
 		
-				boolean read = true;
-				
 				String line = null;
 				int lineIndex = 0;
 				
@@ -129,6 +127,8 @@ public class FlatFile implements org.jrimum.texgit.FlatFile<org.jrimum.texgit.Re
 					try{
 						
 						if(isRepitable(id)){
+							
+							boolean read = true;
 							
 							while(read){
 								
