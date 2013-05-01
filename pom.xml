@@ -18,20 +18,17 @@
 	</licenses>
 
 	<organization>
-		<name>Grupo JRimum</name>
-		<url>http://www.jrimum.org/</url>
+		<name>Projeto JRimum</name>
+		<url>http://www.jrimum.org</url>
 	</organization>
 
 	<issueManagement>
-		<system>TRAC</system>
-		<url>http://www.jrimum.org/texgit</url>
+		<system>GitHub</system>
+		<url>http://github.com/jrimum/texgit/issues</url>
 	</issueManagement>
 
 	<scm>
-		<connection>scm:svn:http://www.jrimum.org/svn/texgit</connection>
-		<developerConnection>scm:svn:http://www.jrimum.org/svn/texgit</developerConnection>
-		<tag>HEAD</tag>
-		<url>http://www.jrimum.org/svn/texgit</url>
+		<url>http://github.com/jrimum/texgit</url>
 	</scm>
 
 	<developers>
