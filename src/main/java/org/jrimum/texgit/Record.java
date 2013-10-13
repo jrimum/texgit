@@ -30,8 +30,6 @@ package org.jrimum.texgit;
 
 import java.util.List;
 
-import org.jrimum.utilix.text.TextStream;
-
 /**
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
  * 

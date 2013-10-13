@@ -34,9 +34,8 @@ import static org.jrimum.utilix.Objects.isNotNull;
 
 import java.text.Format;
 
+import org.jrimum.texgit.type.Filler;
 import org.jrimum.utilix.Objects;
-
-
 
 
 /**
@@ -59,7 +58,7 @@ public class FixedField<G> extends Field<G> implements org.jrimum.texgit.type.Fi
 	 * Preenchedor do valor utilizado na hora da escrita.
 	 * </p>
 	 */
-	private Filler<?> filler;
+	private Filler filler;
 	
 	
 	/**
@@ -84,34 +83,45 @@ public class FixedField<G> extends Field<G> implements org.jrimum.texgit.type.Fi
 		super();
 	}
 	
-	/**
-	 * @param ordem
-	 * @param length
-	 * @param filler
-	 */
-	public FixedField(String name, G value, Integer length, Filler<?> filler) {
-		super(name,value);
+	public FixedField(G value, Integer length) {
+		super(value);
+		setFixedLength(length);
+	}
+
+	public FixedField(G value, Integer length, Filler filler) {
+		super(value);
 		setFixedLength(length);
 		setFiller(filler);
 	}
-	
-	/**
-	 * @param ordem
-	 * @param length
-	 * @param filler
-	 */
-	public FixedField(G value, Format formatter, Integer length, Filler<?> filler) {
+
+	public FixedField(G value, Integer length, Format formatter) {
+		super(value,formatter);
+		setFixedLength(length);
+	}
+
+	public FixedField(G value, Integer length, Format formatter, Filler filler) {
 		super(value,formatter);
 		setFixedLength(length);
 		setFiller(filler);
 	}
 	
-	/**
-	 * @param ordem
-	 * @param length
-	 * @param filler
-	 */
-	public FixedField(String name, G value, Format formatter, Integer length, Filler<?> filler) {
+	public FixedField(String name, G value, Integer length) {
+		super(name,value);
+		setFixedLength(length);
+	}
+
+	public FixedField(String name, G value, Integer length, Filler filler) {
+		super(name,value);
+		setFixedLength(length);
+		setFiller(filler);
+	}
+	
+	public FixedField(String name, G value, Integer length, Format formatter) {
+		super(name,value,formatter);
+		setFixedLength(length);
+	}
+
+	public FixedField(String name, G value, Integer length, Format formatter, Filler filler) {
 		super(name,value,formatter);
 		setFixedLength(length);
 		setFiller(filler);
@@ -180,18 +190,18 @@ public class FixedField<G> extends Field<G> implements org.jrimum.texgit.type.Fi
 
 	public void setFixedLength(Integer length) {
 		
-		if (isNotNull(length))
+		if (isNotNull(length) && length.intValue() > 0)
 			this.length = length;
 		else
 			throw new IllegalArgumentException(format("Comprimento inválido [%s]!",length));
 		
 	}
 	
-	public Filler<?> getFiller() {
+	public Filler getFiller() {
 		return filler;
 	}
 
-	public void setFiller(Filler<?> filler) {
+	public void setFiller(Filler filler) {
 		
 		if(isNotNull(filler))
 			this.filler = filler;

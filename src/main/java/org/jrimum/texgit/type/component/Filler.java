@@ -32,11 +32,9 @@ import static java.lang.String.format;
 import static org.apache.commons.lang.StringUtils.EMPTY;
 import static org.jrimum.utilix.Objects.isNotNull;
 
-import java.io.Serializable;
-
 import org.apache.commons.lang.StringUtils;
+import org.jrimum.texgit.TextStream;
 import org.jrimum.utilix.Objects;
-import org.jrimum.utilix.text.TextStream;
 
 /**
  * <p>
@@ -69,8 +67,8 @@ import org.jrimum.utilix.text.TextStream;
  *
  */
 @SuppressWarnings("serial")
-public class Filler<G> implements Serializable{
-
+public class Filler<G> implements org.jrimum.texgit.type.Filler{
+	
 	private G padding;
 	
 	private Side sideToFill;
@@ -98,55 +96,46 @@ public class Filler<G> implements Serializable{
 		setSideToFill(sideToFill);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.jrimum.texgit.type.component.X#getPadding()
+	 */
 	public G getPadding() {
 		return padding;
 	}
 
-	/**
-	 * @param filler
+	/* (non-Javadoc)
+	 * @see org.jrimum.texgit.type.component.X#setPadding(G)
 	 */
 	public void setPadding(G fillWith) {
 		
-		if(isNotNull(fillWith))
+		if(isNotNull(fillWith)){
 			this.padding = fillWith;
-		
-		else
+		}else{
 			throw new IllegalArgumentException(format("Preenchimento inválido [%s]!",fillWith));
+		}
 	}
 
-	/**
-	 * @return
+	/* (non-Javadoc)
+	 * @see org.jrimum.texgit.type.component.X#getSideToFill()
 	 */
 	public Side getSideToFill() {
 		return sideToFill;
 	}
 
-	/**
-	 * @param sideToFill
+	/* (non-Javadoc)
+	 * @see org.jrimum.texgit.type.component.X#setSideToFill(org.jrimum.texgit.type.component.Side)
 	 */
 	public void setSideToFill(Side sideToFill) {
 		
-		if(isNotNull(sideToFill))
+		if(isNotNull(sideToFill)){
 			this.sideToFill = sideToFill;
-		
-		else
+		}else{
 			throw new IllegalArgumentException(format("Lado para preenchimento [%s]!",sideToFill));
+		}
 	}
 	
-	/**
-	 * <p>
-	 * Preenche o campo com o caracter especificado e no lado especificado.
-	 * </p>
-	 * <p>
-	 * Exemplo:
-	 * <br/>
-	 * Se <code>sideToFill == SideToFill.LEFT</code>, o caracter especificado será adicionado à String
-	 * no lado esquerdo até que o campo fique com o tamanho que foi definido.
-	 * </p>
-	 * 
-	 * @param toFill
-	 * @param length
-	 * @return
+	/* (non-Javadoc)
+	 * @see org.jrimum.texgit.type.component.X#fill(java.lang.String, int)
 	 */
 	public String fill(String toFill, int length){
 		
@@ -166,195 +155,79 @@ public class Filler<G> implements Serializable{
 		return str;
 	}
 	
-	/**
-	 * 
-	 * <p>
-	 * Executa o método <code>fill(String, int)</code> passando o parâmetro
-	 * <code>toFill</code> como <code>String.valueOf(toFill)</code>.
-	 * </p>
-	 * 
-	 * @param tofill
-	 * @param length
-	 * @return
-	 * 
-	 * @see Filler#fill(String, int)
-	 * 
-	 * @since
+	/* (non-Javadoc)
+	 * @see org.jrimum.texgit.type.component.X#fill(long, int)
 	 */
 	public String fill(long tofill, int length){
 		return fill(String.valueOf(tofill), length);
 	}
 	
-	/**
-	 * 
-	 * <p>
-	 * Executa o método <code>fill(String, int)</code> passando o parâmetro
-	 * <code>toFill</code> como <code>String.valueOf(toFill)</code>.
-	 * </p>
-	 * 
-	 * @param tofill
-	 * @param length
-	 * @return
-	 * 
-	 * @see Filler#fill(String, int)
-	 * 
-	 * @since
+	/* (non-Javadoc)
+	 * @see org.jrimum.texgit.type.component.X#fill(int, int)
 	 */
 	public String fill(int tofill, int length){
 		return fill(String.valueOf(tofill), length);
 	}
 	
-	/**
-	 * 
-	 * <p>
-	 * Executa o método <code>fill(String, int)</code> passando o parâmetro
-	 * <code>toFill</code> como <code>String.valueOf(toFill)</code>.
-	 * </p>
-	 * 
-	 * @param tofill
-	 * @param length
-	 * @return
-	 * 
-	 * @see Filler#fill(String, int)
-	 * 
-	 * @since
+	/* (non-Javadoc)
+	 * @see org.jrimum.texgit.type.component.X#fill(short, int)
 	 */
 	public String fill(short tofill, int length){
 		return fill(String.valueOf(tofill), length);
 	}
 	
-	/**
-	 * 
-	 * <p>
-	 * Executa o método <code>fill(String, int)</code> passando o parâmetro
-	 * <code>toFill</code> como <code>String.valueOf(toFill)</code>.
-	 * </p>
-	 * 
-	 * @param tofill
-	 * @param length
-	 * @return
-	 * 
-	 * @see Filler#fill(String, int)
-	 * 
-	 * @since
+	/* (non-Javadoc)
+	 * @see org.jrimum.texgit.type.component.X#fill(byte, int)
 	 */
 	public String fill(byte tofill, int length){
 		return fill(String.valueOf(tofill), length);
 	}
 	
-	/**
-	 * 
-	 * <p>
-	 * Executa o método <code>fill(String, int)</code> passando o parâmetro
-	 * <code>toFill</code> como <code>String.valueOf(toFill)</code>.
-	 * </p>
-	 * 
-	 * @param tofill
-	 * @param length
-	 * @return
-	 * 
-	 * @see Filler#fill(String, int)
-	 * 
-	 * @since
+	/* (non-Javadoc)
+	 * @see org.jrimum.texgit.type.component.X#fill(char, int)
 	 */
 	public String fill(char tofill, int length){
 		return fill(String.valueOf(tofill), length);
 	}
 	
-	/**
-	 * 
-	 * <p>
-	 * Executa o método <code>fill(String, int)</code> passando o parâmetro
-	 * <code>toFill</code> como <code>String.valueOf(toFill)</code>.
-	 * </p>
-	 * 
-	 * @param tofill
-	 * @param length
-	 * @return
-	 * 
-	 * @see Filler#fill(String, int)
-	 * 
-	 * @since
+	/* (non-Javadoc)
+	 * @see org.jrimum.texgit.type.component.X#fill(double, int)
 	 */
 	public String fill(double tofill, int length){
 		return fill(String.valueOf(tofill), length);
 	}
 	
-	/**
-	 * 
-	 * <p>
-	 * Executa o método <code>fill(String, int)</code> passando o parâmetro
-	 * <code>toFill</code> como <code>String.valueOf(toFill)</code>.
-	 * </p>
-	 * 
-	 * @param tofill
-	 * @param length
-	 * @return
-	 * 
-	 * @see Filler#fill(String, int)
-	 * 
-	 * @since
+	/* (non-Javadoc)
+	 * @see org.jrimum.texgit.type.component.X#fill(float, int)
 	 */
 	public String fill(float tofill, int length){
 		return fill(String.valueOf(tofill), length);
 	}
 	
-	/**
-	 * 
-	 * <p>
-	 * Executa o método <code>fill(String, int)</code> passando o parâmetro
-	 * <code>toFill</code> como <code>toFill.toString()</code>.
-	 * <br/>
-	 * </p>
-	 * <p>
-	 * Caso <code>toFill</code> seja <code>null</code>, o método 
-	 * <code>fill(String, int)</code> receberá uma String nula como parâmetro.
-	 * </p>
-	 * 
-	 * @param tofill
-	 * @param length
-	 * @return
-	 * 
-	 * @see Filler#fill(String, int)
-	 * 
-	 * @since
+	/* (non-Javadoc)
+	 * @see org.jrimum.texgit.type.component.X#fill(java.lang.Object, int)
 	 */
 	public String fill(Object tofill, int length){
 		
 		String toFillTemp = null;
 		
-		if(isNotNull(tofill))
+		if(isNotNull(tofill)){
 			toFillTemp = tofill.toString();
+		}
 		
 		return fill(toFillTemp, length);
 	}
 	
-	/**
-	 * 
-	 * <p>
-	 * Executa o método <code>fill(String, int)</code> passando o parâmetro
-	 * <code>toFill</code> como <code>toFill.write()</code>.
-	 * <br/>
-	 * </p>
-	 * <p>
-	 * Caso <code>toFill</code> seja <code>null</code>, o método 
-	 * <code>fill(String, int)</code> receberá uma String nula como parâmetro.
-	 * </p>
-	 * 
-	 * @param tofill
-	 * @param length
-	 * @return
-	 * 
-	 * @see Filler#fill(String, int)
-	 * 
-	 * @since
+	/* (non-Javadoc)
+	 * @see org.jrimum.texgit.type.component.X#fill(org.jrimum.texgit.TextStream, int)
 	 */
 	public String fill(TextStream tofill, int length){
 
 		String toFillTemp = null;
 		
-		if(isNotNull(tofill))
+		if(isNotNull(tofill)){
 			toFillTemp = tofill.write();
+		}
 		
 		return fill(toFillTemp, length);
 	}

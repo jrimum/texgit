@@ -37,9 +37,9 @@ import java.util.List;
 import java.util.ListIterator;
 
 import org.apache.commons.lang.StringUtils;
+import org.jrimum.texgit.TextStream;
 import org.jrimum.utilix.Collections;
 import org.jrimum.utilix.Objects;
-import org.jrimum.utilix.text.TextStream;
 
 /**
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>

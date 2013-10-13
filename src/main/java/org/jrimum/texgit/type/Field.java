@@ -30,7 +30,7 @@ package org.jrimum.texgit.type;
 
 import java.text.Format;
 
-import org.jrimum.utilix.text.TextStream;
+import org.jrimum.texgit.TextStream;
 
 /**
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>

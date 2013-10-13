@@ -41,9 +41,9 @@ import java.text.Format;
 import java.text.ParseException;
 import java.util.Date;
 
+import org.jrimum.texgit.TextStream;
 import org.jrimum.utilix.Dates;
 import org.jrimum.utilix.Objects;
-import org.jrimum.utilix.text.TextStream;
 
 /**
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
@@ -89,15 +89,13 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 	}
 
 	/**
-	 * @param name
 	 * @param value
 	 */
-	public Field(String name, G value) {
+	public Field(G value) {
 		super();
-		setName(name);
 		setValue(value);
 	}
-
+	
 	/**
 	 * <p>
 	 * Cria um <code>Field</code> com um valor e um formatador para o valor. Isto significa que a leitura e escrita do valor informado
@@ -112,6 +110,17 @@ public class Field<G> implements org.jrimum.texgit.type.Field<G>{
 		setValue(value);
 		setFormatter(formatter);
 	}
+
+	/**
+	 * @param name
+	 * @param value
+	 */
+	public Field(String name, G value) {
+		super();
+		setName(name);
+		setValue(value);
+	}
+
 	
 	/**
 	 * <p>

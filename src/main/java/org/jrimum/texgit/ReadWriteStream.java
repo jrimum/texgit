@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  * 
- * Created at: 26/07/2008 - 12:44:41
+ * Created at: 30/03/2008 - 18:17:10
  * 
  * ================================================================================
  * 
@@ -23,17 +23,47 @@
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
  * 
- * Criado em: 26/07/2008 - 12:44:41
+ * Criado em: 30/03/2008 - 18:17:10
  * 
  */
+
 package org.jrimum.texgit;
 
-import java.util.List;
+import java.io.Serializable;
 
 /**
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
+ * <p>
+ * Interface genérica e representativa de coisas que necessitam de operações de
+ * fluxo de escrita e leitura.
+ * </p>
  * 
+ * @author <a href=http://gilmatryx.googlepages.com/>Gilmar P.S.L.</a>
+ * 
+ * @since 0.2
+ * 
+ * @version 0.2
  */
-public interface TextListStream extends ReadWriteStream<List<String>> {
+public interface ReadWriteStream<G> extends Serializable {
+
+	/**
+	 * <p>
+	 * Escreve o tipo infomado.
+	 * </p>
+	 * 
+	 * @return Um valor no mesmo tipo do tipo parametrizado
+	 * @since 0.2
+	 */
+	G write();
+
+	/**
+	 * <p>
+	 * Lê o tipo informado.
+	 * </p>
+	 * 
+	 * @param g - Valor a ser lido
+	 * 
+	 * @since 0.2
+	 */
+	void read(G g);
 
 }

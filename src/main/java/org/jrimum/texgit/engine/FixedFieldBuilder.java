@@ -45,8 +45,8 @@ import org.jrimum.texgit.TexgitException;
 import org.jrimum.texgit.language.EnumFormats;
 import org.jrimum.texgit.language.EnumFormatsTypes;
 import org.jrimum.texgit.language.MetaField;
-import org.jrimum.texgit.type.component.CommonFiller;
-import org.jrimum.texgit.type.component.Filler;
+import org.jrimum.texgit.type.Filler;
+import org.jrimum.texgit.type.component.Fillers;
 import org.jrimum.texgit.type.component.FixedField;
 import org.jrimum.texgit.type.component.Side;
 import org.jrimum.utilix.Dates;
@@ -171,21 +171,20 @@ class FixedFieldBuilder {
 		return fField;
 	}
 
-	private static Filler<?> getFiller(MetaField metaField) {
+	private static Filler getFiller(MetaField metaField) {
 
-		Filler<?> filler = null;
+		Filler filler = null;
 
 		if (isNotNull(metaField.getFiller())) {
 
-			Filler<String> filr = new Filler<String>();
+			org.jrimum.texgit.type.component.Filler<String> filr = new org.jrimum.texgit.type.component.Filler<String>();
 			filr.setPadding(metaField.getFiller().getPadding());
 			filr.setSideToFill(Side.valueOf(metaField.getFiller()
 					.getSideToFill().name()));
 			filler = filr;
 
 		} else {
-			filler = CommonFiller.valueOf(metaField.getPadding().name())
-					.getOne();
+			filler = Fillers.valueOf(metaField.getPadding().name());
 		}
 
 		return filler;
@@ -253,7 +252,7 @@ class FixedFieldBuilder {
 			int lengthToFill = BASE_DECIMAL_FORMAT.length()
 					+ countMatches(defFormat, "D");
 
-			strFormat = CommonFiller.ZERO_RIGHT.getOne().fill(
+			strFormat = Fillers.ZERO_RIGHT.fill(
 					BASE_DECIMAL_FORMAT, lengthToFill);
 
 			break;

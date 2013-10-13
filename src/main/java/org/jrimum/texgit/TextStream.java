@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  * 
- * Created at: 26/07/2008 - 12:44:41
+ * Created at: 30/03/2008 - 18:17:20
  * 
  * ================================================================================
  * 
@@ -23,17 +23,26 @@
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
  * 
- * Criado em: 26/07/2008 - 12:44:41
+ * Criado em: 30/03/2008 - 18:17:20
  * 
  */
+
 package org.jrimum.texgit;
 
-import java.util.List;
 
 /**
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
+ * <p>Interface usada para objetos com serviços de leitura e escrita de textos.</p> 
  * 
+ * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
+ * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
+ * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
+ * @author <a href="http://www.nordestefomento.com.br">Nordeste Fomento
+ *         Mercantil</a>
+ * 
+ * @since 0.2
+ * 
+ * @version 0.2
  */
-public interface TextListStream extends ReadWriteStream<List<String>> {
-
+public interface TextStream extends ReadWriteStream<String> {
+	
 }
