@@ -70,7 +70,7 @@
 				<configuration>
 					<descriptors>
 						<descriptor>src/main/assembly/jrimum-texgit-with-dependencies.xml</descriptor>
-						<descriptor>src/main/assembly/jrimum-texgit-examples.xml</descriptor>
+<!-- 						<descriptor>src/main/assembly/jrimum-texgit-examples.xml</descriptor> -->
 					</descriptors>
 				</configuration>
 				<executions>
