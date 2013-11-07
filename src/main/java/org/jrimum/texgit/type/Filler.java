@@ -18,7 +18,7 @@ public interface Filler extends Serializable{
 	 * 
 	 * @param toFill
 	 * @param length
-	 * @return
+	 * @return String preenchida
 	 * 
 	 * @since 0.2
 	 */
@@ -30,7 +30,7 @@ public interface Filler extends Serializable{
 	 * 
 	 * @param tofill
 	 * @param length
-	 * @return
+	 * @return String preenchida
 	 * 
 	 * @see Filler#fill(String, int)
 	 * 
@@ -44,7 +44,7 @@ public interface Filler extends Serializable{
 	 * 
 	 * @param tofill
 	 * @param length
-	 * @return
+	 * @return String preenchida
 	 * 
 	 * @see Filler#fill(String, int)
 	 * 
@@ -58,7 +58,7 @@ public interface Filler extends Serializable{
 	 * 
 	 * @param tofill
 	 * @param length
-	 * @return
+	 * @return String preenchida
 	 * 
 	 * @see Filler#fill(String, int)
 	 * 
@@ -72,7 +72,7 @@ public interface Filler extends Serializable{
 	 * 
 	 * @param tofill
 	 * @param length
-	 * @return
+	 * @return String preenchida
 	 * 
 	 * @see Filler#fill(String, int)
 	 * 
@@ -86,7 +86,7 @@ public interface Filler extends Serializable{
 	 * 
 	 * @param tofill
 	 * @param length
-	 * @return
+	 * @return String preenchida
 	 * 
 	 * @see Filler#fill(String, int)
 	 * 
@@ -100,7 +100,7 @@ public interface Filler extends Serializable{
 	 * 
 	 * @param tofill
 	 * @param length
-	 * @return
+	 * @return String preenchida
 	 * 
 	 * @see Filler#fill(String, int)
 	 * 
@@ -114,7 +114,7 @@ public interface Filler extends Serializable{
 	 * 
 	 * @param tofill
 	 * @param length
-	 * @return
+	 * @return String preenchida
 	 * 
 	 * @see Filler#fill(String, int)
 	 * 
@@ -125,8 +125,7 @@ public interface Filler extends Serializable{
 	/**
 	 * Executa o método <code>fill(String, int)</code> passando o parâmetro
 	 * <code>toFill</code> como <code>toFill.toString()</code>.
-	 * <br/>
-
+     *
 	 * <p>
 	 * Caso <code>toFill</code> seja <code>null</code>, o método 
 	 * <code>fill(String, int)</code> receberá uma String nula como parâmetro.
@@ -134,7 +133,7 @@ public interface Filler extends Serializable{
 	 * 
 	 * @param tofill
 	 * @param length
-	 * @return
+	 * @return String preenchida
 	 * 
 	 * @see Filler#fill(String, int)
 	 * 
@@ -145,8 +144,7 @@ public interface Filler extends Serializable{
 	/**
 	 * Executa o método <code>fill(String, int)</code> passando o parâmetro
 	 * <code>toFill</code> como <code>toFill.write()</code>.
-	 * <br/>
-
+     *
 	 * <p>
 	 * Caso <code>toFill</code> seja <code>null</code>, o método 
 	 * <code>fill(String, int)</code> receberá uma String nula como parâmetro.
@@ -154,7 +152,7 @@ public interface Filler extends Serializable{
 	 * 
 	 * @param tofill
 	 * @param length
-	 * @return
+	 * @return String preenchida
 	 * 
 	 * @see Filler#fill(String, int)
 	 * 

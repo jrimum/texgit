@@ -78,7 +78,7 @@ public class Filler<G> implements org.jrimum.texgit.type.Filler{
 	}
 
 	/**
-	 * @param padding
+	 * @param fillWith
 	 */
 	public Filler(G fillWith) {
 		
@@ -87,7 +87,7 @@ public class Filler<G> implements org.jrimum.texgit.type.Filler{
 	}
 
 	/**
-	 * @param padding
+	 * @param fillWith
 	 * @param sideToFill
 	 */
 	public Filler(G fillWith, Side sideToFill) {
@@ -96,15 +96,15 @@ public class Filler<G> implements org.jrimum.texgit.type.Filler{
 		setSideToFill(sideToFill);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.jrimum.texgit.type.component.X#getPadding()
+	/**
+	 * @see org.jrimum.texgit.type#getPadding()
 	 */
 	public G getPadding() {
 		return padding;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.jrimum.texgit.type.component.X#setPadding(G)
+	/**
+	 * @see org.jrimum.texgit.type#setPadding(G)
 	 */
 	public void setPadding(G fillWith) {
 		
@@ -115,15 +115,15 @@ public class Filler<G> implements org.jrimum.texgit.type.Filler{
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.jrimum.texgit.type.component.X#getSideToFill()
+	/**
+	 * @see org.jrimum.texgit.type#getSideToFill()
 	 */
 	public Side getSideToFill() {
 		return sideToFill;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.jrimum.texgit.type.component.X#setSideToFill(org.jrimum.texgit.type.component.Side)
+	/**
+	 * @see org.jrimum.texgit.type#setSideToFill(org.jrimum.texgit.type.component.Side)
 	 */
 	public void setSideToFill(Side sideToFill) {
 		
@@ -134,8 +134,8 @@ public class Filler<G> implements org.jrimum.texgit.type.Filler{
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.jrimum.texgit.type.component.X#fill(java.lang.String, int)
+	/**
+	 * @see org.jrimum.texgit.type#fill(java.lang.String, int)
 	 */
 	public String fill(String toFill, int length){
 		
@@ -155,57 +155,57 @@ public class Filler<G> implements org.jrimum.texgit.type.Filler{
 		return str;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.jrimum.texgit.type.component.X#fill(long, int)
+	/**
+	 * @see org.jrimum.texgit.type#fill(long, int)
 	 */
 	public String fill(long tofill, int length){
 		return fill(String.valueOf(tofill), length);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.jrimum.texgit.type.component.X#fill(int, int)
+	/**
+	 * @see org.jrimum.texgit.type#fill(int, int)
 	 */
 	public String fill(int tofill, int length){
 		return fill(String.valueOf(tofill), length);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.jrimum.texgit.type.component.X#fill(short, int)
+	/**
+	 * @see org.jrimum.texgit.type#fill(short, int)
 	 */
 	public String fill(short tofill, int length){
 		return fill(String.valueOf(tofill), length);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.jrimum.texgit.type.component.X#fill(byte, int)
+	/**
+	 * @see org.jrimum.texgit.type#fill(byte, int)
 	 */
 	public String fill(byte tofill, int length){
 		return fill(String.valueOf(tofill), length);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.jrimum.texgit.type.component.X#fill(char, int)
+	/**
+	 * @see org.jrimum.texgit.type#fill(char, int)
 	 */
 	public String fill(char tofill, int length){
 		return fill(String.valueOf(tofill), length);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.jrimum.texgit.type.component.X#fill(double, int)
+	/**
+	 * @see org.jrimum.texgit.type#fill(double, int)
 	 */
 	public String fill(double tofill, int length){
 		return fill(String.valueOf(tofill), length);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.jrimum.texgit.type.component.X#fill(float, int)
+	/**
+	 * @see org.jrimum.texgit.type#fill(float, int)
 	 */
 	public String fill(float tofill, int length){
 		return fill(String.valueOf(tofill), length);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.jrimum.texgit.type.component.X#fill(java.lang.Object, int)
+	/**
+	 * @see org.jrimum.texgit.type#fill(java.lang.Object, int)
 	 */
 	public String fill(Object tofill, int length){
 		
@@ -218,8 +218,8 @@ public class Filler<G> implements org.jrimum.texgit.type.Filler{
 		return fill(toFillTemp, length);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.jrimum.texgit.type.component.X#fill(org.jrimum.texgit.TextStream, int)
+	/**
+	 * @see org.jrimum.texgit.type#fill(org.jrimum.texgit.TextStream, int)
 	 */
 	public String fill(TextStream tofill, int length){
 
@@ -235,7 +235,7 @@ public class Filler<G> implements org.jrimum.texgit.type.Filler{
 	/**
 	 * @param toFill
 	 * @param length
-	 * @return
+	 * @return String preenchida
 	 */
 	private String fillRight(String toFill, int length) {
 		
@@ -245,7 +245,7 @@ public class Filler<G> implements org.jrimum.texgit.type.Filler{
 	/**
 	 * @param toFill
 	 * @param length
-	 * @return
+	 * @return String preenchida
 	 */
 	private String fillLeft(String toFill, int length) {
 		

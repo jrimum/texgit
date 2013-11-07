@@ -102,7 +102,7 @@ public abstract class AbstractStringOfFields<G extends Field<?>> implements Text
 	 * cada subclasse.
 	 * </p>
 	 * 
-	 * @see org.jrimum.utilix.IReadWriteStream#read(java.lang.Object)
+	 * @see org.jrimum.texgit.ReadWriteStream#read(Object)
 	 */
 	public abstract void read(String lineOfField);
 
@@ -111,7 +111,7 @@ public abstract class AbstractStringOfFields<G extends Field<?>> implements Text
 	 * Escreve os campos na ordem em que estão dispostos na lista em uma única linha (string).
 	 * </p>
 	 * 
-	 * @see org.jrimum.utilix.IReadWriteStream#write()
+	 * @see org.jrimum.texgit.ReadWriteStream#write()
 	 */
 	public String write() {
 
@@ -323,7 +323,7 @@ public abstract class AbstractStringOfFields<G extends Field<?>> implements Text
 	}
 
 	/**
-	 * @see java.util.List#toArray(T[])
+	 * @see java.util.List#toArray(Object[])
 	 */
 	public <T> T[] toArray(T[] a) {
 

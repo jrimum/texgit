@@ -30,24 +30,21 @@ package org.jrimum.texgit.type;
 
 /**
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- *
+ * 
  */
 public interface Fixed {
 
-	
 	/**
-	 * <p>
-	 * Informa a validade para a fixação de uma ou mais medidas. Exemplo:
-	 * <br />
+	 * Informa a validade para a fixação de uma ou mais medidas. Exemplo: <br />
+	 * 
 	 * <pre>
 	 * {
-	 * isLenghtAsDefine();
-	 * isSizeAsDefine();
+	 * 	isLenghtAsDefine();
+	 * 	isSizeAsDefine();
 	 * }
 	 * </pre>
-	 * </p>
 	 * 
-	 * @return
+	 * @return Indicativo se está de acordo com o definido
 	 * 
 	 * @throws IllegalStateException
 	 */
