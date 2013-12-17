@@ -148,8 +148,9 @@ public class FlatFile implements org.jrimum.texgit.FlatFile<org.jrimum.texgit.Re
 									lineIndex++;
 									addRecord(record);
 									
-									if(record.isHeadOfGroup())
+									if(record.isHeadOfGroup()){
 										lineIndex = record.readInnerRecords(str,lineIndex,recordFactory);
+									}
 									
 									record = null;
 								}
@@ -167,8 +168,9 @@ public class FlatFile implements org.jrimum.texgit.FlatFile<org.jrimum.texgit.Re
 									lineIndex++;
 									addRecord(record);
 									
-									if(record.isHeadOfGroup())
+									if(record.isHeadOfGroup()){
 										lineIndex = record.readInnerRecords(str,lineIndex,recordFactory);
+									}
 									
 									record = null;
 								}
@@ -214,8 +216,9 @@ public class FlatFile implements org.jrimum.texgit.FlatFile<org.jrimum.texgit.Re
 								"Erro ao tentar escrever o registro \"%s\".", rec.getName()), e);
 					}
 					
-					if(rec.isHeadOfGroup())
+					if(rec.isHeadOfGroup() && rec.hasInnerRecords()){
 						out.addAll(rec.writeInnerRecords(lineEnding));
+					}
 				}
 				
 			}else{
@@ -232,8 +235,9 @@ public class FlatFile implements org.jrimum.texgit.FlatFile<org.jrimum.texgit.Re
 							"Erro ao tentar escrever o registro \"%s\".", rec.getName()), e);
 				}
 				
-				if(rec.isHeadOfGroup())
+				if(rec.isHeadOfGroup() && rec.hasInnerRecords()){
 					out.addAll(rec.writeInnerRecords(lineEnding));
+				}
 			}
 		}
 		

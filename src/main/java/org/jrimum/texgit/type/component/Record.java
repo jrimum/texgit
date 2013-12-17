@@ -382,6 +382,10 @@ public class Record extends BlockOfFields implements org.jrimum.texgit.Record{
 		
 		return this;
 	}
+	
+	public boolean hasInnerRecords(){
+		return getInnerRecords() != null && !getInnerRecords().isEmpty();
+	}
 
 	public String getName() {
 		return name;
