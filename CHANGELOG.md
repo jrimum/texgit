@@ -7,3 +7,7 @@ Texgit Changelog
 **Improvement**
 
  * #1: Implementação de testes para funcionalidade LineOfFields
+ 
+ 
+0.2.0-SNAPSHOT (2010/12/07) incubation 
+---------------------------------------
