@@ -5,7 +5,7 @@
 	<groupId>org.jrimum</groupId>
 	<artifactId>jrimum-texgit</artifactId>
 	<name>Projeto Texgit</name>
-	<version>0.2.0-SNAPSHOT</version>
+	<version>0.2.3-DEV-SNAPSHOT</version>
 	<description>Projeto open source de componentes de software para o domínio de negócios do Brasil.</description>
 	<url>http://www.jrimum.org/texgit</url>
 
@@ -61,6 +61,27 @@
 					<source>1.5</source>
 					<target>1.5</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>animal-sniffer-maven-plugin</artifactId>
+				<version>1.6</version>
+				<configuration>
+					<signature>
+						<groupId>org.codehaus.mojo.signature</groupId>
+						<artifactId>java15</artifactId>
+						<version>1.0</version>
+					</signature>
+				</configuration>
+				<executions>
+					<execution>
+						<id>animal-sniffer</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -181,6 +202,10 @@
 			<id>org.jrimum.snapshots</id>
 			<url>http://jrimum.org/maven/content/repositories/org.jrimum.snapshots/</url>
 		</snapshotRepository>
+		<repository>
+			<id>org.jrimum.releases</id>
+			<url>http://jrimum.org/maven/content/repositories/org.jrimum.releases/</url>
+		</repository>
 	</distributionManagement>
 
 </project>
