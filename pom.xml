@@ -5,7 +5,7 @@
 	<groupId>org.jrimum</groupId>
 	<artifactId>jrimum-texgit</artifactId>
 	<name>Projeto Texgit</name>
-	<version>0.2.3-SNAPSHOT</version>
+	<version>0.2.3</version>
 	<description>Projeto open source de componentes de software para o domínio de negócios do Brasil.</description>
 	<url>http://www.jrimum.org/texgit</url>
 
@@ -162,7 +162,7 @@
 		<dependency>
 			<groupId>org.jrimum</groupId>
 			<artifactId>jrimum-utilix</artifactId>
-			<version>0.2.3-DEV-SNAPSHOT</version>
+			<version>0.2.3</version>
 		</dependency>
 		<dependency>
 			<groupId>sun-jaxb</groupId>
