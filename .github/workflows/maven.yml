@@ -20,6 +20,8 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Build with Maven
+        env:
+          GITHUB_TOKEN: ${{ github.token }}        
         run: mvn -V javadoc:javadoc -DadditionalJOption=-Xdoclint:none package --file pom.xml
       - name: Publish to GitHub Packages
         env:
