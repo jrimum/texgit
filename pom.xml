@@ -186,7 +186,7 @@
 	<repositories>
 		   <repository>
 		     <id>Gilbertoca github</id>
-		     <url>https://maven.pkg.github.com/gilbertoca/jrimum</url>
+		     <url>https://maven.pkg.github.com/gilbertoca/utilix</url>
 		   </repository>		
 		<repository>
 			<id>JBoss Repository</id>
@@ -213,7 +213,7 @@
 		   <repository>
 		     <id>github</id>
 		     <name>GitHub gilbertoca Apache Maven Packages</name>
-		     <url>https://maven.pkg.github.com/gilbertoca/jrimum</url>
+		     <url>https://maven.pkg.github.com/gilbertoca/texgit</url>
 		   </repository>
 	</distributionManagement>
 
