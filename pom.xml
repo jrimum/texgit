@@ -162,7 +162,7 @@
 		<dependency>
 			<groupId>org.jrimum</groupId>
 			<artifactId>jrimum-utilix</artifactId>
-			<version>0.2.3</version>
+			<version>0.2.3-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>sun-jaxb</groupId>
