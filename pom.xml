@@ -184,6 +184,10 @@
 	</dependencies>
 
 	<repositories>
+		   <repository>
+		     <id>Gilbertoca github</id>
+		     <url>https://maven.pkg.github.com/gilbertoca/jrimum</url>
+		   </repository>		
 		<repository>
 			<id>JBoss Repository</id>
 			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
