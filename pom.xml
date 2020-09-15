@@ -188,24 +188,29 @@
 			<id>JBoss Repository</id>
 			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
 		</repository>
-		<repository>
+		<!--repository>
 			<id>jrimum.org</id>
 			<url>http://jrimum.org/maven/content/groups/public/</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
-		</repository>
+		</repository-->
 	</repositories>
 
 	<distributionManagement>
-		<snapshotRepository>
+		<!--snapshotRepository>
 			<id>org.jrimum.snapshots</id>
 			<url>http://jrimum.org/maven/content/repositories/org.jrimum.snapshots/</url>
 		</snapshotRepository>
 		<repository>
 			<id>org.jrimum.releases</id>
 			<url>http://jrimum.org/maven/content/repositories/org.jrimum.releases/</url>
-		</repository>
+		</repository-->
+		   <repository>
+		     <id>github</id>
+		     <name>GitHub gilbertoca Apache Maven Packages</name>
+		     <url>https://maven.pkg.github.com/gilbertoca/jrimum</url>
+		   </repository>
 	</distributionManagement>
 
 </project>
