@@ -22,7 +22,7 @@ jobs:
       - name: Build with Maven
         env:
           GITHUB_TOKEN: ${{ github.token }}        
-        run: mvn -V javadoc:javadoc -DadditionalJOption=-Xdoclint:none package --file pom.xml
+        run: mvn -V javadoc:javadoc -DadditionalJOption=-Xdoclint:none install --file pom.xml
       - name: Publish to GitHub Packages
         env:
           GITHUB_TOKEN: ${{ github.token }}
