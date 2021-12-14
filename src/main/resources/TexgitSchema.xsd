@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--  
+/*
+ * Copyright 2008 JRimum Project
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by
+ * applicable law or agreed to in writing, software distributed under the
+ * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
+ * OF ANY KIND, either express or implied. See the License for the specific
+ * language governing permissions and limitations under the License.
+ * 
+ * Created at: 03/08/2008 - 12:27:56
+ * 
+ * ================================================================================
+ * 
+ * Direitos autorais 2008 JRimum Project
+ * 
+ * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode usar
+ * esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma
+ * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que
+ * haja exigência legal ou acordo por escrito, a distribuição de software sob
+ * esta LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER
+ * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
+ * reger permissões e limitações sob esta LICENÇA.
+ * 
+ * Criado em: 03/08/2008 - 12:27:56
+ * 
+ */
+-->
+
+<!-- @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a> -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0"
+	xmlns:txg="http://jrimum.org/texgit"
+	targetNamespace="http://jrimum.org/texgit">
+	<xs:annotation>
+		<xs:documentation>
+			Representação de classes e atributos usados para definição
+			da linguagem Texgit.
+		</xs:documentation>
+	</xs:annotation>
+
+	<xs:element name="Texgit" type="txg:MetaTexgit" />
+
+	<!-- ============== Tipos Complexos ============== -->
+
+	<xs:complexType name="MetaTexgit">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class>
+					<jxb:javadoc>
+						<![CDATA[
+					<p>
+						Elemento root.
+					</p>
+					]]>
+					</jxb:javadoc>
+				</jxb:class>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="FlatFile" type="txg:MetaFlatFile"
+				minOccurs="1" maxOccurs="1" />
+		</xs:all>
+		<xs:attribute name="version" type="txg:TexgitVersion"
+			use="optional" default="1.0-academic">
+			<xs:annotation>
+				<xs:documentation>
+					Versão Da Linguagem Textgit
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="MetaFlatFile">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class>
+					<jxb:javadoc>
+						<![CDATA[
+					<p>
+						Flat File é um tipo de arquivo texto com informações estruturadas 
+						com base em formatações e estruturas pré definidas. veja mais em (link).
+					</p>
+					]]>
+					</jxb:javadoc>
+				</jxb:class>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="layout" type="txg:MetaLayout"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="GroupOfRecords"
+				type="txg:MetaGroupRecords" minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MetaLayout">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class>
+					<jxb:javadoc>
+						<![CDATA[
+					<p>
+						Tags para informar o layout do flafile definido.
+					</p>
+					]]>
+					</jxb:javadoc>
+				</jxb:class>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="name" type="txg:MetaDescription"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="version" type="txg:MetaDescription"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="description" type="txg:MetaDescription"
+				minOccurs="0" maxOccurs="1" />
+		</xs:all>
+	</xs:complexType>
+
+	<xs:complexType name="MetaGroupRecords">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class>
+					<jxb:javadoc>
+						<![CDATA[
+					<p>
+						Conjunto de records de um flatfile ou relacionados a um outro record.
+					</p>
+					]]>
+					</jxb:javadoc>
+				</jxb:class>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Record" type="txg:MetaRecord"
+				minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="records" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MetaRecord">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class>
+					<jxb:javadoc>
+						<![CDATA[
+					<p>
+						Uma espécie de container de fields numa forma mais simples, usualmente é conhecido como
+						Registro ou Bloco.
+					</p>
+					]]>
+					</jxb:javadoc>
+				</jxb:class>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GroupOfFields" type="txg:MetaGroupFields"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="GroupOfInnerRecords"
+				type="txg:MetaGroupRecords" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="name" type="txg:MetaName" use="optional" />
+		<xs:attribute name="repeatable" type="xs:boolean" use="optional"
+			default="false" />
+		<xs:attribute name="description" type="txg:MetaDescription"
+			use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="MetaGroupFields">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class>
+					<jxb:javadoc>
+						<![CDATA[
+					<p>
+						Agregado de fields.
+					</p>
+					]]>
+					</jxb:javadoc>
+				</jxb:class>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="IdType" type="txg:MetaOrderedField"
+				minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:class>
+							<jxb:javadoc>
+								<![CDATA[
+					<p>
+						Identificação para um tipo de Record.
+					</p>
+					]]>
+							</jxb:javadoc>
+						</jxb:class>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Field" type="txg:MetaField" minOccurs="1"
+				maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="fields" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SequencialNumber"
+				type="txg:MetaOrderedField" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:class>
+							<jxb:javadoc>
+								<![CDATA[
+					<p>
+						Field para sequenciamento do de um Record.
+					</p>
+					]]>
+							</jxb:javadoc>
+						</jxb:class>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="MetaField">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class>
+					<jxb:javadoc>
+						<![CDATA[
+					<p>
+					Field é a unidade básica de informação de um registro, um field está para 
+					um registro assim como uma coluna de banco de dados está para uma tabela.
+					</p>
+					]]>
+					</jxb:javadoc>
+				</jxb:class>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:all>
+		<xs:element name="Filler" type="txg:MetaFiller"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="Formatter" type="txg:MetaFormatter"
+				minOccurs="0" maxOccurs="1" />
+		</xs:all>
+		<xs:attribute name="name" type="txg:MetaName" use="required" />
+		<xs:attribute name="value" type="txg:MetaFormat" use="optional"
+			default=" " />
+		<xs:attribute name="length" type="txg:MetaLength"
+			use="required" />
+		<xs:attribute name="truncate" type="xs:boolean"
+			use="optional" default="false" />
+		<xs:attribute name="blankAccepted" type="xs:boolean"
+			use="optional" default="false" />
+		<xs:attribute name="type" type="txg:enumTypes" default="STRING" />
+		<xs:attribute name="format" type="txg:enumFormats"
+			use="optional" />
+		<xs:attribute name="padding" type="txg:enumPaddings"
+			use="optional" default="WHITE_SPACE_RIGHT" />
+	</xs:complexType>
+
+	<xs:complexType name="MetaOrderedField">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class>
+					<jxb:javadoc>
+						<![CDATA[
+					<p>
+					Para definição da posição.
+					</p>
+					]]>
+					</jxb:javadoc>
+				</jxb:class>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="txg:MetaField">
+				<xs:attribute name="position" type="txg:MetaLength"
+					use="required" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="MetaFiller">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class>
+					<jxb:javadoc>
+						<![CDATA[
+					<p>
+					Instrumento utilizado para preencher um field com um formato e caracteres 
+					pré definidos.
+					</p>
+					]]>
+					</jxb:javadoc>
+				</jxb:class>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence />
+		<xs:attribute name="padding" type="txg:MetaFormat"
+			use="required" />
+		<xs:attribute name="sideToFill" type="txg:enumSide"
+			use="optional" default="LEFT" />
+	</xs:complexType>
+
+	<xs:complexType name="MetaFormatter">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class>
+					<jxb:javadoc>
+						<![CDATA[
+					<p>
+					Formato utilizado por um Filler (Preenchedor).
+					</p>
+					]]>
+					</jxb:javadoc>
+				</jxb:class>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence />
+		<xs:attribute name="format" type="txg:MetaFormat"
+			use="required" />
+		<xs:attribute name="type" type="txg:enumFormatsTypes"
+			use="required" />
+	</xs:complexType>
+
+
+
+	<!-- ============== Tipos Simples Atributos e Enumerações ============== -->
+
+	<!-- ============== Tipos Simples: Regras Para Atributos  ============== -->
+
+	<xs:simpleType name="TexgitVersion">
+		<xs:annotation>
+			<xs:documentation>
+				Versão da linguagem utilizada para descricação de flat
+				files.
+
+				Padrão: "d.d ou d.d-'tag' ou d.d-'tag'd" Exemplo: 1.4 ou
+				1.23-beta ou 1.23-beta5
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse" />
+			<xs:minLength value="3" />
+			<xs:pattern value="(\d+\.\d+|\d+\.\d+\-[a-z]+\d*)" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetaName">
+		<xs:annotation>
+			<xs:documentation>
+				Tipificação e regras para campos strings utilizados como
+				identificadores. Padarão: letras,dígitos, traços (-) ou
+				underlines (_).
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse" />
+			<xs:minLength value="1" />
+			<xs:pattern value="([a-zA-Z_\d\-])+" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetaDescription">
+		<xs:annotation>
+			<xs:documentation>
+				Tipificação e regras para descrição de campos strings.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetaLength">
+		<xs:annotation>
+			<xs:documentation>
+				Tipificação e regras para campos interios usados como
+				represenações de quantidade
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetaFormat">
+		<xs:annotation>
+			<xs:documentation>
+				Tipificação e regras para campos strings utilizados como
+				definições de formatos.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+			<xs:whiteSpace value="preserve" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- ============== Tipos Simples: Enumerações Para Atributos ============== -->
+
+	<xs:simpleType name="enumFormats">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:typesafeEnumClass>
+					<jxb:javadoc>
+						<![CDATA[
+					<p>
+						Formatos pré definidos suportados pelo
+						componente.
+					</p>
+					]]>
+					</jxb:javadoc>
+				</jxb:typesafeEnumClass>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DATE_DDMMYY" />
+			<xs:enumeration value="DATE_DDMMYYYY" />
+			<xs:enumeration value="DATE_YYMMDD" />
+			<xs:enumeration value="DATE_YYYYMMDD" />
+			<xs:enumeration value="DECIMAL_D" />
+			<xs:enumeration value="DECIMAL_DD" />
+			<xs:enumeration value="DECIMAL_DDD" />
+			<xs:enumeration value="DECIMAL_DDDD" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="enumFormatsTypes">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:typesafeEnumClass>
+					<jxb:javadoc>
+						<![CDATA[
+					<p>
+						Tipo de formatadores suportados. Usados junto a
+						definição de novos formatadores.
+					</p>
+					]]>
+					</jxb:javadoc>
+				</jxb:typesafeEnumClass>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DATE" />
+			<xs:enumeration value="DECIMAL" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="enumPaddings">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:typesafeEnumClass>
+					<jxb:javadoc>
+						<![CDATA[
+					<p>
+						Preenchimentos suportados por padrão pelo
+						componente.
+					</p>
+					]]>
+					</jxb:javadoc>
+				</jxb:typesafeEnumClass>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ZERO_RIGHT" />
+			<xs:enumeration value="ZERO_LEFT" />
+			<xs:enumeration value="WHITE_SPACE_RIGHT" />
+			<xs:enumeration value="WHITE_SPACE_LEFT" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="enumSide">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:typesafeEnumClass>
+					<jxb:javadoc>
+						<![CDATA[
+					<p>
+						Basicamente são definições de direções de
+						escrita e leitura.
+					</p>
+					]]>
+					</jxb:javadoc>
+				</jxb:typesafeEnumClass>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="LEFT" />
+			<xs:enumeration value="RIGHT" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="enumTypes">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:typesafeEnumClass>
+					<jxb:javadoc>
+						<![CDATA[
+					<p>
+						Tipos usados para obtenção dos campos de texto
+						para java. No caso representa os tipos java
+						possíveis para um campo.
+					</p>
+					]]>
+					</jxb:javadoc>
+				</jxb:typesafeEnumClass>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CHARACTER" />
+			<xs:enumeration value="STRING" />
+			<xs:enumeration value="INTEGER" />
+			<xs:enumeration value="LONG" />
+			<xs:enumeration value="FLOAT" />
+			<xs:enumeration value="DOUBLE" />
+			<xs:enumeration value="BIGDECIMAL" />
+			<xs:enumeration value="DATE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>
+

@@ -1,0 +1,226 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.jrimum</groupId>
+	<artifactId>jrimum-texgit</artifactId>
+	<name>Projeto Texgit</name>
+	<version>0.2.4</version>
+	<description>Projeto open source de componentes de software para o domínio de negócios do Brasil.</description>
+	<url>http://www.jrimum.org/texgit</url>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>Projeto JRimum</name>
+		<url>http://www.jrimum.org</url>
+	</organization>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>http://github.com/jrimum/texgit/issues</url>
+	</issueManagement>
+
+	<scm>
+		<url>http://github.com/jrimum/texgit</url>
+	</scm>
+
+	<developers>
+		<developer>
+			<name>Gilmar P. S. L.</name>
+			<email>gilmatryx@gmail.com</email>
+		</developer>
+		<developer>
+			<name>Misael Barreto</name>
+			<email>misaelbarreto@gmail.com</email>
+		</developer>
+		<developer>
+			<name>Rômulo Augusto</name>
+			<email>romulomail@gmail.com</email>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>animal-sniffer-maven-plugin</artifactId>
+				<version>1.20</version>
+				<configuration>
+					<signature>
+						<groupId>org.codehaus.mojo.signature</groupId>
+						<artifactId>java15</artifactId>
+						<version>1.0</version>
+					</signature>
+				</configuration>
+				<executions>
+					<execution>
+						<id>animal-sniffer</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<descriptors>
+						<descriptor>src/main/assembly/jrimum-texgit-with-dependencies.xml</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.16</version>
+				<configuration>
+				<skipTests>false</skipTests>
+					<includes>
+						<include>org/jrimum/texgit/**/*</include>
+					</includes>
+					<excludes>
+						<exclude>org/jrimum/texgit/excludes/**/*</exclude>
+						<exclude>org/jrimum/texgit/**/*$*</exclude> <!-- Exclui classes internas anônimas para evitar erros -->
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<executions>
+					<execution>
+						<id>attach-javadoc</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+				 <configuration>
+			        <charset>UTF-8</charset>
+					<docencoding>UTF-8</docencoding>
+					<docfilessubdirs>true</docfilessubdirs>
+					<show>private</show>
+		    	</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.8.1</version>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.jrimum</groupId>
+			<artifactId>jrimum-utilix</artifactId>
+			<version>0.2.3</version>
+		</dependency>
+		<dependency>
+		    <groupId>javax.xml.bind</groupId>
+		    <artifactId>jaxb-api</artifactId>
+		    <version>2.3.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.sun.xml.bind</groupId>
+		    <artifactId>jaxb-core</artifactId>
+		    <version>2.3.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.sun.xml.bind</groupId>
+		    <artifactId>jaxb-impl</artifactId>
+		    <version>2.3.0</version>
+		</dependency>
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		   <repository>
+		     <id>github</id>
+ 		     <name>GitHub gilbertoca Apache Maven Packages</name>
+          	     <url>https://maven.pkg.github.com/gilbertoca/utilix</url>
+		   </repository>		
+		<repository>
+			<id>JBoss Repository</id>
+			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+		</repository>
+		<!--repository>
+			<id>jrimum.org</id>
+			<url>http://jrimum.org/maven/content/groups/public/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository-->
+	</repositories>
+
+	<distributionManagement>
+		<!--snapshotRepository>
+			<id>org.jrimum.snapshots</id>
+			<url>http://jrimum.org/maven/content/repositories/org.jrimum.snapshots/</url>
+		</snapshotRepository>
+		<repository>
+			<id>org.jrimum.releases</id>
+			<url>http://jrimum.org/maven/content/repositories/org.jrimum.releases/</url>
+		</repository-->
+		   <repository>
+		     <id>github</id>
+		     <name>GitHub gilbertoca Apache Maven Packages</name>
+		     <url>https://maven.pkg.github.com/gilbertoca/texgit</url>
+		   </repository>
+	</distributionManagement>
+
+</project>
